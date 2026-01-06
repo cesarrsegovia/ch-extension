@@ -1,0 +1,47 @@
+.detected-tweet {
+    border: 2px solid #1d9bf0 !important;
+    background-color: rgba(29, 155, 240, 0.05) !important;
+    position: relative;
+}
+
+.gamblor-action-container {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    z-index: 100;
+}
+
+.detected-badge {
+    background-color: #1d9bf0;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 9999px;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.gamblor-bet-button {
+    background-color: #ffffff;
+    color: #1d9bf0;
+    border: none;
+    padding: 6px 18px;
+    border-radius: 9999px;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.1s, background-color 0.2s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gamblor-bet-button:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+}
+
+.gamblor-bet-button:active {
+    transform: scale(0.95);
+}

@@ -1,0 +1,46 @@
+{
+    "manifest_version": 3,
+    "name": "X Link Detector",
+    "version": "1.0",
+    "description": "Detecta posts de gamblor en x",
+    "permissions": [
+        "storage"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "icons": {
+        "16": "image/logo_icon.png",
+        "48": "image/logo_icon.png",
+        "128": "image/logo_icon.png"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "image/logo_icon.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://twitter.com/*",
+                "https://x.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "css": [
+                "content.css"
+            ]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "image/logo_icon.png"
+            ],
+            "matches": [
+                "https://twitter.com/*",
+                "https://x.com/*"
+            ]
+        }
+    ]
+}

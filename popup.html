@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 320px;
+      padding: 25px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #15202b;
+      color: white;
+      margin: 0;
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-top: 0;
+      color: #1d9bf0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .main-logo {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      font-size: 16px;
+      color: #8899a6;
+      margin-bottom: 25px;
+    }
+
+    .gamblor-btn {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      background-color: #1d9bf0;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 9999px;
+      font-weight: bold;
+      font-size: 16px;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .gamblor-btn:hover {
+      background-color: #1a8cd8;
+      transform: translateY(-2px);
+    }
+
+    .gamblor-btn:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <img src="image/logo_icon.png" class="main-logo">
+    <h2>Gamblor Casino</h2>
+    <p class="description">Ir a Gamblor</p>
+    <a href="https://www.gamblor.io/" target="_blank" class="gamblor-btn" id="go-gamblor">Abrir Gamblor.io</a>
+  </div>
+  <script src="popup.js"></script>
+</body>
+
+</html>
