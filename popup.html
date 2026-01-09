@@ -4,23 +4,51 @@
 <head>
   <meta charset="UTF-8">
   <style>
+    /* Estilos Generales y Reset */
     body {
-      width: 320px;
-      padding: 25px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #15202b;
-      color: white;
       margin: 0;
-      text-align: center;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      width: 375px;
+      /* Altura dinámica dependiendo de la vista */
     }
 
-    .container {
+    /* Utiles de Ocultamiento */
+    .view-section {
+      display: none !important;
+    }
+
+    /* Active States */
+    #view-home.active {
+      display: block !important;
+    }
+
+    #view-premier.active {
+      display: flex !important;
+    }
+
+    #view-success.active {
+      display: flex !important;
+    }
+
+    /* =========================================
+       VISTA HOME (Versión Simplificada Anterior)
+       ========================================= */
+    #view-home {
+      background-color: #15202b;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      min-height: 200px;
+    }
+
+    #view-home .container {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    h2 {
+    #view-home h2 {
       font-size: 20px;
       margin-top: 0;
       color: #1d9bf0;
@@ -28,21 +56,22 @@
       align-items: center;
       gap: 12px;
       margin-bottom: 20px;
+      justify-content: center;
     }
 
-    .main-logo {
+    #view-home .main-logo {
       width: 48px;
       height: 48px;
       margin-bottom: 10px;
     }
 
-    .description {
+    #view-home .description {
       font-size: 16px;
       color: #8899a6;
       margin-bottom: 25px;
     }
 
-    .gamblor-btn {
+    #view-home .gamblor-btn {
       display: block;
       width: 100%;
       padding: 15px;
@@ -54,26 +83,673 @@
       font-weight: bold;
       font-size: 16px;
       transition: background-color 0.2s, transform 0.1s;
+      box-sizing: border-box;
+      cursor: pointer;
     }
 
-    .gamblor-btn:hover {
+    #view-home .gamblor-btn:hover {
       background-color: #1a8cd8;
       transform: translateY(-2px);
     }
 
-    .gamblor-btn:active {
-      transform: translateY(0);
+    /* =========================================
+       VISTA PREMIER LEAGUE & SUCCESS (Estilos Compartidos)
+       ========================================= */
+    /* Variables basadas en Tailwind Config */
+    :root {
+      --pl-primary: #f2b90d;
+      --pl-bg-light: #f8f8f5;
+      --pl-bg-dark: #221e10;
+      --pl-surface-dark: #2a261a;
+      --pl-surface-darker: #1a170e;
+      --pl-text-muted: #bab29c;
+    }
+
+    body.premier-mode,
+    body.success-mode {
+      background-color: var(--pl-bg-dark);
+      color: white;
+    }
+
+    #view-premier,
+    #view-success {
+      background-color: var(--pl-bg-dark);
+      color: white;
+      min-height: 100vh;
+      overflow-y: auto;
+      flex-direction: column;
+    }
+
+    /* Utility classes replication */
+    .w-full {
+      width: 100%;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .flex-col {
+      flex-direction: column;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .justify-between {
+      justify-content: space-between;
+    }
+
+    .justify-center {
+      justify-content: center;
+    }
+
+    .gap-1 {
+      gap: 4px;
+    }
+
+    .gap-2 {
+      gap: 8px;
+    }
+
+    .gap-3 {
+      gap: 12px;
+    }
+
+    .gap-4 {
+      gap: 16px;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .font-bold {
+      font-weight: 700;
+    }
+
+    .rounded-full {
+      border-radius: 9999px;
+    }
+
+    .rounded-xl {
+      border-radius: 0.75rem;
+    }
+
+    .rounded-lg {
+      border-radius: 0.5rem;
+    }
+
+    /* Hide Scrollbar */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Header */
+    .pl-header {
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      background-color: var(--pl-bg-dark);
+      flex: none;
+    }
+
+    .back-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .back-btn:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .balance-pill {
+      background-color: var(--pl-surface-dark);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 9999px;
+      padding: 4px 4px 4px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .add-btn {
+      width: 24px;
+      height: 24px;
+      background-color: var(--pl-primary);
+      border-radius: 50%;
+      border: none;
+      color: var(--pl-bg-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    /* Main Content */
+    .pl-main {
+      padding: 12px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-bottom: 120px;
+      overflow-y: auto;
+    }
+
+    /* Card */
+    .bet-card {
+      background-color: var(--pl-surface-dark);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 0.75rem;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .selection-box {
+      background-color: var(--pl-surface-darker);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 0.5rem;
+      padding: 4px;
+      display: flex;
+      margin-top: 12px;
+    }
+
+    .sel-info {
+      flex: 1;
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 8px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .odds-info {
+      padding: 8px 24px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+      min-width: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Inputs */
+    .stake-input-group {
+      position: relative;
+      flex: 1;
+    }
+
+    .stake-input {
+      width: 100%;
+      height: 64px;
+      background-color: var(--pl-surface-dark);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.75rem;
+      padding-left: 16px;
+      padding-right: 60px;
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      box-sizing: border-box;
+    }
+
+    .stake-input:focus {
+      outline: none;
+      border-color: var(--pl-primary);
+    }
+
+    .stake-suffix {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--pl-text-muted);
+      font-weight: bold;
+      font-size: 14px;
+      pointer-events: none;
+    }
+
+    .quick-btn {
+      flex: 1;
+      background-color: var(--pl-surface-dark);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.5rem;
+      color: var(--pl-text-muted);
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .quick-btn:hover {
+      border-color: rgba(242, 185, 13, 0.5);
+      color: white;
+    }
+
+    .quick-btn.max {
+      color: var(--pl-primary);
+    }
+
+    .return-box {
+      background: linear-gradient(to right, rgba(242, 185, 13, 0.1), transparent);
+      border: 1px solid rgba(242, 185, 13, 0.1);
+      border-radius: 0.5rem;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    /* Info Box */
+    .info-box {
+      padding: 16px;
+      border: 1px dashed rgba(255, 255, 255, 0.1);
+      border-radius: 0.5rem;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--pl-text-muted);
+      margin-bottom: 8px;
+    }
+
+    .info-row:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Footer */
+    .pl-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--pl-bg-dark);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 12px 16px;
+      padding-bottom: 16px;
+      box-sizing: border-box;
+      box-shadow: 0 -10px 40px -15px rgba(0, 0, 0, 0.5);
+    }
+
+    .confirm-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .confirm-check input {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--pl-primary);
+      background-color: var(--pl-surface-dark);
+      border: 1px solid #666;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .confirm-check label {
+      font-size: 12px;
+      color: var(--pl-text-muted);
+      line-height: 1.2;
+      cursor: pointer;
+    }
+
+    .place-bet-btn {
+      width: 100%;
+      height: 44px;
+      background-color: var(--pl-primary);
+      color: var(--pl-bg-dark);
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 20px -5px rgba(242, 185, 13, 0.3);
+      transition: all 0.2s;
+    }
+
+    .place-bet-btn:hover {
+      background-color: #fccb3f;
+    }
+
+    .place-bet-btn:active {
+      transform: scale(0.98);
+      background-color: #d9a50b;
+    }
+
+    /* Success View Specifics */
+    .success-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 0;
+      gap: 16px;
+    }
+
+    .glow-circle {
+      position: absolute;
+      width: 64px;
+      height: 64px;
+      background-color: rgba(242, 185, 13, 0.2);
+      border-radius: 50%;
+      filter: blur(24px);
+      transform: scale(1.5);
+    }
+
+    .ticket-card {
+      background-color: var(--pl-surface-dark);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 1rem;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .financial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 16px;
+      margin-top: 16px;
+    }
+
+    .wallet-update-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .wallet-box {
+      background-color: var(--pl-surface-dark);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 0.75rem;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .done-btn {
+      width: 100%;
+      background-color: var(--pl-primary);
+      color: var(--pl-bg-dark);
+      font-weight: bold;
+      font-size: 16px;
+      padding: 16px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(242, 185, 13, 0.15);
+      transition: background-color 0.2s;
+    }
+
+    .done-btn:hover {
+      background-color: #e0ac0c;
+    }
+
+    /* Icons (Material Symbols placeholder) */
+    .material-symbols-outlined {
+      font-family: monospace;
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
     }
   </style>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <div class="container">
-    <img src="image/logo_icon.png" class="main-logo">
-    <h2>Gamblor Casino</h2>
-    <p class="description">Ir a Gamblor</p>
-    <a href="https://www.gamblor.io/" target="_blank" class="gamblor-btn" id="go-gamblor">Abrir Gamblor.io</a>
+
+  <!-- ================= VISTA HOME ================= -->
+  <div id="view-home" class="view-section">
+    <div class="container">
+      <img src="image/logo_icon.png" class="main-logo">
+      <h2>Gamblor Casino</h2>
+      <p class="description">Ir a Gamblor</p>
+      <button id="go-gamblor" class="gamblor-btn">Abrir Gamblor.io</button>
+    </div>
   </div>
+
+
+  <!-- ================= VISTA PREMIER LEAGUE ================= -->
+  <div id="view-premier" class="view-section">
+    <!-- Header -->
+    <header class="pl-header flex items-center justify-between">
+      <button id="back-home" class="back-btn">
+        <span class="material-symbols-outlined">arrow_back_ios_new</span>
+      </button>
+      <h1 class="text-lg font-bold text-center flex-1 pr-2" style="margin:0;">Place Bet</h1>
+      <div class="balance-pill">
+        <span class="text-xs font-bold text-[#bab29c]">1,240.50</span>
+        <span class="text-[10px] font-bold text-[#bab29c] mr-1">USDT</span>
+        <button class="add-btn">
+          <span class="material-symbols-outlined" style="font-size:14px; font-weight:bold;">add</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pl-main no-scrollbar">
+
+      <!-- Bet Details Card -->
+      <div class="bet-card">
+        <!-- Event Header -->
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2 text-[#bab29c]">
+            <span class="material-symbols-outlined" style="font-size:18px;">sports_soccer</span>
+            <span class="text-xs font-bold uppercase" style="letter-spacing: 0.05em;">Premier League</span>
+          </div>
+          <span class="text-xs font-medium text-[#bab29c]"
+            style="opacity:0.6; background:rgba(255,255,255,0.05); padding:2px 6px; border-radius:4px;">Live</span>
+        </div>
+
+        <!-- Match Info -->
+        <div>
+          <div class="flex flex-col gap-1 mb-3">
+            <h3 class="text-xl font-bold leading-tight" style="margin:0;">Arsenal <span
+                class="text-[#bab29c] font-normal text-base mx-1">vs</span> Liverpool</h3>
+            <p class="text-sm text-[#bab29c]" style="margin:0;">Match Winner</p>
+          </div>
+
+          <!-- Selection & Odds Box -->
+          <div class="selection-box">
+            <div class="sel-info">
+              <span class="text-[10px] uppercase text-[#bab29c] font-bold tracking-wider mb-0.5"
+                style="opacity:0.7;">Selection</span>
+              <span class="text-primary font-bold text-lg" style="color:var(--pl-primary);">Arsenal</span>
+            </div>
+            <div class="odds-info">
+              <span class="text-[10px] uppercase text-[#bab29c] font-bold tracking-wider mb-0.5"
+                style="opacity:0.7;">Odds</span>
+              <span class="text-2xl font-bold tracking-tight">2.35</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stake Input Section -->
+      <div class="flex flex-col gap-3">
+        <label class="text-sm font-medium pl-1">Stake Amount</label>
+        <div class="flex gap-2" style="height: 64px;">
+          <div class="stake-input-group">
+            <input class="stake-input" type="number" value="250" placeholder="0.00">
+            <div class="stake-suffix">USDT</div>
+          </div>
+          <div class="flex flex-col gap-1" style="width: 64px;">
+            <button class="quick-btn">½</button>
+            <button class="quick-btn max">Max</button>
+          </div>
+        </div>
+
+        <!-- Calculated Return -->
+        <div class="return-box">
+          <span class="text-sm font-medium text-[#bab29c]">Estimated Return</span>
+          <div class="flex items-baseline gap-1.5">
+            <span class="text-xl font-bold tracking-tight" style="color:var(--pl-primary);">587.50</span>
+            <span class="text-xs font-bold" style="color:var(--pl-primary); opacity:0.7;">USDT</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Info -->
+      <div class="info-box">
+        <div class="info-row">
+          <span>Current Wallet Balance</span>
+          <span style="font-family:monospace;">1,240.50 USDT</span>
+        </div>
+        <div class="info-row" style="margin-top: 8px;">
+          <span>Remaining after bet</span>
+          <span style="font-family:monospace;">990.50 USDT</span>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="pl-footer">
+      <div class="confirm-check">
+        <input type="checkbox" id="confirm-bet" checked>
+        <label for="confirm-bet">I confirm this bet is correct and understand bets cannot be canceled.</label>
+      </div>
+      <button class="place-bet-btn">
+        <span>Place Bet</span>
+        <span class="material-symbols-outlined" style="font-size:20px;">arrow_forward</span>
+      </button>
+    </footer>
+
+  </div>
+
+  <!-- ================= VISTA SUCCESS ================= -->
+  <div id="view-success" class="view-section no-scrollbar">
+    <!-- Header -->
+    <header class="pl-header flex items-center justify-between" style="position: sticky; top: 0; z-index: 10;">
+      <button id="back-success" class="back-btn">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </button>
+      <h2 class="text-lg font-bold flex-1 text-center pr-2" style="margin:0;">Bet Placed</h2>
+      <div class="flex items-center justify-end" style="min-width: 40px;">
+        <span class="text-xs font-bold text-[#bab29c]">990.50 USDT</span>
+      </div>
+    </header>
+
+    <main class="pl-main" style="padding-bottom: 20px;">
+      <!-- Success Hero -->
+      <div class="success-hero">
+        <div style="position: relative; display: flex; justify-content: center; align-items: center;">
+          <div class="glow-circle"></div>
+          <span class="material-symbols-outlined"
+            style="font-size: 64px; color: var(--pl-primary); position: relative; z-index: 1;">check_circle</span>
+        </div>
+        <h1 class="text-xl font-bold text-center" style="margin:0;">Bet Successfully Placed</h1>
+      </div>
+
+      <!-- Bet Summary Ticket -->
+      <div class="ticket-card">
+        <!-- Event -->
+        <div style="margin-bottom: 20px;">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="material-symbols-outlined text-[#bab29c]" style="font-size: 16px;">sports_soccer</span>
+            <p class="text-xs font-bold uppercase text-[#bab29c]" style="margin:0;">Premier League • Live</p>
+          </div>
+          <h3 class="text-xl font-bold leading-tight" style="margin:0;">Arsenal <span
+              class="text-[#bab29c] font-normal text-lg">vs</span> Liverpool</h3>
+        </div>
+
+        <!-- Selection -->
+        <div
+          style="background-color: rgba(0,0,0,0.2); border-radius: 0.75rem; padding: 16px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,255,255,0.05);">
+          <div class="flex flex-col">
+            <span class="text-xs font-medium text-[#bab29c] mb-1">Selection (Match Winner)</span>
+            <span class="text-lg font-bold" style="color: var(--pl-primary);">Arsenal</span>
+          </div>
+          <div
+            style="width: 32px; height: 32px; border-radius: 50%; background-color: rgba(242, 185, 13, 0.1); display: flex; align-items: center; justify-content: center;">
+            <span class="material-symbols-outlined" style="font-size: 16px; color: var(--pl-primary);">trophy</span>
+          </div>
+        </div>
+
+        <!-- Financials -->
+        <div class="financial-grid">
+          <div class="flex flex-col gap-1">
+            <span class="text-xs text-[#bab29c]">Odds</span>
+            <span class="font-bold text-lg" style="font-family: monospace;">2.35</span>
+          </div>
+          <div class="flex flex-col gap-1">
+            <span class="text-xs text-[#bab29c]">Stake</span>
+            <span class="font-bold text-lg" style="font-family: monospace;">250</span>
+          </div>
+          <div class="flex flex-col gap-1" style="text-align: right;">
+            <span class="text-xs text-[#bab29c]">Return</span>
+            <span class="font-bold text-lg" style="font-family: monospace; color: var(--pl-primary);">587.50</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wallet Update -->
+      <div class="wallet-update-grid">
+        <div class="wallet-box">
+          <span class="text-[10px] uppercase font-bold text-[#bab29c]">New Balance</span>
+          <span class="font-bold text-sm mt-1">990.50 USDT</span>
+        </div>
+        <div class="wallet-box">
+          <span class="text-[10px] uppercase font-bold text-[#bab29c]">Locked in Bets</span>
+          <span class="font-bold text-sm mt-1">250.00 USDT</span>
+        </div>
+      </div>
+
+      <!-- Metadata -->
+      <div style="margin-top: 24px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+        <div
+          style="background-color: rgba(34, 197, 94, 0.1); color: rgb(34, 197, 94); font-size: 10px; padding: 2px 8px; border-radius: 9999px; border: 1px solid rgba(34, 197, 94, 0.2); font-weight: bold; text-transform: uppercase;">
+          Accepted
+        </div>
+        <p class="text-xs text-[#bab29c]" style="margin:0;">Bet ID: #8829102 • Today, 20:30 PM</p>
+      </div>
+
+      <!-- Primary Action -->
+      <div style="padding-top: 24px;">
+        <button id="close-success" class="done-btn">Done</button>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- SCRIPT AL FINAL DE TODO -->
   <script src="popup.js"></script>
 </body>
 

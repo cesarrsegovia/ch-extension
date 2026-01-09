@@ -23,36 +23,59 @@ function processTweet(tweet) {
     // detecta exclusivamente por cuenta
     const userNames = tweet.querySelector('[data-testid="User-Name"]');
     if (userNames && userNames.innerText.includes(TARGET_ACCOUNT)) {
-        highlightTweet(tweet);
-        chrome.runtime.sendMessage({ action: "openGamblorNotification" });
+
+        let type = "default";
+        const tweetText = tweet.querySelector('[data-testid="tweetText"]');
+        if (tweetText && tweetText.innerText.toLowerCase().includes("premier league")) {
+            type = "premier_league";
+        }
+
+        highlightTweet(tweet, type);
+        // chrome.runtime.sendMessage({ action: "openGamblorNotification" }); // Ya no auto-abrimos, solo al click
     }
 }
 
-function highlightTweet(tweet) {
-    tweet.classList.add("detected-tweet");
+function highlightTweet(tweet, type = "default") {
+    if (tweet.classList.contains("gamblor-processed")) return;
+    tweet.classList.add("gamblor-processed");
 
-    // contenedor de insignia y botón
-    if (!tweet.querySelector(".gamblor-action-container")) {
-        const container = document.createElement("div");
-        container.className = "gamblor-action-container";
+    // Removemos estilos de borde antiguos si existen
+    tweet.classList.remove("detected-tweet");
 
-        const badge = document.createElement("div");
-        badge.className = "detected-badge";
-        badge.textContent = "¡GAMBLOR DETECTADO!";
+    // Buscar la barra de acciones (footer con likes, rt, etc.)
+    // Suele ser un div con role="group"
+    const actionsBar = tweet.querySelector('div[role="group"]');
 
-        const betBtn = document.createElement("button");
-        betBtn.className = "gamblor-bet-button";
-        betBtn.textContent = "BET";
+    if (actionsBar) {
+        // Crear contenedor del botón
+        const btnContainer = document.createElement("div");
+        btnContainer.className = "gamblor-button-wrapper";
 
-        betBtn.onclick = (e) => {
+        // Crear Botón
+        const btn = document.createElement("button");
+        btn.className = "gamblor-bet-button";
+
+        // Icono SVG (reconstruido de la imagen)
+        const svgIcon = `
+        <svg class="gamblor-icon-svg" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.42 5l-.71.71c-.9.9-2.16 1.4-3.5 1.4s-2.61-.5-3.5-1.4L7 5c-.55-.55-1.45-.55-2 0l3 7c-.55.55-.55 1.45 0 2 21.71.71c.9.9 1.4 2.16 1.4 3.5s-.5 2.61-1.4 3.5L3 17.41c-.55-.55-.55 1.45 0 2l2 2c.55.55 1.45.55 2 0l.71-.71c.9-.9 2.16-1.4 3.5-1.4s2.61.5 3.5 1.4zM12 16.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM12 11c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path>
+        </svg>`;
+
+        btn.innerHTML = `${svgIcon}<span class="gamblor-btn-text">Place Bet</span>`;
+
+        btn.onclick = (e) => {
             e.preventDefault();
             e.stopPropagation();
-            chrome.runtime.sendMessage({ action: "openGamblorNotification" });
+            chrome.runtime.sendMessage({
+                action: "openGamblorNotification",
+                type: type // Pasamos el tipo al background
+            });
         };
 
-        container.appendChild(badge);
-        container.appendChild(betBtn);
-        tweet.appendChild(container);
+        btnContainer.appendChild(btn);
+
+        // Insertar ANTES de la barra de acciones para que quede debajo del contenido
+        actionsBar.parentNode.insertBefore(btnContainer, actionsBar);
     }
 }
 
