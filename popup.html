@@ -3,531 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <style>
-    /* Estilos Generales y Reset */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      width: 375px;
-      /* Altura dinámica dependiendo de la vista */
-    }
-
-    /* Utiles de Ocultamiento */
-    .view-section {
-      display: none !important;
-    }
-
-    /* Active States */
-    #view-home.active {
-      display: block !important;
-    }
-
-    #view-premier.active {
-      display: flex !important;
-    }
-
-    #view-success.active {
-      display: flex !important;
-    }
-
-    /* =========================================
-       VISTA HOME (Versión Simplificada Anterior)
-       ========================================= */
-    #view-home {
-      background-color: #15202b;
-      color: white;
-      text-align: center;
-      padding: 25px;
-      min-height: 200px;
-    }
-
-    #view-home .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    #view-home h2 {
-      font-size: 20px;
-      margin-top: 0;
-      color: #1d9bf0;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-      justify-content: center;
-    }
-
-    #view-home .main-logo {
-      width: 48px;
-      height: 48px;
-      margin-bottom: 10px;
-    }
-
-    #view-home .description {
-      font-size: 16px;
-      color: #8899a6;
-      margin-bottom: 25px;
-    }
-
-    #view-home .gamblor-btn {
-      display: block;
-      width: 100%;
-      padding: 15px;
-      background-color: #1d9bf0;
-      color: white;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 9999px;
-      font-weight: bold;
-      font-size: 16px;
-      transition: background-color 0.2s, transform 0.1s;
-      box-sizing: border-box;
-      cursor: pointer;
-    }
-
-    #view-home .gamblor-btn:hover {
-      background-color: #1a8cd8;
-      transform: translateY(-2px);
-    }
-
-    /* =========================================
-       VISTA PREMIER LEAGUE & SUCCESS (Estilos Compartidos)
-       ========================================= */
-    /* Variables basadas en Tailwind Config */
-    :root {
-      --pl-primary: #f2b90d;
-      --pl-bg-light: #f8f8f5;
-      --pl-bg-dark: #221e10;
-      --pl-surface-dark: #2a261a;
-      --pl-surface-darker: #1a170e;
-      --pl-text-muted: #bab29c;
-    }
-
-    body.premier-mode,
-    body.success-mode {
-      background-color: var(--pl-bg-dark);
-      color: white;
-    }
-
-    #view-premier,
-    #view-success {
-      background-color: var(--pl-bg-dark);
-      color: white;
-      min-height: 100vh;
-      overflow-y: auto;
-      flex-direction: column;
-    }
-
-    /* Utility classes replication */
-    .w-full {
-      width: 100%;
-    }
-
-    .flex {
-      display: flex;
-    }
-
-    .flex-col {
-      flex-direction: column;
-    }
-
-    .items-center {
-      align-items: center;
-    }
-
-    .justify-between {
-      justify-content: space-between;
-    }
-
-    .justify-center {
-      justify-content: center;
-    }
-
-    .gap-1 {
-      gap: 4px;
-    }
-
-    .gap-2 {
-      gap: 8px;
-    }
-
-    .gap-3 {
-      gap: 12px;
-    }
-
-    .gap-4 {
-      gap: 16px;
-    }
-
-    .text-center {
-      text-align: center;
-    }
-
-    .font-bold {
-      font-weight: 700;
-    }
-
-    .rounded-full {
-      border-radius: 9999px;
-    }
-
-    .rounded-xl {
-      border-radius: 0.75rem;
-    }
-
-    .rounded-lg {
-      border-radius: 0.5rem;
-    }
-
-    /* Hide Scrollbar */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
-    /* Header */
-    .pl-header {
-      padding: 10px 16px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      background-color: var(--pl-bg-dark);
-      flex: none;
-    }
-
-    .back-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: transparent;
-      border: none;
-      color: rgba(255, 255, 255, 0.8);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .back-btn:hover {
-      background-color: rgba(255, 255, 255, 0.05);
-    }
-
-    .balance-pill {
-      background-color: var(--pl-surface-dark);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 9999px;
-      padding: 4px 4px 4px 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .add-btn {
-      width: 24px;
-      height: 24px;
-      background-color: var(--pl-primary);
-      border-radius: 50%;
-      border: none;
-      color: var(--pl-bg-dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-
-    /* Main Content */
-    .pl-main {
-      padding: 12px 16px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding-bottom: 120px;
-      overflow-y: auto;
-    }
-
-    /* Card */
-    .bet-card {
-      background-color: var(--pl-surface-dark);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 0.75rem;
-      padding: 16px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .selection-box {
-      background-color: var(--pl-surface-darker);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 0.5rem;
-      padding: 4px;
-      display: flex;
-      margin-top: 12px;
-    }
-
-    .sel-info {
-      flex: 1;
-      border-right: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 8px 16px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .odds-info {
-      padding: 8px 24px;
-      background-color: rgba(255, 255, 255, 0.05);
-      border-radius: 4px;
-      min-width: 80px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Inputs */
-    .stake-input-group {
-      position: relative;
-      flex: 1;
-    }
-
-    .stake-input {
-      width: 100%;
-      height: 64px;
-      background-color: var(--pl-surface-dark);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 0.75rem;
-      padding-left: 16px;
-      padding-right: 60px;
-      font-size: 24px;
-      font-weight: bold;
-      color: white;
-      box-sizing: border-box;
-    }
-
-    .stake-input:focus {
-      outline: none;
-      border-color: var(--pl-primary);
-    }
-
-    .stake-suffix {
-      position: absolute;
-      right: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--pl-text-muted);
-      font-weight: bold;
-      font-size: 14px;
-      pointer-events: none;
-    }
-
-    .quick-btn {
-      flex: 1;
-      background-color: var(--pl-surface-dark);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 0.5rem;
-      color: var(--pl-text-muted);
-      font-size: 12px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .quick-btn:hover {
-      border-color: rgba(242, 185, 13, 0.5);
-      color: white;
-    }
-
-    .quick-btn.max {
-      color: var(--pl-primary);
-    }
-
-    .return-box {
-      background: linear-gradient(to right, rgba(242, 185, 13, 0.1), transparent);
-      border: 1px solid rgba(242, 185, 13, 0.1);
-      border-radius: 0.5rem;
-      padding: 12px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 4px;
-    }
-
-    /* Info Box */
-    .info-box {
-      padding: 16px;
-      border: 1px dashed rgba(255, 255, 255, 0.1);
-      border-radius: 0.5rem;
-    }
-
-    .info-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      color: var(--pl-text-muted);
-      margin-bottom: 8px;
-    }
-
-    .info-row:last-child {
-      margin-bottom: 0;
-    }
-
-    /* Footer */
-    .pl-footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: var(--pl-bg-dark);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 12px 16px;
-      padding-bottom: 16px;
-      box-sizing: border-box;
-      box-shadow: 0 -10px 40px -15px rgba(0, 0, 0, 0.5);
-    }
-
-    .confirm-check {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-
-    .confirm-check input {
-      width: 20px;
-      height: 20px;
-      accent-color: var(--pl-primary);
-      background-color: var(--pl-surface-dark);
-      border: 1px solid #666;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .confirm-check label {
-      font-size: 12px;
-      color: var(--pl-text-muted);
-      line-height: 1.2;
-      cursor: pointer;
-    }
-
-    .place-bet-btn {
-      width: 100%;
-      height: 44px;
-      background-color: var(--pl-primary);
-      color: var(--pl-bg-dark);
-      font-weight: bold;
-      font-size: 16px;
-      border: none;
-      border-radius: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      cursor: pointer;
-      box-shadow: 0 0 20px -5px rgba(242, 185, 13, 0.3);
-      transition: all 0.2s;
-    }
-
-    .place-bet-btn:hover {
-      background-color: #fccb3f;
-    }
-
-    .place-bet-btn:active {
-      transform: scale(0.98);
-      background-color: #d9a50b;
-    }
-
-    /* Success View Specifics */
-    .success-hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 32px 0;
-      gap: 16px;
-    }
-
-    .glow-circle {
-      position: absolute;
-      width: 64px;
-      height: 64px;
-      background-color: rgba(242, 185, 13, 0.2);
-      border-radius: 50%;
-      filter: blur(24px);
-      transform: scale(1.5);
-    }
-
-    .ticket-card {
-      background-color: var(--pl-surface-dark);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 1rem;
-      padding: 20px;
-      margin-bottom: 24px;
-    }
-
-    .financial-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 16px;
-      margin-top: 16px;
-    }
-
-    .wallet-update-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .wallet-box {
-      background-color: var(--pl-surface-dark);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 0.75rem;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .done-btn {
-      width: 100%;
-      background-color: var(--pl-primary);
-      color: var(--pl-bg-dark);
-      font-weight: bold;
-      font-size: 16px;
-      padding: 16px;
-      border-radius: 9999px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 0 15px rgba(242, 185, 13, 0.15);
-      transition: background-color 0.2s;
-    }
-
-    .done-btn:hover {
-      background-color: #e0ac0c;
-    }
-
-    /* Icons (Material Symbols placeholder) */
-    .material-symbols-outlined {
-      font-family: monospace;
-      font-weight: normal;
-      font-style: normal;
-      font-size: 24px;
-      display: inline-block;
-      line-height: 1;
-      text-transform: none;
-      letter-spacing: normal;
-      word-wrap: normal;
-      white-space: nowrap;
-      direction: ltr;
-    }
-  </style>
+  <link rel="stylesheet" href="popup.css">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -535,14 +11,185 @@
 
 <body>
 
-  <!-- ================= VISTA HOME ================= -->
-  <div id="view-home" class="view-section">
-    <div class="container">
-      <img src="image/logo_icon.png" class="main-logo">
-      <h2>Gamblor Casino</h2>
-      <p class="description">Ir a Gamblor</p>
-      <button id="go-gamblor" class="gamblor-btn">Abrir Gamblor.io</button>
-    </div>
+  <div id="view-home" class="view-section active">
+    <!-- Background Glow -->
+    <div class="glow-bg"></div>
+
+    <!-- Header -->
+    <header class="dash-header">
+      <div class="user-profile">
+        <div class="avatar-container">
+          <div class="avatar-img"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAoB2fYz0oRqPDyEukPlAmB5jLy-xO0aVkw2zGLMJ2A3wVdMBczmBBWugWg9U0C2O-KwChZN3JDUcXS_Fiuf2tZ519IA7ZDUIYi07fRdLcuDLP2yc6uCr2Rgp2fLUoPIlkIOMtLRg_WqYN6QcLezoavKLynwfFwsc6g6jeQo2Lvra4hhYd6YrQhJZAkc_qr_OVNn2GXGMaUjvzjVIOBgR8eqSKPXaq3SsMbnnd7Q6jJAZcU9nk6lFHqLuJuH5NetM_Ia-FmS0-51auH");'>
+          </div>
+          <div class="status-dot"></div>
+        </div>
+        <div class="user-info">
+          <p>Welcome back</p>
+          <h3>Alex Roller</h3>
+        </div>
+      </div>
+      <button class="settings-btn">
+        <span class="material-symbols-outlined" style="font-size: 20px;">settings</span>
+      </button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dash-main">
+      <!-- Balance -->
+      <div class="balance-section">
+        <div class="balance-label">
+          <span class="material-symbols-outlined"
+            style="font-size: 16px; color: var(--dash-primary);">account_balance_wallet</span>
+          <span>Total Balance</span>
+        </div>
+        <h1 class="balance-amount">$12,450.00</h1>
+        <div class="balance-trend">
+          <span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span>
+          <span>+2.4% today</span>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="action-buttons">
+        <button id="btn-deposit" class="action-btn btn-primary">
+          <span class="material-symbols-outlined" style="font-size: 24px; margin-right: 8px;">add_circle</span>
+          Deposit
+        </button>
+        <button id="btn-withdraw" class="action-btn btn-secondary">
+          <span class="material-symbols-outlined" style="font-size: 24px; margin-right: 8px;">arrow_outward</span>
+          Withdraw
+        </button>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-row no-scrollbar">
+        <!-- Bonus -->
+        <div class="stat-card">
+          <div class="stat-icon-bg bg-positive">
+            <span class="material-symbols-outlined text-positive" style="font-size: 18px;">stars</span>
+          </div>
+          <div class="stat-content">
+            <p>Bonus</p>
+            <p>$50.00</p>
+          </div>
+        </div>
+        <!-- Pending -->
+        <div class="stat-card">
+          <div class="stat-icon-bg bg-neutral">
+            <span class="material-symbols-outlined" style="font-size: 18px; color: #fb923c;">pending</span>
+          </div>
+          <div class="stat-content">
+            <p>Pending</p>
+            <p>$0.00</p>
+          </div>
+        </div>
+        <!-- VIP Pts -->
+        <div class="stat-card">
+          <div class="stat-icon-bg bg-neutral">
+            <span class="material-symbols-outlined" style="font-size: 18px; color: #818cf8;">diamond</span>
+          </div>
+          <div class="stat-content">
+            <p>VIP Pts</p>
+            <p>1,200</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent History -->
+      <div class="history-section">
+        <div class="section-header">
+          <h3>Recent History</h3>
+          <button class="view-all-btn">View All</button>
+        </div>
+
+        <div class="history-list">
+          <!-- Item 1 -->
+          <div class="history-item">
+            <div class="history-left">
+              <div class="history-icon bg-positive">
+                <span class="material-symbols-outlined text-positive">playing_cards</span>
+              </div>
+              <div class="history-info">
+                <span class="history-text">Blackjack Win</span>
+                <span class="history-date">Today, 10:42 AM</span>
+              </div>
+            </div>
+            <span class="history-amount text-positive">+ $200.00</span>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="history-item">
+            <div class="history-left">
+              <div class="history-icon bg-neutral">
+                <span class="material-symbols-outlined text-negative">casino</span>
+              </div>
+              <div class="history-info">
+                <span class="history-text">Slot Spin</span>
+                <span class="history-date">Today, 09:15 AM</span>
+              </div>
+            </div>
+            <span class="history-amount text-negative">- $5.00</span>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="history-item">
+            <div class="history-left">
+              <div class="history-icon bg-positive">
+                <span class="material-symbols-outlined text-positive">credit_card</span>
+              </div>
+              <div class="history-info">
+                <span class="history-text">Deposit via Visa</span>
+                <span class="history-date">Yesterday</span>
+              </div>
+            </div>
+            <span class="history-amount text-positive">+ $500.00</span>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="history-item">
+            <div class="history-left">
+              <div class="history-icon bg-neutral">
+                <span class="material-symbols-outlined text-negative">videogame_asset</span>
+              </div>
+              <div class="history-info">
+                <span class="history-text">Roulette</span>
+                <span class="history-date">Yesterday</span>
+              </div>
+            </div>
+            <span class="history-amount text-negative">- $25.00</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="nav-bar">
+      <div class="nav-container">
+        <button class="nav-item" style="color: var(--dash-primary);">
+          <span class="material-symbols-outlined">home</span>
+          <span>Home</span>
+        </button>
+        <button class="nav-item">
+          <span class="material-symbols-outlined">sports_esports</span>
+          <span>Games</span>
+        </button>
+        <div class="nav-item-center">
+          <button class="center-btn">
+            <span class="material-symbols-outlined"
+              style="font-size: 30px; font-weight: normal;">account_balance_wallet</span>
+          </button>
+        </div>
+        <button class="nav-item">
+          <span class="material-symbols-outlined">emoji_events</span>
+          <span>Rewards</span>
+        </button>
+        <button class="nav-item">
+          <span class="material-symbols-outlined">person</span>
+          <span>Profile</span>
+        </button>
+      </div>
+    </nav>
   </div>
 
 

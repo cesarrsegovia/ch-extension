@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // 1. Determinar qué vista mostrar (leyendo del storage)
+  // determinar qué vista mostrar (leyendo del storage)
   chrome.storage.local.get(["currentView"], (result) => {
     const view = result.currentView || "default";
     console.log("Popup opened with view:", view);
@@ -21,21 +21,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- PREMIER LEAGUE ACTIONS ---
+  // --- PREMIER LEAGUE  ---
   // Botón Atrás
   document.getElementById("back-home").addEventListener("click", () => {
-    // Limpiamos el estado para que la próxima vez se abra en home
+    // se limpia el estado para que la próxima vez se abra en home
     chrome.storage.local.set({ "currentView": "default" });
     showHomeView();
   });
 
-  // Botón Place Bet (Simulado)
-  // Botón Place Bet (Simulado)
+  // Botón Place Bet (simulado)
   document.querySelector(".place-bet-btn").addEventListener("click", () => {
     showSuccessView();
   });
 
-  // --- SUCCESS VIEW ACTIONS ---
+  // --- SUCCESS ---
   const closeSuccessBtn = document.getElementById("close-success");
   if (closeSuccessBtn) {
     closeSuccessBtn.addEventListener("click", () => {

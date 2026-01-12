@@ -39,29 +39,36 @@ function highlightTweet(tweet, type = "default") {
     if (tweet.classList.contains("gamblor-processed")) return;
     tweet.classList.add("gamblor-processed");
 
-    // Removemos estilos de borde antiguos si existen
+    // se remueven estilos de borde antiguos si existen
     tweet.classList.remove("detected-tweet");
 
-    // Buscar la barra de acciones (footer con likes, rt, etc.)
-    // Suele ser un div con role="group"
+    // buscar la barra de acciones (footer con likes, rt, etc.)
+    // suele ser un div con role="group"
     const actionsBar = tweet.querySelector('div[role="group"]');
 
     if (actionsBar) {
-        // Crear contenedor del botón
+        // crear contenedor del botón
         const btnContainer = document.createElement("div");
         btnContainer.className = "gamblor-button-wrapper";
 
-        // Crear Botón
+        // crear botón
         const btn = document.createElement("button");
         btn.className = "gamblor-bet-button";
 
-        // Icono SVG (reconstruido de la imagen)
-        const svgIcon = `
-        <svg class="gamblor-icon-svg" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15.42 5l-.71.71c-.9.9-2.16 1.4-3.5 1.4s-2.61-.5-3.5-1.4L7 5c-.55-.55-1.45-.55-2 0l3 7c-.55.55-.55 1.45 0 2 21.71.71c.9.9 1.4 2.16 1.4 3.5s-.5 2.61-1.4 3.5L3 17.41c-.55-.55-.55 1.45 0 2l2 2c.55.55 1.45.55 2 0l.71-.71c.9-.9 2.16-1.4 3.5-1.4s2.61.5 3.5 1.4zM12 16.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM12 11c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path>
-        </svg>`;
+        // icono imagen
+        const imgUrl = chrome.runtime.getURL("image/logo_icon.png");
+        const imgIcon = `<img src="${imgUrl}" class="gamblor-icon-img" />`;
 
-        btn.innerHTML = `${svgIcon}<span class="gamblor-btn-text">Place Bet</span>`;
+        // tooltip con cuotas y live
+        const tooltipHtml = `
+            <div class="gamblor-tooltip">
+                <span style="color: #bab29c; font-weight: 500;">Odds:</span> <span style="color: #f2b90d;">2.35</span>
+                <span style="margin: 0 6px; color: #444;">|</span>
+                <span class="gamblor-live-indicator"></span> <span style="color: #ff4444; letter-spacing: 0.05em;">LIVE</span>
+            </div>
+        `;
+
+        btn.innerHTML = `${imgIcon}<span class="gamblor-btn-text">Place Bet</span>${tooltipHtml}`;
 
         btn.onclick = (e) => {
             e.preventDefault();
@@ -74,7 +81,7 @@ function highlightTweet(tweet, type = "default") {
 
         btnContainer.appendChild(btn);
 
-        // Insertar ANTES de la barra de acciones para que quede debajo del contenido
+        // insertar ANTES de la barra de acciones para que quede debajo del contenido
         actionsBar.parentNode.insertBefore(btnContainer, actionsBar);
     }
 }

@@ -10,7 +10,7 @@
 }
 
 .gamblor-bet-button {
-    width: 100%;
+    width: 60%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,6 +21,8 @@
     border: none;
     border-radius: 9999px;
     padding: 10px 16px;
+    position: relative;
+    overflow: visible;
     font-size: 15px;
     font-weight: 800;
     /* Bold */
@@ -40,20 +42,84 @@
     transform: scale(0.98);
 }
 
-.gamblor-icon-svg {
+.gamblor-icon-img {
     height: 20px;
     width: 20px;
-    color: rgba(0, 0, 0, 0.7);
-    fill: currentColor;
-}
-
-/* Efecto hover en el grupo: el icono se oscurece */
-.gamblor-bet-button:hover .gamblor-icon-svg {
-    color: black;
+    object-fit: contain;
 }
 
 .gamblor-btn-text {
     position: relative;
     top: 1px;
     /* Ajuste óptico */
+}
+
+/* Tooltip Styles */
+.gamblor-tooltip {
+    visibility: hidden;
+    background-color: #221e10;
+    color: #fff;
+    text-align: center;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid #f2b90d;
+
+    /* Position */
+    position: absolute;
+    bottom: 135%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    /* Font */
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.gamblor-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #f2b90d transparent transparent transparent;
+}
+
+.gamblor-bet-button:hover .gamblor-tooltip {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+.gamblor-live-indicator {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #ff4444;
+    border-radius: 50%;
+    margin-right: 4px;
+    vertical-align: middle;
+    box-shadow: 0 0 0 rgba(255, 68, 68, 0.4);
+    animation: gamblor-pulse 2s infinite;
+}
+
+@keyframes gamblor-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 6px rgba(255, 68, 68, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 68, 68, 0);
+    }
 }
