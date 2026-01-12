@@ -192,6 +192,292 @@
     </nav>
   </div>
 
+  <!-- help support -->
+  <div id="view-help" class="view-section">
+    <!-- Header -->
+    <header class="dash-header help-header">
+      <button id="back-help" class="back-btn">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </button>
+      <h1 style="flex:1; text-align:center; font-size:16px; margin:0; padding-right:40px;">Help & Support</h1>
+    </header>
+
+    <main class="dash-main help-main">
+      <!-- Intro -->
+      <div class="help-intro">
+        <h2>How can we help?</h2>
+        <p>Choose a support option below.</p>
+      </div>
+
+      <!-- Action Cards -->
+      <div class="help-grid">
+        <!-- Live Chat -->
+        <button class="help-card chat-card">
+          <div class="card-icon-bg primary-bg">
+            <span class="material-symbols-outlined">chat</span>
+          </div>
+          <div class="card-content">
+            <h3>Live Chat</h3>
+            <div class="live-status">
+              <span class="status-indicator">
+                <span class="ping"></span>
+                <span class="dot"></span>
+              </span>
+              <span class="wait-text">~2 min wait</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- Email -->
+        <button class="help-card email-card">
+          <div class="card-icon-bg neutral-bg">
+            <span class="material-symbols-outlined">mail</span>
+          </div>
+          <div class="card-content">
+            <h3>Email Us</h3>
+            <p class="res-text">Response in 24h</p>
+          </div>
+        </button>
+      </div>
+
+      <!-- Common Topics -->
+      <div class="help-topics">
+        <h3>Common Help Topics</h3>
+        <div class="topics-list">
+          <!-- Topic 1 -->
+          <button class="topic-btn">
+            <div class="topic-icon">
+              <span class="material-symbols-outlined">account_balance_wallet</span>
+            </div>
+            <div class="topic-info">
+              <p class="topic-title">Deposits & Withdrawals</p>
+              <p class="topic-desc">Methods, limits, and processing times</p>
+            </div>
+            <span class="material-symbols-outlined chevron">chevron_right</span>
+          </button>
+
+          <!-- Topic 2 -->
+          <button class="topic-btn">
+            <div class="topic-icon">
+              <span class="material-symbols-outlined">badge</span>
+            </div>
+            <div class="topic-info">
+              <p class="topic-title">Account Verification (KYC)</p>
+              <p class="topic-desc">Identity documents and status</p>
+            </div>
+            <span class="material-symbols-outlined chevron">chevron_right</span>
+          </button>
+
+          <!-- Topic 3 -->
+          <button class="topic-btn">
+            <div class="topic-icon">
+              <span class="material-symbols-outlined">sports_soccer</span>
+            </div>
+            <div class="topic-info">
+              <p class="topic-title">Bet Rules & Settlement</p>
+              <p class="topic-desc">Void bets, overtimes, and results</p>
+            </div>
+            <span class="material-symbols-outlined chevron">chevron_right</span>
+          </button>
+
+          <!-- Topic 4 -->
+          <button class="topic-btn">
+            <div class="topic-icon">
+              <span class="material-symbols-outlined">card_giftcard</span>
+            </div>
+            <div class="topic-info">
+              <p class="topic-title">Promotions & Bonuses</p>
+              <p class="topic-desc">Rollover requirements and claiming</p>
+            </div>
+            <span class="material-symbols-outlined chevron">chevron_right</span>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="help-footer">
+      <div class="support-badge">
+        <div class="pulsing-green"></div>
+        <span>Support Online 24/7</span>
+      </div>
+      <p class="version-text">App Version 2.4.1 (Build 890)</p>
+    </footer>
+  </div>
+
+  <!-- ================= VISTA PROFILE ================= -->
+  <div id="view-profile" class="view-section">
+    <!-- Header -->
+    <header class="dash-header profile-header">
+      <button id="back-profile" class="back-btn">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </button>
+      <h2 style="flex:1; text-align:center; font-size:16px; margin:0; padding-right:40px;">Profile</h2>
+    </header>
+
+    <main class="dash-main profile-main">
+      <!-- Account Summary Card -->
+      <div class="account-card">
+        <!-- User Row -->
+        <div class="user-row">
+          <div class="user-details-left">
+            <div class="profile-avatar"
+              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC7h_lGLkfWh1SLmupyYkUV4d5XUKemeF7YhIrgEBX_5j4AxmIIozFemfFVFQaRGaDEBMKGFuMpK23avB6q3wtYbaj5A8rS-4TRvLrgG5dYJ43Y7tFqpTBTJUr7fzobAt5bVuqQ0xYIuJLBQYrLscVQC4xqLae3ckGZ-05k7d8BUMABookV0LcWlXSf7yFh8mAz6eLoUUD7ouljRgFucut21nvLup7lR7SPCV8gQX7L_h_gaS_5VJwv7dfn-RoDiOu4FXYisJJoMsln");'>
+            </div>
+            <div class="user-text">
+              <div class="name-badge">
+                <span class="username">CryptoKing</span>
+                <span class="material-symbols-outlined verified-icon">verified</span>
+              </div>
+              <div class="wallet-hash">
+                <span>0x71C...9A23</span>
+                <button class="copy-btn">
+                  <span class="material-symbols-outlined">content_copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="connected-badge">
+            <div class="dot-pulse"></div>
+            <span>Connected</span>
+          </div>
+        </div>
+
+        <!-- Balance Display -->
+        <div class="profile-balance">
+          <span class="bal-label">Total Balance</span>
+          <h1 class="bal-amount"><span class="currency-symbol">$</span>12,450.50</h1>
+          <div class="bal-details">
+            <span class="avail">Available</span>
+            <span class="sep">•</span>
+            <span class="pend">Pending $120.00</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="profile-actions">
+          <button class="pro-btn btn-deposit">Deposit</button>
+          <button class="pro-btn btn-withdraw">Withdraw</button>
+        </div>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="profile-stats no-scrollbar">
+        <div class="p-stat-card">
+          <p class="stat-label">Total Bets</p>
+          <p class="stat-val">142</p>
+        </div>
+        <div class="p-stat-card">
+          <p class="stat-label">Open Wagers</p>
+          <p class="stat-val primary-text">3</p>
+        </div>
+        <div class="p-stat-card">
+          <p class="stat-label">Last Activity</p>
+          <p class="stat-val">2m</p>
+        </div>
+      </div>
+
+      <!-- Menu Section -->
+      <div class="menu-section">
+        <h3>Account</h3>
+        <div class="menu-list">
+          <!-- Transaction History -->
+          <button class="menu-item">
+            <div class="item-icon-bg">
+              <span class="material-symbols-outlined">history</span>
+            </div>
+            <div class="item-text">Transaction History</div>
+            <span class="material-symbols-outlined chevron">chevron_right</span>
+          </button>
+
+          <div class="divider"></div>
+
+          <!-- Bet History -->
+          <button class="menu-item">
+            <div class="item-icon-bg">
+              <span class="material-symbols-outlined">receipt_long</span>
+            </div>
+            <div class="item-text">Bet History</div>
+            <span class="material-symbols-outlined chevron">chevron_right</span>
+          </button>
+
+          <div class="divider"></div>
+
+          <!-- Bonuses -->
+          <button class="menu-item">
+            <div class="item-icon-bg">
+              <span class="material-symbols-outlined">redeem</span>
+            </div>
+            <div class="item-text">Bonuses</div>
+            <div class="badge-new">NEW</div>
+            <span class="material-symbols-outlined chevron">chevron_right</span>
+          </button>
+
+          <div class="divider"></div>
+
+          <!-- Referrals -->
+          <button class="menu-item">
+            <div class="item-icon-bg">
+              <span class="material-symbols-outlined">group_add</span>
+            </div>
+            <div class="item-text">Referrals</div>
+            <span class="material-symbols-outlined chevron">chevron_right</span>
+          </button>
+        </div>
+
+        <!-- Secondary List -->
+        <div class="menu-list mt-2">
+          <!-- Responsible Gaming -->
+          <button class="menu-item">
+            <div class="item-icon-bg">
+              <span class="material-symbols-outlined">verified_user</span>
+            </div>
+            <div class="item-text">Responsible Gaming</div>
+            <span class="material-symbols-outlined chevron">chevron_right</span>
+          </button>
+
+          <div class="divider"></div>
+
+          <!-- Help & Support -->
+          <button class="menu-item">
+            <div class="item-icon-bg">
+              <span class="material-symbols-outlined">support_agent</span>
+            </div>
+            <div class="item-text">Help & Support</div>
+            <span class="material-symbols-outlined chevron">chevron_right</span>
+          </button>
+
+          <div class="divider"></div>
+
+          <!-- Log Out -->
+          <button class="menu-item logout-item">
+            <div class="item-icon-bg">
+              <span class="material-symbols-outlined">logout</span>
+            </div>
+            <div class="item-text text-red">Log Out</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Security Footer -->
+      <div class="security-footer">
+        <div class="security-card">
+          <div class="sec-left">
+            <div class="lock-icon">
+              <span class="material-symbols-outlined">lock</span>
+            </div>
+            <div class="sec-info">
+              <span class="sec-title">Session Secure</span>
+              <span class="sec-sub">Ethereum Mainnet • 24ms</span>
+            </div>
+          </div>
+          <span class="material-symbols-outlined sec-check">encrypted</span>
+        </div>
+        <p class="build-text">v2.4.1 • Build 892</p>
+      </div>
+    </main>
+  </div>
+
 
   <!-- ================= VISTA PREMIER LEAGUE ================= -->
   <div id="view-premier" class="view-section">

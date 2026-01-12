@@ -21,18 +21,49 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  const settingsBtn = document.querySelector(".settings-btn");
+  if (settingsBtn) {
+    settingsBtn.addEventListener("click", () => {
+      showHelpView();
+    });
+  }
+
   // --- PREMIER LEAGUE  ---
-  // Botón Atrás
+  // boton atras
   document.getElementById("back-home").addEventListener("click", () => {
     // se limpia el estado para que la próxima vez se abra en home
     chrome.storage.local.set({ "currentView": "default" });
     showHomeView();
   });
 
-  // Botón Place Bet (simulado)
+  // boton Place Bet (simulado)
   document.querySelector(".place-bet-btn").addEventListener("click", () => {
     showSuccessView();
   });
+
+  // --- HELP ACTIONS ---
+  const backHelpBtn = document.getElementById("back-help");
+  if (backHelpBtn) {
+    backHelpBtn.addEventListener("click", () => {
+      showHomeView();
+    });
+  }
+
+  // --- PROFILE  ---
+  const navItems = document.querySelectorAll(".nav-item");
+  const profileNavBtn = navItems[navItems.length - 1];
+  if (profileNavBtn) {
+    profileNavBtn.addEventListener("click", () => {
+      showProfileView();
+    });
+  }
+
+  const backProfileBtn = document.getElementById("back-profile");
+  if (backProfileBtn) {
+    backProfileBtn.addEventListener("click", () => {
+      showHomeView();
+    });
+  }
 
   // --- SUCCESS ---
   const closeSuccessBtn = document.getElementById("close-success");
@@ -56,6 +87,10 @@ function showHomeView() {
   document.getElementById("view-premier").classList.remove("active");
   const successView = document.getElementById("view-success");
   if (successView) successView.classList.remove("active");
+  const helpView = document.getElementById("view-help");
+  if (helpView) helpView.classList.remove("active");
+  const profileView = document.getElementById("view-profile");
+  if (profileView) profileView.classList.remove("active");
 }
 
 function showPremierLeagueView() {
@@ -65,6 +100,10 @@ function showPremierLeagueView() {
   document.getElementById("view-home").classList.remove("active");
   const successView = document.getElementById("view-success");
   if (successView) successView.classList.remove("active");
+  const helpView = document.getElementById("view-help");
+  if (helpView) helpView.classList.remove("active");
+  const profileView = document.getElementById("view-profile");
+  if (profileView) profileView.classList.remove("active");
 }
 
 function showSuccessView() {
@@ -72,4 +111,26 @@ function showSuccessView() {
   const successView = document.getElementById("view-success");
   if (successView) successView.classList.add("active");
   document.getElementById("view-premier").classList.remove("active");
+}
+
+function showHelpView() {
+  document.body.classList.remove("premier-mode", "success-mode");
+  document.getElementById("view-help").classList.add("active");
+  document.getElementById("view-home").classList.remove("active");
+  document.getElementById("view-premier").classList.remove("active");
+  const successView = document.getElementById("view-success");
+  if (successView) successView.classList.remove("active");
+  const profileView = document.getElementById("view-profile");
+  if (profileView) profileView.classList.remove("active");
+}
+
+function showProfileView() {
+  document.body.classList.remove("premier-mode", "success-mode");
+  document.getElementById("view-profile").classList.add("active");
+  document.getElementById("view-home").classList.remove("active");
+  document.getElementById("view-premier").classList.remove("active");
+  const successView = document.getElementById("view-success");
+  if (successView) successView.classList.remove("active");
+  const helpView = document.getElementById("view-help");
+  if (helpView) helpView.classList.remove("active");
 }
