@@ -49,9 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- NAVIGATION HANDLERS ---
+  // --- NAVIGATION  ---
 
-  // 1. HOME VIEW NAV
+  // HOME
   const homeView = document.getElementById("view-home");
   if (homeView) {
     const homeNavItems = homeView.querySelectorAll(".nav-item");
@@ -61,14 +61,14 @@ document.addEventListener("DOMContentLoaded", () => {
       homeNavItems[1].addEventListener("click", () => showGamesView());
     }
 
-    // Profile Button (Last Item)
+    // Profile Button
     const homeProfileBtn = homeNavItems[homeNavItems.length - 1];
     if (homeProfileBtn) {
       homeProfileBtn.addEventListener("click", () => showProfileView());
     }
   }
 
-  // 2. GAMES VIEW NAV
+  // GAMES VIEW 
   const gamesView = document.getElementById("view-games");
   if (gamesView) {
     // Home Button
@@ -105,26 +105,25 @@ document.addEventListener("DOMContentLoaded", () => {
       window.close();
     });
   }
-  // --- DEPOSIT ACTIONS ---
-  // In Profile View
+  // --- DEPOSIT ---
   const btnDepositProfile = document.querySelector(".btn-deposit");
   if (btnDepositProfile) {
     btnDepositProfile.addEventListener("click", () => showDepositView());
   }
 
-  // In Home View
+  // home view
   const btnDepositHome = document.getElementById("btn-deposit");
   if (btnDepositHome) {
     btnDepositHome.addEventListener("click", () => showDepositView());
   }
 
-  // In Games View (Header + button)
+  // In Games View 
   const btnDepositGames = document.querySelector(".gh-add-btn");
   if (btnDepositGames) {
     btnDepositGames.addEventListener("click", () => showDepositView());
   }
 
-  // In Premier View (Header + button)
+  // In Premier View 
   const btnDepositPremier = document.querySelector(".add-btn");
   if (btnDepositPremier) {
     btnDepositPremier.addEventListener("click", () => showDepositView());
@@ -134,13 +133,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const backDepositBtn = document.getElementById("back-deposit");
   if (backDepositBtn) {
     backDepositBtn.addEventListener("click", () => {
-      // Logic to return to previous view could be better, defaulting to Home for now
       showHomeView();
     });
   }
 
-  // --- WITHDRAW ACTIONS ---
-  // In Home View
+  // --- WITHDRAW  ---
   const btnWithdrawHome = document.getElementById("btn-withdraw");
   if (btnWithdrawHome) {
     btnWithdrawHome.addEventListener("click", () => showWithdrawView());
@@ -155,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Back from Withdraw
   const backWithdrawBtn = document.getElementById("back-withdraw");
   if (backWithdrawBtn) {
-    backWithdrawBtn.addEventListener("click", () => showHomeView()); // Default to Home
+    backWithdrawBtn.addEventListener("click", () => showHomeView()); // default a home
   }
 
   // --- PROVIDER SCROLL ---
@@ -166,7 +163,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (provScrollContainer && btnProvPrev && btnProvNext) {
     btnProvPrev.addEventListener("click", () => {
       const tolerance = 5;
-      // If at start, align to end
       if (provScrollContainer.scrollLeft <= tolerance) {
         provScrollContainer.scrollTo({ left: provScrollContainer.scrollWidth, behavior: "smooth" });
       } else {
@@ -178,7 +174,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const tolerance = 5;
       const maxScroll = provScrollContainer.scrollWidth - provScrollContainer.clientWidth;
 
-      // If at end (or close), loop to start
       if (provScrollContainer.scrollLeft >= maxScroll - tolerance) {
         provScrollContainer.scrollTo({ left: 0, behavior: "smooth" });
       } else {
@@ -190,234 +185,93 @@ document.addEventListener("DOMContentLoaded", () => {
   const wdNetworkBtns = document.querySelectorAll(".wd-net-btn");
   wdNetworkBtns.forEach(btn => {
     btn.addEventListener("click", () => {
-      // Remove active from all
       wdNetworkBtns.forEach(b => b.classList.remove("active"));
-      // Add active to clicked
       btn.classList.add("active");
     });
   });
 
   // --- HISTORY ACTIONS ---
-  // In Profile View (Transaction History is the 1st menu item)
   const profileMenuBtns = document.querySelectorAll("#view-profile .menu-item");
   if (profileMenuBtns.length > 0) {
-    // 0: Transaction History
     profileMenuBtns[0].addEventListener("click", () => showHistoryView());
 
-    // 1: Bet History (Assuming it's the second item or finding it by text if indices change, but index 1 matches HTML)
     if (profileMenuBtns[1]) {
       profileMenuBtns[1].addEventListener("click", () => showBetHistoryView());
     }
   }
 
-  // Back from History
+  // atras de history
   const backHistoryBtn = document.getElementById("back-history");
   if (backHistoryBtn) {
     backHistoryBtn.addEventListener("click", () => showProfileView());
   }
 
-  // Back from Bet History
+  // atras de bet history
   const backBetsBtn = document.getElementById("back-bets");
   if (backBetsBtn) {
     backBetsBtn.addEventListener("click", () => showProfileView());
   }
 });
 
+function switchView(viewId) {
+  if (viewId === 'view-premier') {
+    document.body.classList.add('premier-mode');
+    document.body.classList.remove('success-mode');
+  } else if (viewId === 'view-success') {
+    document.body.classList.add('success-mode');
+    document.body.classList.remove('premier-mode');
+  } else {
+    document.body.classList.remove('premier-mode', 'success-mode');
+  }
+
+  const views = document.querySelectorAll('.view-section');
+  views.forEach(view => {
+    view.classList.remove('active');
+  });
+
+  const target = document.getElementById(viewId);
+  if (target) {
+    target.classList.add('active');
+  }
+}
+
 function showHomeView() {
-  document.body.classList.remove("premier-mode", "success-mode");
-  document.getElementById("view-home").classList.add("active");
-  document.getElementById("view-premier").classList.remove("active");
-  const successView = document.getElementById("view-success");
-  if (successView) successView.classList.remove("active");
-  const helpView = document.getElementById("view-help");
-  if (helpView) helpView.classList.remove("active");
-  const profileView = document.getElementById("view-profile");
-  if (profileView) profileView.classList.remove("active");
-  const gamesView = document.getElementById("view-games");
-  if (gamesView) gamesView.classList.remove("active");
-  const depositView = document.getElementById("view-deposit");
-  if (depositView) depositView.classList.remove("active");
-  const withdrawView = document.getElementById("view-withdraw");
-  if (withdrawView) withdrawView.classList.remove("active");
-  const historyView = document.getElementById("view-history");
-  if (historyView) historyView.classList.remove("active");
-  const betsView = document.getElementById("view-bets");
-  if (betsView) betsView.classList.remove("active");
+  switchView('view-home');
 }
 
 function showPremierLeagueView() {
-  document.body.classList.add("premier-mode");
-  document.body.classList.remove("success-mode");
-  document.getElementById("view-premier").classList.add("active");
-  document.getElementById("view-home").classList.remove("active");
-  const successView = document.getElementById("view-success");
-  if (successView) successView.classList.remove("active");
-  const helpView = document.getElementById("view-help");
-  if (helpView) helpView.classList.remove("active");
-  const profileView = document.getElementById("view-profile");
-  if (profileView) profileView.classList.remove("active");
-  const gamesView = document.getElementById("view-games");
-  if (gamesView) gamesView.classList.remove("active");
-  const depositView = document.getElementById("view-deposit");
-  if (depositView) depositView.classList.remove("active");
-  const withdrawView = document.getElementById("view-withdraw");
-  if (withdrawView) withdrawView.classList.remove("active");
-  const historyView = document.getElementById("view-history");
-  if (historyView) historyView.classList.remove("active");
-  const betsView = document.getElementById("view-bets");
-  if (betsView) betsView.classList.remove("active");
+  switchView('view-premier');
 }
 
 function showSuccessView() {
-  document.body.classList.add("success-mode");
-  const successView = document.getElementById("view-success");
-  if (successView) successView.classList.add("active");
-  document.getElementById("view-premier").classList.remove("active");
+  switchView('view-success');
 }
 
 function showHelpView() {
-  document.body.classList.remove("premier-mode", "success-mode");
-  document.getElementById("view-help").classList.add("active");
-  document.getElementById("view-home").classList.remove("active");
-  document.getElementById("view-premier").classList.remove("active");
-  const successView = document.getElementById("view-success");
-  if (successView) successView.classList.remove("active");
-  const profileView = document.getElementById("view-profile");
-  if (profileView) profileView.classList.remove("active");
-  const gamesView = document.getElementById("view-games");
-  if (gamesView) gamesView.classList.remove("active");
-  const depositView = document.getElementById("view-deposit");
-  if (depositView) depositView.classList.remove("active");
-  const withdrawView = document.getElementById("view-withdraw");
-  if (withdrawView) withdrawView.classList.remove("active");
-  const historyView = document.getElementById("view-history");
-  if (historyView) historyView.classList.remove("active");
-  const betsView = document.getElementById("view-bets");
-  if (betsView) betsView.classList.remove("active");
+  switchView('view-help');
 }
 
 function showProfileView() {
-  document.body.classList.remove("premier-mode", "success-mode");
-  document.getElementById("view-profile").classList.add("active");
-  document.getElementById("view-home").classList.remove("active");
-  document.getElementById("view-premier").classList.remove("active");
-  const successView = document.getElementById("view-success");
-  if (successView) successView.classList.remove("active");
-  const helpView = document.getElementById("view-help");
-  if (helpView) helpView.classList.remove("active");
-  const gamesView = document.getElementById("view-games");
-  if (gamesView) gamesView.classList.remove("active");
-  const depositView = document.getElementById("view-deposit");
-  if (depositView) depositView.classList.remove("active");
-  const withdrawView = document.getElementById("view-withdraw");
-  if (withdrawView) withdrawView.classList.remove("active");
-  const historyView = document.getElementById("view-history");
-  if (historyView) historyView.classList.remove("active");
-  const betsView = document.getElementById("view-bets");
-  if (betsView) betsView.classList.remove("active");
+  switchView('view-profile');
 }
 
 function showGamesView() {
-  document.body.classList.remove("premier-mode", "success-mode");
-  document.getElementById("view-games").classList.add("active");
-  document.getElementById("view-home").classList.remove("active");
-  document.getElementById("view-premier").classList.remove("active");
-  const successView = document.getElementById("view-success");
-  if (successView) successView.classList.remove("active");
-  const helpView = document.getElementById("view-help");
-  if (helpView) helpView.classList.remove("active");
-  const profileView = document.getElementById("view-profile");
-  if (profileView) profileView.classList.remove("active");
-  const depositView = document.getElementById("view-deposit");
-  if (depositView) depositView.classList.remove("active");
-  const withdrawView = document.getElementById("view-withdraw");
-  if (withdrawView) withdrawView.classList.remove("active");
-  const historyView = document.getElementById("view-history");
-  if (historyView) historyView.classList.remove("active");
-  const betsView = document.getElementById("view-bets");
-  if (betsView) betsView.classList.remove("active");
+  switchView('view-games');
 }
 
 function showDepositView() {
-  document.body.classList.remove("premier-mode", "success-mode");
-  document.getElementById("view-deposit").classList.add("active");
-  document.getElementById("view-home").classList.remove("active");
-  document.getElementById("view-premier").classList.remove("active");
-  const successView = document.getElementById("view-success");
-  if (successView) successView.classList.remove("active");
-  const helpView = document.getElementById("view-help");
-  if (helpView) helpView.classList.remove("active");
-  const profileView = document.getElementById("view-profile");
-  if (profileView) profileView.classList.remove("active");
-  const gamesView = document.getElementById("view-games");
-  if (gamesView) gamesView.classList.remove("active");
-  const withdrawView = document.getElementById("view-withdraw");
-  if (withdrawView) withdrawView.classList.remove("active");
-  const historyView = document.getElementById("view-history");
-  if (historyView) historyView.classList.remove("active");
-  const betsView = document.getElementById("view-bets");
-  if (betsView) betsView.classList.remove("active");
+  switchView('view-deposit');
 }
 
 function showWithdrawView() {
-  document.body.classList.remove("premier-mode", "success-mode");
-  document.getElementById("view-withdraw").classList.add("active");
-  document.getElementById("view-home").classList.remove("active");
-  document.getElementById("view-premier").classList.remove("active");
-  const successView = document.getElementById("view-success");
-  if (successView) successView.classList.remove("active");
-  const helpView = document.getElementById("view-help");
-  if (helpView) helpView.classList.remove("active");
-  const profileView = document.getElementById("view-profile");
-  if (profileView) profileView.classList.remove("active");
-  const gamesView = document.getElementById("view-games");
-  if (gamesView) gamesView.classList.remove("active");
-  const depositView = document.getElementById("view-deposit");
-  if (depositView) depositView.classList.remove("active");
-  const historyView = document.getElementById("view-history");
-  if (historyView) historyView.classList.remove("active");
-  const betsView = document.getElementById("view-bets");
-  if (betsView) betsView.classList.remove("active");
+  switchView('view-withdraw');
 }
 
 function showHistoryView() {
-  document.body.classList.remove("premier-mode", "success-mode");
-  document.getElementById("view-history").classList.add("active");
-  document.getElementById("view-home").classList.remove("active");
-  document.getElementById("view-premier").classList.remove("active");
-  const successView = document.getElementById("view-success");
-  if (successView) successView.classList.remove("active");
-  const helpView = document.getElementById("view-help");
-  if (helpView) helpView.classList.remove("active");
-  const profileView = document.getElementById("view-profile");
-  if (profileView) profileView.classList.remove("active");
-  const gamesView = document.getElementById("view-games");
-  if (gamesView) gamesView.classList.remove("active");
-  const depositView = document.getElementById("view-deposit");
-  if (depositView) depositView.classList.remove("active");
-  const withdrawView = document.getElementById("view-withdraw");
-  if (withdrawView) withdrawView.classList.remove("active");
-  const betsView = document.getElementById("view-bets");
-  if (betsView) betsView.classList.remove("active");
+  switchView('view-history');
 }
 
 function showBetHistoryView() {
-  document.body.classList.remove("premier-mode", "success-mode");
-  document.getElementById("view-bets").classList.add("active");
-  document.getElementById("view-home").classList.remove("active");
-  document.getElementById("view-premier").classList.remove("active");
-  const successView = document.getElementById("view-success");
-  if (successView) successView.classList.remove("active");
-  const helpView = document.getElementById("view-help");
-  if (helpView) helpView.classList.remove("active");
-  const profileView = document.getElementById("view-profile");
-  if (profileView) profileView.classList.remove("active");
-  const gamesView = document.getElementById("view-games");
-  if (gamesView) gamesView.classList.remove("active");
-  const depositView = document.getElementById("view-deposit");
-  if (depositView) depositView.classList.remove("active");
-  const withdrawView = document.getElementById("view-withdraw");
-  if (withdrawView) withdrawView.classList.remove("active");
-  const historyView = document.getElementById("view-history");
-  if (historyView) historyView.classList.remove("active");
+  switchView('view-bets');
 }
+
