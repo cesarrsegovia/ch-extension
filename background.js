@@ -20,4 +20,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             }
         });
     }
+
+    if (message.action === "openSidePanel") {
+        // Abrir panel lateral en la ventana actual
+        chrome.windows.getLastFocused().then((window) => {
+            if (window && window.id) {
+                chrome.sidePanel.open({ windowId: window.id })
+                    .catch((error) => console.error("Error abriendo side panel:", error));
+            }
+        });
+    }
 });

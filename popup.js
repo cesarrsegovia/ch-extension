@@ -1,5 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  // --- SIDE PANEL ACTIONS ---
+  const sidePanelBtn = document.getElementById("open-sidepanel-btn");
+  if (sidePanelBtn) {
+    sidePanelBtn.addEventListener("click", async () => {
+      // Intentar abrir directamente desde el popup (conserva el gesto de usuario)
+      try {
+        const lastFocusedWindow = await chrome.windows.getLastFocused();
+        if (lastFocusedWindow && lastFocusedWindow.id) {
+          await chrome.sidePanel.open({ windowId: lastFocusedWindow.id });
+          // Cerrar popup solo si tuvo éxito
+          window.close();
+        }
+      } catch (error) {
+        console.error("Error abriendo side panel desde popup:", error);
+      }
+    });
+  }
+
   // determinar qué vista mostrar (leyendo del storage)
   chrome.storage.local.get(["currentView"], (result) => {
     const view = result.currentView || "default";

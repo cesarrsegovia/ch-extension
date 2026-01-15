@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="sidepanel.css">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -29,9 +29,6 @@
           <h3>Alex Roller</h3>
         </div>
       </div>
-      <button id="open-sidepanel-btn" class="settings-btn" style="margin-right: 8px;" title="Abrir en Panel Lateral">
-        <span class="material-symbols-outlined" style="font-size: 20px;">dock_to_right</span>
-      </button>
       <button class="settings-btn">
         <span class="material-symbols-outlined" style="font-size: 20px;">settings</span>
       </button>
@@ -715,6 +712,7 @@
   </div>
 
   <!-- ================= VISTA DEPOSIT ================= -->
+  <!-- ================= VISTA DEPOSIT ================= -->
   <div id="view-deposit" class="view-section">
     <!-- Header -->
     <header class="dash-header">
@@ -849,6 +847,7 @@
     </div>
   </div>
 
+
   <!-- ================= VISTA WITHDRAW ================= -->
   <div id="view-withdraw" class="view-section">
     <!-- Header -->
@@ -860,135 +859,228 @@
     </header>
 
     <main class="wd-main no-scrollbar">
-      <!-- Balance Card -->
-      <div class="wd-balance-card">
-        <div class="wd-card-bg-icon">
-          <span class="material-symbols-outlined">account_balance</span>
-        </div>
-        <div class="wd-card-content">
-          <div class="wd-bal-top">
-            <p class="wd-bal-label">Total Balance</p>
-          </div>
-          <div class="wd-bal-row">
-            <span class="wd-bal-amount">$12,450.00</span>
-            <span class="wd-bal-curr">USD</span>
-          </div>
-          <div class="wd-bal-stats">
-            <div class="wd-stat">
-              <div class="wd-dot orange"></div>
-              <p class="wd-stat-label">Pending</p>
-              <p class="wd-stat-val">$0.00</p>
-            </div>
-            <div class="wd-stat">
-              <div class="wd-dot gray"></div>
-              <p class="wd-stat-label">Locked</p>
-              <p class="wd-stat-val">$50.00</p>
-            </div>
-          </div>
-        </div>
+      <!-- Available Balance -->
+      <div class="wd-avail-card">
+        <span class="wd-label">Available to Withdraw</span>
+        <h1 class="wd-amount">$11,209.50</h1>
       </div>
 
       <!-- Network Selection -->
       <div class="wd-network-section">
-        <div class="wd-net-header">
-          <h2 class="wd-section-title">Select Network</h2>
-          <span class="wd-net-bal hover-cursor">
-            <span class="material-symbols-outlined">account_balance_wallet</span>
-            $12,400.00
-          </span>
+        <label class="section-label">Select Network</label>
+        <div class="wd-network-list">
+          <button class="wd-net-btn active">ETH</button>
+          <button class="wd-net-btn">BTC</button>
+          <button class="wd-net-btn">SOL</button>
+          <button class="wd-net-btn">USDT</button>
         </div>
-        <div class="wd-network-scroll no-scrollbar">
-          <!-- Ethereum -->
-          <button class="wd-net-btn active">
-            <div class="wd-net-icon-bg">
-              <span class="material-symbols-outlined">token</span>
-            </div>
-            <span>Ethereum</span>
+      </div>
+
+      <!-- Address Input -->
+      <div class="wd-input-group">
+        <label class="section-label">Destination Address</label>
+        <div class="wd-input-wrapper">
+          <input type="text" placeholder="Paste address here" class="wd-input">
+          <button class="paste-btn">Paste</button>
+        </div>
+      </div>
+
+      <!-- Amount Input -->
+      <div class="wd-input-group">
+        <label class="section-label">Amount</label>
+        <div class="wd-input-wrapper">
+          <span class="curr">$</span>
+          <input type="number" placeholder="0.00" class="wd-input pl-6">
+          <button class="max-btn">MAX</button>
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <div class="wd-summary">
+        <div class="sum-row">
+          <span>Network Fee</span>
+          <span>$12.50</span>
+        </div>
+        <div class="sum-row total">
+          <span>Total Deduction</span>
+          <span>$0.00</span>
+        </div>
+      </div>
+
+      <!-- Confirm -->
+      <button class="wd-confirm-btn">
+        Confirm Withdraw
+      </button>
+    </main>
+  </div>
+
+  <!-- ================= VISTA PREMIER LEAGUE ================= -->
+  <div id="view-premier" class="view-section">
+    <!-- 1. Header Premier -->
+    <header class="premier-header">
+      <button id="back-home" class="nav-icon-btn">
+        <span class="material-symbols-outlined">arrow_back_ios</span>
+      </button>
+      <div class="premier-logo-container">
+        <!-- Logo ejemplo Premier (puedes cambiarlo por tu imagen) -->
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7Y-w2yqTRu6yJMnEbsZqGHUymc7ux1O0K782Kk1kMne4p5x6yqDqUeT5N0I7eQ2eS1sLsh_zB2l_tE_tYMcHwJz-CjoaT9Z6J2y8XNlO6E3vFp4M5B9CqG7rK8O1L2j0I3fN5P4H6Q8R9S0T2U4V5W7X9Y1Z3A4B5C6D7E8F9G0H1I2J3K4L5M6N7O8P9Q0R1S2T3U4V5W6X7Y8Z9"
+          alt="Premier League" class="premier-logo" />
+      </div>
+      <button class="nav-icon-btn">
+        <span class="material-symbols-outlined">more_horiz</span>
+      </button>
+    </header>
+
+    <!-- 2. Match Info Banner -->
+    <div class="match-banner">
+      <div class="team-block home-team">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTXg9oJ5cQ2rK8F1Z4I7L0M3N6O9P2Q5-R8S1T4U7V0W3X6Y9Z2A5B8C1D4E7F0G3H6I9J2K5L8M1N4O7P0Q3R6S9T2U5V8W1X4Y7Z0A3B6C9D2E5F8G1H4I7J0K3L6M9N2O5P8Q1R4S7T0U3V6W9X2Y5Z8A1B4C7D0E3F6G9H2I5J8K1L4M7N0O3P6Q9R2S5T8U1V4W7X0Y3Z6A9"
+          alt="Man City" class="team-logo" />
+        <span class="team-name">Man City</span>
+      </div>
+      <div class="match-score-info">
+        <span class="match-time">2nd Half • 65'</span>
+        <div class="score-board">
+          <span class="score">2</span>
+          <span class="score-divider">:</span>
+          <span class="score">1</span>
+        </div>
+      </div>
+      <div class="team-block away-team">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9X2Y5Z8A1B4C7D0E3F6G9H2I5J8K1L4M7N0O3P6Q9R2S5T8U1V4W7X0Y3Z6A9B2C5D8E1F4G7H0I3J6K9L2M5N8O1P4Q7R0S3T6U9V2W5X8Y1Z4A7B0C3D6E9F2G5H8I1J4K7L0M3N6O9P2Q5R8S1T4U7V0W3X6Y9Z2A5B8C1D4E7F0G3H6I9J2K5L8M1N4O7P0Q3R6S9T2U5V8W1X4Y7Z0A3"
+          alt="Arsenal" class="team-logo" />
+        <span class="team-name">Arsenal</span>
+      </div>
+    </div>
+
+    <!-- 3. Stats / Tracker (Visual) -->
+    <div class="match-tracker">
+      <div class="tracker-bar">
+        <div class="possession-bar" style="width: 60%"></div>
+      </div>
+      <div class="tracker-stats">
+        <span>Possession: 60%</span>
+        <span>Possession: 40%</span>
+      </div>
+    </div>
+
+    <!-- 4. Markets / Bets -->
+    <main class="premier-main no-scrollbar">
+      <!-- Tabs -->
+      <div class="market-tabs">
+        <button class="tab-btn active">Popular</button>
+        <button class="tab-btn">Goals</button>
+        <button class="tab-btn">Corners</button>
+        <button class="tab-btn">Cards</button>
+      </div>
+
+      <!-- Market Card: Match Winner -->
+      <div class="market-card">
+        <div class="market-header">
+          <span class="market-title">Match Winner</span>
+          <span class="material-symbols-outlined star-icon">star</span>
+        </div>
+        <div class="odds-group-3">
+          <button class="odd-btn">
+            <span class="outcome">Man City</span>
+            <span class="val">1.45</span>
           </button>
-          <!-- Bitcoin -->
-          <button class="wd-net-btn">
-            <div class="wd-net-icon-bg">
-              <span class="material-symbols-outlined">currency_bitcoin</span>
-            </div>
-            <span>Bitcoin</span>
+          <button class="odd-btn">
+            <span class="outcome">Draw</span>
+            <span class="val">4.20</span>
           </button>
-          <!-- Solana -->
-          <button class="wd-net-btn">
-            <div class="wd-net-icon-bg">
-              <span class="material-symbols-outlined">bolt</span>
-            </div>
-            <span>Solana</span>
+          <button class="odd-btn">
+            <span class="outcome">Arsenal</span>
+            <span class="val">6.50</span>
           </button>
         </div>
       </div>
 
-      <!-- Form Section -->
-      <div class="wd-form-card">
-        <!-- Amount -->
-        <div class="wd-input-group">
-          <label class="wd-label">Withdrawal Amount</label>
-          <div class="wd-input-wrapper">
-            <input type="text" class="wd-input-amount" placeholder="0.00">
-            <div class="wd-input-actions">
-              <span class="wd-curr-text">USD</span>
-              <div class="wd-sep"></div>
-              <button class="wd-max-btn">MAX</button>
-            </div>
-          </div>
+      <!-- Market Card: Next Goal -->
+      <div class="market-card">
+        <div class="market-header">
+          <span class="market-title">Next Goal (3rd Goal)</span>
         </div>
-
-        <!-- Address -->
-        <div class="wd-input-group">
-          <label class="wd-label">Recipient Address</label>
-          <div class="wd-input-wrapper">
-            <input type="text" class="wd-input-addr" placeholder="Paste wallet address">
-            <button class="wd-paste-btn">
-              <span class="material-symbols-outlined">content_paste</span>
-            </button>
-          </div>
+        <div class="odds-group-3">
+          <button class="odd-btn selected">
+            <span class="outcome">Man City</span>
+            <span class="val">1.90</span>
+          </button>
+          <button class="odd-btn">
+            <span class="outcome">No Goal</span>
+            <span class="val">12.00</span>
+          </button>
+          <button class="odd-btn">
+            <span class="outcome">Arsenal</span>
+            <span class="val">2.85</span>
+          </button>
         </div>
+      </div>
 
-        <!-- Fees -->
-        <div class="wd-fees-box">
-          <div class="wd-fee-row">
-            <span class="wd-fee-label">Network Fee</span>
-            <div class="wd-fee-val-group">
-              <span class="wd-fee-main">~$4.50</span>
-              <span class="wd-fee-sub">0.0024 ETH</span>
-            </div>
-          </div>
-          <div class="wd-fee-sep"></div>
-          <div class="wd-fee-row">
-            <span class="wd-total-label">Total Deduction</span>
-            <span class="wd-total-val">$4.50</span>
-          </div>
+      <!-- Market Card: Total Goals -->
+      <div class="market-card">
+        <div class="market-header">
+          <span class="market-title">Total Goals O/U 3.5</span>
         </div>
-
-        <!-- Checkbox -->
-        <label class="wd-checkbox-label">
-          <div class="wd-checkbox-wrapper">
-            <input type="checkbox" class="wd-checkbox-input">
-            <div class="wd-checkbox-custom">
-              <span class="material-symbols-outlined">check</span>
-            </div>
-          </div>
-          <p class="wd-checkbox-text">
-            I confirm that the address entered matches the selected network. Transactions on the blockchain cannot be
-            reversed.
-          </p>
-        </label>
+        <div class="odds-group-2">
+          <button class="odd-btn">
+            <span class="outcome">Over</span>
+            <span class="val">2.10</span>
+          </button>
+          <button class="odd-btn">
+            <span class="outcome">Under</span>
+            <span class="val">1.65</span>
+          </button>
+        </div>
       </div>
     </main>
 
-    <!-- Fixed Footer -->
-    <div class="wd-footer">
-      <button class="wd-submit-btn">
-        Withdraw Funds
-        <span class="material-symbols-outlined">arrow_forward</span>
-      </button>
+    <!-- 5. Bet Slip (Floating) -->
+    <div class="bet-slip-panel">
+      <div class="slip-info">
+        <div class="slip-count">1</div>
+        <div class="slip-text">Selection added</div>
+      </div>
+      <button class="place-bet-btn">Place Bet</button>
     </div>
   </div>
 
+
+  <!-- ================= VISTA SUCCESS ================= -->
+  <div id="view-success" class="view-section">
+    <div class="success-content">
+      <div class="success-icon-container">
+        <span class="material-symbols-outlined success-icon">check_circle</span>
+      </div>
+      <h2 class="success-title">Bet Placed!</h2>
+      <p class="success-msg">Your bet on <strong>Man City (Next Goal)</strong> has been successfully placed.</p>
+
+      <div class="receipt-card">
+        <div class="receipt-row">
+          <span>Stake</span>
+          <span class="receipt-val">$50.00</span>
+        </div>
+        <div class="receipt-row">
+          <span>Potential Return</span>
+          <span class="receipt-val text-green">$95.00</span>
+        </div>
+        <div class="receipt-row">
+          <span>ID</span>
+          <span class="receipt-val">#BW-92837</span>
+        </div>
+      </div>
+
+      <div class="success-actions">
+        <button id="close-success" class="action-btn-primary">Done</button>
+        <button id="back-success" class="action-btn-secondary">My Bets</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <!-- ================= VISTA HISTORY ================= -->
   <div id="view-history" class="view-section">
     <!-- Header -->
@@ -1152,210 +1244,12 @@
   </div>
 
 
-  <!-- ================= VISTA PREMIER LEAGUE ================= -->
-  <div id="view-premier" class="view-section">
-    <!-- Header -->
-    <header class="pl-header flex items-center justify-between">
-      <button id="back-home" class="back-btn">
-        <span class="material-symbols-outlined">arrow_back_ios_new</span>
-      </button>
-      <h1 class="text-lg font-bold text-center flex-1 pr-2" style="margin:0;">Place Bet</h1>
-      <div class="balance-pill">
-        <span class="text-xs font-bold text-[#bab29c]">1,240.50</span>
-        <span class="text-[10px] font-bold text-[#bab29c] mr-1">USDT</span>
-        <button class="add-btn">
-          <span class="material-symbols-outlined" style="font-size:14px; font-weight:bold;">add</span>
-        </button>
-      </div>
-    </header>
+  <!-- ================= VISTA PREMIER LEAGUE (Skipped - already exists?) NO, Premier League was already there earlier. Wait. -->
+  <!-- Premier League view WAS in sidepanel.html. I should NOT duplicate it. -->
+  <!-- The missing views are HISTORY and BETS. -->
+  <!-- Wait, I see view-premier in sidepanel.html (Step 183 context). -->
+  <!-- I see view-success in sidepanel.html (Step 188 context). -->
 
-    <!-- Main Content -->
-    <main class="pl-main no-scrollbar">
-
-      <!-- Bet Details Card -->
-      <div class="bet-card">
-        <!-- Event Header -->
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center gap-2 text-[#bab29c]">
-            <span class="material-symbols-outlined" style="font-size:18px;">sports_soccer</span>
-            <span class="text-xs font-bold uppercase" style="letter-spacing: 0.05em;">Premier League</span>
-          </div>
-          <span class="text-xs font-medium text-[#bab29c]"
-            style="opacity:0.6; background:rgba(255,255,255,0.05); padding:2px 6px; border-radius:4px;">Live</span>
-        </div>
-
-        <!-- Match Info -->
-        <div>
-          <div class="flex flex-col gap-1 mb-3">
-            <h3 class="text-xl font-bold leading-tight" style="margin:0;">Arsenal <span
-                class="text-[#bab29c] font-normal text-base mx-1">vs</span> Liverpool</h3>
-            <p class="text-sm text-[#bab29c]" style="margin:0;">Match Winner</p>
-          </div>
-
-          <!-- Selection & Odds Box -->
-          <div class="selection-box">
-            <div class="sel-info">
-              <span class="text-[10px] uppercase text-[#bab29c] font-bold tracking-wider mb-0.5"
-                style="opacity:0.7;">Selection</span>
-              <span class="text-primary font-bold text-lg" style="color:var(--pl-primary);">Arsenal</span>
-            </div>
-            <div class="odds-info">
-              <span class="text-[10px] uppercase text-[#bab29c] font-bold tracking-wider mb-0.5"
-                style="opacity:0.7;">Odds</span>
-              <span class="text-2xl font-bold tracking-tight">2.35</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stake Input Section -->
-      <div class="flex flex-col gap-3">
-        <label class="text-sm font-medium pl-1">Stake Amount</label>
-        <div class="flex gap-2" style="height: 64px;">
-          <div class="stake-input-group">
-            <input class="stake-input" type="number" value="250" placeholder="0.00">
-            <div class="stake-suffix">USDT</div>
-          </div>
-          <div class="flex flex-col gap-1" style="width: 64px;">
-            <button class="quick-btn">½</button>
-            <button class="quick-btn max">Max</button>
-          </div>
-        </div>
-
-        <!-- Calculated Return -->
-        <div class="return-box">
-          <span class="text-sm font-medium text-[#bab29c]">Estimated Return</span>
-          <div class="flex items-baseline gap-1.5">
-            <span class="text-xl font-bold tracking-tight" style="color:var(--pl-primary);">587.50</span>
-            <span class="text-xs font-bold" style="color:var(--pl-primary); opacity:0.7;">USDT</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Additional Info -->
-      <div class="info-box">
-        <div class="info-row">
-          <span>Current Wallet Balance</span>
-          <span style="font-family:monospace;">1,240.50 USDT</span>
-        </div>
-        <div class="info-row" style="margin-top: 8px;">
-          <span>Remaining after bet</span>
-          <span style="font-family:monospace;">990.50 USDT</span>
-        </div>
-      </div>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="pl-footer">
-      <div class="confirm-check">
-        <input type="checkbox" id="confirm-bet" checked>
-        <label for="confirm-bet">I confirm this bet is correct and understand bets cannot be canceled.</label>
-      </div>
-      <button class="place-bet-btn">
-        <span>Place Bet</span>
-        <span class="material-symbols-outlined" style="font-size:20px;">arrow_forward</span>
-      </button>
-    </footer>
-
-  </div>
-
-  <!-- ================= VISTA SUCCESS ================= -->
-  <div id="view-success" class="view-section no-scrollbar">
-    <!-- Header -->
-    <header class="pl-header flex items-center justify-between" style="position: sticky; top: 0; z-index: 10;">
-      <button id="back-success" class="back-btn">
-        <span class="material-symbols-outlined">arrow_back</span>
-      </button>
-      <h2 class="text-lg font-bold flex-1 text-center pr-2" style="margin:0;">Bet Placed</h2>
-      <div class="flex items-center justify-end" style="min-width: 40px;">
-        <span class="text-xs font-bold text-[#bab29c]">990.50 USDT</span>
-      </div>
-    </header>
-
-    <main class="pl-main" style="padding-bottom: 20px;">
-      <!-- Success Hero -->
-      <div class="success-hero">
-        <div style="position: relative; display: flex; justify-content: center; align-items: center;">
-          <div class="glow-circle"></div>
-          <span class="material-symbols-outlined"
-            style="font-size: 64px; color: var(--pl-primary); position: relative; z-index: 1;">check_circle</span>
-        </div>
-        <h1 class="text-xl font-bold text-center" style="margin:0;">Bet Successfully Placed</h1>
-      </div>
-
-      <!-- Bet Summary Ticket -->
-      <div class="ticket-card">
-        <!-- Event -->
-        <div style="margin-bottom: 20px;">
-          <div class="flex items-center gap-2 mb-1">
-            <span class="material-symbols-outlined text-[#bab29c]" style="font-size: 16px;">sports_soccer</span>
-            <p class="text-xs font-bold uppercase text-[#bab29c]" style="margin:0;">Premier League • Live</p>
-          </div>
-          <h3 class="text-xl font-bold leading-tight" style="margin:0;">Arsenal <span
-              class="text-[#bab29c] font-normal text-lg">vs</span> Liverpool</h3>
-        </div>
-
-        <!-- Selection -->
-        <div
-          style="background-color: rgba(0,0,0,0.2); border-radius: 0.75rem; padding: 16px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,255,255,0.05);">
-          <div class="flex flex-col">
-            <span class="text-xs font-medium text-[#bab29c] mb-1">Selection (Match Winner)</span>
-            <span class="text-lg font-bold" style="color: var(--pl-primary);">Arsenal</span>
-          </div>
-          <div
-            style="width: 32px; height: 32px; border-radius: 50%; background-color: rgba(242, 185, 13, 0.1); display: flex; align-items: center; justify-content: center;">
-            <span class="material-symbols-outlined" style="font-size: 16px; color: var(--pl-primary);">trophy</span>
-          </div>
-        </div>
-
-        <!-- Financials -->
-        <div class="financial-grid">
-          <div class="flex flex-col gap-1">
-            <span class="text-xs text-[#bab29c]">Odds</span>
-            <span class="font-bold text-lg" style="font-family: monospace;">2.35</span>
-          </div>
-          <div class="flex flex-col gap-1">
-            <span class="text-xs text-[#bab29c]">Stake</span>
-            <span class="font-bold text-lg" style="font-family: monospace;">250</span>
-          </div>
-          <div class="flex flex-col gap-1" style="text-align: right;">
-            <span class="text-xs text-[#bab29c]">Return</span>
-            <span class="font-bold text-lg" style="font-family: monospace; color: var(--pl-primary);">587.50</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Wallet Update -->
-      <div class="wallet-update-grid">
-        <div class="wallet-box">
-          <span class="text-[10px] uppercase font-bold text-[#bab29c]">New Balance</span>
-          <span class="font-bold text-sm mt-1">990.50 USDT</span>
-        </div>
-        <div class="wallet-box">
-          <span class="text-[10px] uppercase font-bold text-[#bab29c]">Locked in Bets</span>
-          <span class="font-bold text-sm mt-1">250.00 USDT</span>
-        </div>
-      </div>
-
-      <!-- Metadata -->
-      <div style="margin-top: 24px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
-        <div
-          style="background-color: rgba(34, 197, 94, 0.1); color: rgb(34, 197, 94); font-size: 10px; padding: 2px 8px; border-radius: 9999px; border: 1px solid rgba(34, 197, 94, 0.2); font-weight: bold; text-transform: uppercase;">
-          Accepted
-        </div>
-        <p class="text-xs text-[#bab29c]" style="margin:0;">Bet ID: #8829102 • Today, 20:30 PM</p>
-      </div>
-
-      <!-- Primary Action -->
-      <div style="padding-top: 24px;">
-        <button id="close-success" class="done-btn">Done</button>
-      </div>
-
-    </main>
-  </div>
-
-  <!-- SCRIPT AL FINAL DE TODO -->
   <!-- ================= VISTA BET HISTORY ================= -->
   <div id="view-bets" class="view-section">
     <!-- Header -->
