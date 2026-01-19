@@ -1,15 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    if (tabs[0] && tabs[0].id) {
+      // mantenemos la conexión viva mientras el panel esté abierto
+      chrome.tabs.connect(tabs[0].id, { name: "gamblor-sidepanel" });
+    }
+  });
+
   // --- SIDE PANEL ACTIONS ---
   const sidePanelBtn = document.getElementById("open-sidepanel-btn");
   if (sidePanelBtn) {
     sidePanelBtn.addEventListener("click", async () => {
-      // Intentar abrir directamente desde el popup (conserva el gesto de usuario)
+      // intentar abrir directamente desde el popup
       try {
         const lastFocusedWindow = await chrome.windows.getLastFocused();
         if (lastFocusedWindow && lastFocusedWindow.id) {
           await chrome.sidePanel.open({ windowId: lastFocusedWindow.id });
-          // Cerrar popup solo si tuvo éxito
+          // cerrar popup solo si tuvo éxito
           window.close();
         }
       } catch (error) {
@@ -21,12 +29,24 @@ document.addEventListener("DOMContentLoaded", () => {
   // determinar qué vista mostrar (leyendo del storage)
   chrome.storage.local.get(["currentView"], (result) => {
     const view = result.currentView || "default";
-    console.log("Popup opened with view:", view);
 
     if (view === "premier_league") {
       showPremierLeagueView();
     } else {
       showHomeView();
+    }
+  });
+
+  // escuchar cambios de vista si el panel ya está abierto
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === "local" && changes.currentView) {
+      const view = changes.currentView.newValue || "default";
+
+      if (view === "premier_league") {
+        showPremierLeagueView();
+      } else {
+        showHomeView();
+      }
     }
   });
 
@@ -74,9 +94,14 @@ document.addEventListener("DOMContentLoaded", () => {
   if (homeView) {
     const homeNavItems = homeView.querySelectorAll(".nav-item");
 
-    // Games Button (Index 1: Home, Games, Wallet, Rewards, Profile)
+    // Games Button 
     if (homeNavItems[1]) {
       homeNavItems[1].addEventListener("click", () => showGamesView());
+    }
+
+    // Sportsbook Button
+    if (homeNavItems[2]) {
+      homeNavItems[2].addEventListener("click", () => showSportsbookView());
     }
 
     // Profile Button
@@ -94,6 +119,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (gamesHomeBtn) {
       gamesHomeBtn.addEventListener("click", () => showHomeView());
     }
+
+    const gamesNavItems = gamesView.querySelectorAll(".nav-item");
+
+    if (gamesNavItems[2]) {
+      gamesNavItems[2].addEventListener("click", () => showSportsbookView());
+    }
+
     // Profile Button
     const gamesProfileBtn = gamesView.querySelector(".profile-nav-btn-games");
     if (gamesProfileBtn) {
@@ -291,5 +323,22 @@ function showHistoryView() {
 
 function showBetHistoryView() {
   switchView('view-bets');
+}
+
+function showSportsbookView() {
+  switchView('view-sportsbook');
+}
+
+// --- SPORTSBOOK VIEW NAVIGATION ---
+const sportsbookView = document.getElementById("view-sportsbook");
+if (sportsbookView) {
+  const sbHomeBtn = document.getElementById("nav-btn-home-sb");
+  if (sbHomeBtn) sbHomeBtn.addEventListener("click", () => showHomeView());
+
+  const sbGamesBtn = document.getElementById("nav-btn-games-sb");
+  if (sbGamesBtn) sbGamesBtn.addEventListener("click", () => showGamesView());
+
+  const sbProfileBtn = sportsbookView.querySelector(".profile-nav-btn-sb");
+  if (sbProfileBtn) sbProfileBtn.addEventListener("click", () => showProfileView());
 }
 

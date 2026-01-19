@@ -1,15 +1,73 @@
 const TARGET_ACCOUNT = "Gamblor Casino";
+const isTw = window.location.hostname.includes("twitter.com") || window.location.hostname.includes("x.com");
 
-// escanear tweets existentes al cargar
-console.log("X post detector: post encontrado");
-scanExistingTweets();
+if (isTw) {
+    scanExistingTweets();
+}
 
-// escanear tweets nuevos
+createFloatingTrigger();
+
+// escanear tweets nuevos (Solo en X)
 chrome.storage.onChanged.addListener((changes, area) => {
-    if (area === "local") {
+    if (area === "local" && isTw) {
         scanExistingTweets();
     }
 });
+
+// detectar conexión del Side Panel para ocultar/mostrar el trigger
+chrome.runtime.onConnect.addListener((port) => {
+    if (port.name === "gamblor-sidepanel") {
+        const trigger = document.getElementById("gamblor-floating-trigger");
+        if (trigger) {
+            trigger.style.display = "none";
+        }
+
+        port.onDisconnect.addListener(() => {
+            if (trigger) {
+                trigger.style.display = "flex";
+            }
+        });
+    }
+});
+
+function createFloatingTrigger() {
+    if (document.getElementById("gamblor-floating-trigger")) return;
+
+    const triggerUrl = chrome.runtime.getURL("image/logo_icon.png");
+
+    // Contenedor principal
+    const container = document.createElement("div");
+    container.id = "gamblor-floating-trigger";
+    container.className = "gamblor-floating-trigger";
+
+    // Close Button (X)
+    const closeBtn = document.createElement("div");
+    closeBtn.className = "gamblor-trigger-close";
+    closeBtn.innerText = "×";
+
+    closeBtn.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation(); // evitar que abra el panel
+        container.remove(); // eliminar el trigger del DOM
+    };
+
+    // icono principal
+    const icon = document.createElement("img");
+    icon.src = triggerUrl;
+    icon.className = "gamblor-floating-icon";
+
+    container.appendChild(closeBtn);
+    container.appendChild(icon);
+
+    // accion principal: abrir side panel
+    container.onclick = () => {
+        chrome.runtime.sendMessage({
+            action: "openSidePanel"
+        });
+    };
+
+    document.body.appendChild(container);
+}
 
 function scanExistingTweets() {
     const tweets = document.querySelectorAll('article[data-testid="tweet"]');
@@ -42,7 +100,7 @@ function highlightTweet(tweet, type = "default") {
     // se remueven estilos de borde antiguos si existen
     tweet.classList.remove("detected-tweet");
 
-    // buscar la barra de acciones (footer con likes, rt, etc.)
+    // buscar la barra de acciones 
     // suele ser un div con role="group"
     const actionsBar = tweet.querySelector('div[role="group"]');
 

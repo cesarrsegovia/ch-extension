@@ -5,29 +5,33 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         const viewType = message.type || "default";
         chrome.storage.local.set({ "currentView": viewType }, () => {
 
-            // intentar abrir el popup nativo de la extensión
-            if (chrome.action && chrome.action.openPopup) {
-                chrome.action.openPopup();
+            // abrir el side panel
+            if (sender.tab && sender.tab.windowId) {
+                chrome.sidePanel.open({ windowId: sender.tab.windowId })
+                    .catch((error) => console.error("Error opening side panel:", error));
             } else {
-                // fallback
-                chrome.windows.create({
-                    url: chrome.runtime.getURL("popup.html"),
-                    type: "popup",
-                    width: 375, // ajustado para móvil
-                    height: 800,
-                    focused: true
+                chrome.windows.getLastFocused().then((window) => {
+                    if (window && window.id) {
+                        chrome.sidePanel.open({ windowId: window.id })
+                            .catch((error) => console.error("Error opening side panel:", error));
+                    }
                 });
             }
         });
     }
 
     if (message.action === "openSidePanel") {
-        // Abrir panel lateral en la ventana actual
-        chrome.windows.getLastFocused().then((window) => {
-            if (window && window.id) {
-                chrome.sidePanel.open({ windowId: window.id })
-                    .catch((error) => console.error("Error abriendo side panel:", error));
-            }
-        });
+        // priorizar la ventana del sender para no perder el contexto del user gesture
+        if (sender.tab && sender.tab.windowId) {
+            chrome.sidePanel.open({ windowId: sender.tab.windowId })
+                .catch((error) => console.error("Error opening side panel:", error));
+        } else {
+            chrome.windows.getLastFocused().then((window) => {
+                if (window && window.id) {
+                    chrome.sidePanel.open({ windowId: window.id })
+                        .catch((error) => console.error("Error opening side panel:", error));
+                }
+            });
+        }
     }
 });

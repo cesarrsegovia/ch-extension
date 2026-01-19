@@ -123,3 +123,66 @@
         box-shadow: 0 0 0 0 rgba(255, 68, 68, 0);
     }
 }
+
+/* --- Floating Trigger --- */
+.gamblor-floating-trigger {
+    position: fixed;
+    top: auto;
+    bottom: 25%;
+    right: 0;
+    transform: none;
+    width: 40px;
+    height: 40px;
+    background-color: #1a1a1a;
+    border: 2px solid #E6B328;
+    border-right: none;
+    border-radius: 12px 0 0 12px;
+    cursor: pointer;
+    z-index: 2147483647;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: right 0.3s ease;
+}
+
+.gamblor-floating-trigger:hover {
+    background-color: #252525;
+}
+
+.gamblor-floating-icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+/* Close button ("X") */
+.gamblor-trigger-close {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: 16px;
+    height: 16px;
+    background-color: #444;
+    border: 1px solid #666;
+    border-radius: 50%;
+    color: white;
+    font-family: sans-serif;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2147483648;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.gamblor-floating-trigger:hover .gamblor-trigger-close {
+    opacity: 1;
+}
+
+.gamblor-trigger-close:hover {
+    background-color: #666;
+}
