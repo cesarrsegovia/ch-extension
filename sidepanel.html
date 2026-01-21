@@ -26,8 +26,10 @@
         </div>
         <div class="user-info">
           <p>Welcome back</p>
-          <h3>Alex Roller</h3>
+          <h3 id="username">Guest</h3>
         </div>
+
+        <button id="loginBtn">Sign in</button>
       </div>
       <button class="settings-btn">
         <span class="material-symbols-outlined" style="font-size: 20px;">settings</span>
@@ -43,11 +45,11 @@
             style="font-size: 16px; color: var(--dash-primary);">account_balance_wallet</span>
           <span>Total Balance</span>
         </div>
-        <h1 class="balance-amount">$12,450.00</h1>
-        <div class="balance-trend">
+        <h1 id="balanceAmount" class="balance-amount">$0.00</h1>
+        <!-- <div class="balance-trend">
           <span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span>
           <span>+2.4% today</span>
-        </div>
+        </div> -->
       </div>
 
       <!-- Actions -->
@@ -318,7 +320,7 @@
         <div class="gh-actions">
           <div class="gh-balance">
             <span class="gh-currency">$</span>
-            <span class="gh-amount">2,450.50</span>
+            <span class="gh-amount user-balance">0.00</span>
             <button class="gh-add-btn">
               <span class="material-symbols-outlined">add</span>
             </button>
@@ -418,95 +420,36 @@
       <section class="g-section">
         <div class="gs-header">
           <div class="gs-title-group">
+            <h2>Liked Games</h2>
+            <span class="gs-badge">3</span>
+          </div>
+          <a href="#" class="gs-view-all">View all <span class="material-symbols-outlined">arrow_forward</span></a>
+        </div>
+        <div class="games-grid" id="liked-grid"></div>
+      </section>
+      <section class="g-section">
+        <div class="gs-header">
+          <div class="gs-title-group">
             <h2>Continue Playing</h2>
             <span class="gs-badge">3</span>
           </div>
           <a href="#" class="gs-view-all">View all <span class="material-symbols-outlined">arrow_forward</span></a>
         </div>
-        <div class="games-grid">
-          <!-- Bull Ride Loot -->
-          <div class="game-card">
-            <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4NDBXIsLp6wJcUzTFdUYq1wNwdF8OYFJizDUBApm7DaBpR58bHBrxiLSgdAUyS7ImM6MsNPFlYV5Appi_x6kj97fSR-lisjKEwv2a8SrNhxNW_vWcsuz4C1UvrxbCMUpEAq6WfOMqYcFyxMw_VAzjhdpuoQKMOy-u2iM7Nlz2fdLA27HosRYkxjtZMIP2vb4_SiQLKZr-Al5uh1SugV1zNfU4BtT1XRZMX7L4PnvdTutJUWkyFA4gbykL_iq84eK1MZKcXV6ZoKYW"
-              alt="Bull Ride Loot" />
-            <div class="gc-overlay"></div>
-            <div class="gc-info">
-              <span class="gc-title">Bull Ride Loot</span>
-              <span class="gc-prov">Pragmatic Play</span>
-            </div>
-            <div class="gc-border"></div>
-          </div>
-          <!-- Santa's Stack -->
-          <div class="game-card">
-            <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQVd6Gon2QgWPF7XHF1hyDbLfmmKyUKPUQXFrx5fysflw5ZHvYzHzgA9DuT-JhZNH_IiRE8ENv150M4qV4wg-UU2SAMy96rwcZ2BrOMCdT1dh4KF2fzLyved4gnBSvBoo4PlV2xook0Qko1A38Hty-cXa9Cu-l4v9_oi2TNw9-MRmzVSV9jtItXVYN0hR4WvEaEyXDKsnq1z2MItbEmTLDeB9LJvWCQJKTTOa096Ddslx8F0r2ZYTZ4iNYsDZJnPwdqU5f8jY6-iWg"
-              alt="Santa's Stack" />
-            <div class="gc-overlay"></div>
-            <div class="gc-info">
-              <span class="gc-title">Santa's Stack</span>
-              <span class="gc-prov">Relax Gaming</span>
-            </div>
-            <div class="gc-border"></div>
-          </div>
-        </div>
+        <div class="games-grid" id="continue-grid"></div>
       </section>
-
-      <!-- Trending -->
       <section class="g-section">
         <div class="gs-header">
           <div class="gs-title-group">
-            <h2>Trending</h2>
-            <span class="material-symbols-outlined text-primary">trending_up</span>
+            <h2>Trending Games</h2>
+            <span class="gs-badge">3</span>
           </div>
           <a href="#" class="gs-view-all">View all <span class="material-symbols-outlined">arrow_forward</span></a>
         </div>
-        <div class="games-grid">
-          <!-- Matador Fight -->
-          <div class="game-card">
-            <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuByItMLvfuHo_4bfKClZK0uGAD70_5N4jlRPsKJl3pPCTlZeJbyTD4qZqeIL3lM4RLUzZ-gi1PyOsipl3i3GjLjXD4NFkV66G3aWlTazH7mTJIRVVhr5joGNqxE2adnVGL6QjIRqSN0w080if1bwZ2BTfOxVkRplmzybBM1BFmCb0plS51CgTFPMLq82BOYNpAcxztKM4vpfMkybJOwKXUe_3ivUwuwC8FE1zHwK65Rm0WL0gJDwZ4Uh7wL6QrYHIQP_v1KPRq-Tab7"
-              alt="Matador Fight" />
-            <div class="gc-overlay"></div>
-            <div class="gc-info">
-              <span class="gc-title">Matador Fight</span>
-            </div>
-            <div class="gc-border"></div>
-          </div>
-          <!-- Buffalo Stack -->
-          <div class="game-card">
-            <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrFqaHkg4ttuhXyClRPJUBsSy_iBNgr6XB6pOAOIZTP72JZ4jHvpuWkFsbAgeAiw6wnWppWzC2I8N1by0nzFQEXLQiZ6GqPmB33cHWD-IWcgizFVQoAW8eDaj5hzMyyvIkkkIhlnN9y09BD5lb8P20P0JI2NhaUHULE8-84XW2HDKfsc9V4HYtOpDndFB9ipwIww4-2CB8Lbp2NcAZ9sR-fcrBfeiQLW2FLuR3WUbW5Ka6S82RMaNOHhEJwgrqn44KO5N0BL1x57M6"
-              alt="Buffalo Stack" />
-            <div class="gc-overlay"></div>
-            <div class="gc-info">
-              <span class="gc-title">Buffalo Stack</span>
-            </div>
-            <div class="gc-border"></div>
-          </div>
-          <!-- Army of Ares -->
-          <div class="game-card">
-            <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCSyxREv0ke3gkgJ9-TDLNXQ2Z_ua2WlsQISR2V2npDqj7mJhtANwDfs8bHEc06_aWw5x0Vclyebm6IkK8GOycTI5souhoe2eocOcx-UKVCXBQM3fKos6UJ9-cIIMQ_NMwAUQiHGcKeqyVLJRSQhaHEdscYMf4RehPL3itotPebTMo8B8_KZbaApMMXbrUja3SIYetRHynvp5cR6KLDNSkXbRmyYmf47yF7TU0U3dpOHNS9meURpgot6f40UwomPTvgh7v-5vFe45D"
-              alt="Army of Ares" />
-            <div class="gc-overlay"></div>
-            <div class="gc-info">
-              <span class="gc-title">Army of Ares</span>
-            </div>
-            <div class="gc-border"></div>
-          </div>
-          <!-- The Count -->
-          <div class="game-card">
-            <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKb05RMLRnM2DUBYwqLNYLCzMVMnPusgP_xVeQpBifcRWdOmp34atn-nyCd4nzkhMPuR-2BunZ0yErIoTxz-_o9a4k9z-TM0kHrr7csfaxjzdsToTAIuS85e3SFzp-HrB9bwH_yxDeTv9BWcAH0BVA9nkx6A_KnistoIt7DxPWR3dobhgLGVNKhOEC8psDW-SDIvX-qljI3QEy3ueHetsMpHWN2cBZfiurJJOio-haocpUs1_2dDSdl0CujzVuf5V8M9y-KR7ieAFa"
-              alt="The Count" />
-            <div class="gc-overlay"></div>
-            <div class="gc-info">
-              <span class="gc-title">The Count</span>
-            </div>
-            <div class="gc-border"></div>
-          </div>
-        </div>
+        <div class="games-grid" id="trending-grid"></div>
       </section>
+
+
+
     </main>
 
     <!-- Bottom Navigation (Project Standard but Games Active) -->
@@ -537,6 +480,26 @@
       </div>
     </nav>
   </div>
+
+  <!-- ================= GAME VIEW ================= -->
+  <section id="view-game" class="view-section active">
+    <!-- TOP BAR -->
+    <div class="game-topbar">
+      <button id="game-back-btn" class="game-back-btn" aria-label="Back">
+        <span class="material-symbols-outlined arrow-symbol">arrow_back</span>
+      </button>
+      <div class="game-title" id="game-title">
+        Provider · Game
+      </div>
+    </div>
+
+    <!-- GAME AREA -->
+    <div class="game-container">
+      <iframe id="game-frame" class="game-frame" allow="autoplay; fullscreen; clipboard-read; clipboard-write"
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation allow-top-navigation-by-user-activation"></iframe>
+    </div>
+  </section>
+
 
   <!-- ================= VISTA PROFILE ================= -->
   <div id="view-profile" class="view-section">
@@ -1082,18 +1045,41 @@
 
   <!-- ================= VISTA SPORTSBOOK ================= -->
   <div id="view-sportsbook" class="view-section">
-    <header class="dash-header">
-       <div class="header-logo">
-          <span class="material-symbols-outlined text-primary">sports_score</span>
-          <span style="font-weight:700; font-size:16px; margin-left:8px;">Sportsbook</span>
-       </div>
+    <!-- TOP BAR -->
+    <header class="games-header">
+      <div class="gh-top">
+        <div class="gh-logo">
+          <button id="sportsbook-back-btn" class="game-back-btn">
+            <span class="material-symbols-outlined  arrow-symbol">arrow_back</span>
+          </button>
+          <span class="gh-title">Sportsbook</span>
+        </div>
+        <div class="gh-actions">
+          <div class="gh-balance">
+            <span class="gh-currency">$</span>
+            <span class="gh-amount user-balance">0.00</span>
+            <button class="gh-add-btn">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
     </header>
-    <main class="dash-main" style="display:flex; align-items:center; justify-content:center; height:100%;">
-       <p style="color:#666;">Waiting for design...</p>
-    </main>
-    
+    <!-- <div class="game-topbar">
+    <button id="sportsbook-back-btn" class="game-back-btn">
+      <span class="material-symbols-outlined  arrow-symbol">arrow_back</span>
+    </button>
+    <div class="game-title">Sportsbook</div>
+  </div> -->
+
+    <div class="game-container">
+      <iframe id="sportsbook-frame" class="game-frame"
+        allow="autoplay; fullscreen; clipboard-read; clipboard-write"></iframe>
+    </div>
+
     <!-- Navigation for Sportsbook -->
-    <nav class="nav-bar">
+    <!-- <nav class="nav-bar">
       <div class="nav-container">
         <button id="nav-btn-home-sb" class="nav-item">
           <span class="material-symbols-outlined">home</span>
@@ -1105,7 +1091,8 @@
         </button>
         <div class="nav-item-center">
           <button class="center-btn">
-            <span class="material-symbols-outlined" style="font-size: 30px; font-weight: normal;">account_balance_wallet</span>
+            <span class="material-symbols-outlined"
+              style="font-size: 30px; font-weight: normal;">account_balance_wallet</span>
           </button>
         </div>
         <button class="nav-item" style="color: var(--dash-primary);">
@@ -1113,11 +1100,11 @@
           <span>Sportsbook</span>
         </button>
         <button class="nav-item profile-nav-btn-sb">
-           <span class="material-symbols-outlined">person</span>
-           <span>Profile</span>
+          <span class="material-symbols-outlined">person</span>
+          <span>Profile</span>
         </button>
       </div>
-    </nav>
+    </nav> -->
   </div>
 
   <!-- Scripts -->

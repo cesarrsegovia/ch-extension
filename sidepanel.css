@@ -1,4 +1,4 @@
-@import url('popup.css');
+@import url("popup.css");
 
 html {
   background-color: #050505 !important;
@@ -158,14 +158,14 @@ nav {
 }
 
 .amount-input-wrapper:focus-within {
-  border-color: #FBBF24;
+  border-color: #fbbf24;
   box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.1);
 }
 
 .currency-prefix {
   font-size: 16px;
   font-weight: 700;
-  color: #FBBF24;
+  color: #fbbf24;
   margin-right: 4px;
 }
 
@@ -242,7 +242,7 @@ h1.dep-bal-amount,
 .wd-confirm-btn {
   width: 100%;
   height: 56px;
-  background-color: #FBBF24;
+  background-color: #fbbf24;
   color: black;
   border: none;
   border-radius: 9999px;
@@ -294,7 +294,7 @@ h1.dep-bal-amount,
 .max-btn {
   background: rgba(255, 255, 255, 0.1);
   border: none;
-  color: #FBBF24;
+  color: #fbbf24;
   font-size: 11px;
   font-weight: 700;
   padding: 6px 12px;
@@ -330,7 +330,99 @@ h1.dep-bal-amount,
 }
 
 .wd-net-btn.active {
-  background-color: #FBBF24;
+  background-color: #fbbf24;
   color: black;
-  border-color: #FBBF24;
+  border-color: #fbbf24;
+}
+
+/* Game view layout */
+#view-game {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #000;
+}
+
+/* Game container fills remaining space */
+.game-container {
+  flex: 1;
+  position: relative;
+  background: #000;
+}
+
+/* Iframe fills container */
+.game-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #000;
+}
+
+.game-topbar {
+  height: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+  background: rgba(0, 0, 0, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff;
+  position: relative;
+}
+
+/* Round back button */
+.game-back-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    transform 0.1s ease;
+}
+
+.arrow-symbol {
+  font-size: 20px !important;
+}
+
+.game-back-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.game-back-btn:active {
+  transform: scale(0.95);
+}
+
+/* Title centered visually */
+.game-title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 32px; /* balance back button width */
+}
+
+#view-sportsbook {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #000;
+}
+
+#sport_div_iframe,
+#application-container {
+  position: absolute;
+  inset: 0;
 }
