@@ -3,7 +3,7 @@
   "name": "Gamblor Extension",
   "version": "1.0",
   "description": "Interactua con post de gamblor",
-  "host_permissions": ["https://*/*", "http://*/*"],
+  "host_permissions": ["https://x.com/*", "https://twitter.com/*"],
   "permissions": ["storage", "sidePanel"],
   "background": {
     "service_worker": "background.js"
@@ -22,7 +22,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": ["https://x.com/*", "https://twitter.com/*"],
       "js": ["content.js"],
       "css": ["content.css"]
     }
@@ -34,6 +34,6 @@
     }
   ],
   "externally_connectable": {
-    "matches": ["http://localhost:3001/*"]
+    "matches": ["http://localhost:3001/*", "https://login.gamblor.io/*"]
   }
 }

@@ -48,7 +48,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg.type === "OPEN_LOGIN") {
     chrome.windows.create(
       {
-        url: "http://localhost:3001?provider=extension",
+        url: "https://login.gamblor.io?provider=extension",
         type: "popup",
         width: 420,
         height: 640,
