@@ -261,6 +261,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (backBetsBtn) {
     backBetsBtn.addEventListener("click", () => showProfileView());
   }
+  // --- CENTER BUTTON (SPORTSBOOK) ---
+  const centerBtns = document.querySelectorAll(".center-btn");
+  centerBtns.forEach(btn => {
+    btn.addEventListener("click", () => showSportsbookView());
+  });
 });
 
 function switchView(viewId) {
@@ -340,5 +345,12 @@ if (sportsbookView) {
 
   const sbProfileBtn = sportsbookView.querySelector(".profile-nav-btn-sb");
   if (sbProfileBtn) sbProfileBtn.addEventListener("click", () => showProfileView());
+
+  // Additional Listeners for Popup specific IDs since we used different IDs to avoid conflicts or just ensure robustness
+  const sbHomeBtnPop = document.getElementById("nav-btn-home-sb-pop");
+  if (sbHomeBtnPop) sbHomeBtnPop.addEventListener("click", () => showHomeView());
+
+  const backHomeSbPop = document.getElementById("back-home-sb-pop");
+  if (backHomeSbPop) backHomeSbPop.addEventListener("click", () => showHomeView());
 }
 
