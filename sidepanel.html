@@ -910,45 +910,6 @@
     </div>
   </div>
 
-  <!-- ================= VISTA SPORTSBOOK ================= -->
-  <div id="view-sportsbook" class="view-section">
-    <header class="dash-header">
-      <div class="header-logo">
-        <span class="material-symbols-outlined text-primary">sports_score</span>
-        <span style="font-weight:700; font-size:16px; margin-left:8px;">Sportsbook</span>
-      </div>
-    </header>
-    <main class="dash-main" style="display:flex; align-items:center; justify-content:center; height:100%;">
-      <p style="color:#666;">Waiting for design...</p>
-    </main>
-
-    <!-- Navigation for Sportsbook -->
-    <nav class="nav-bar">
-      <div class="nav-container">
-        <button id="nav-btn-home-sb" class="nav-item">
-          <span class="material-symbols-outlined">home</span>
-          <span>Home</span>
-        </button>
-        <button id="nav-btn-games-sb" class="nav-item">
-          <span class="material-symbols-outlined">sports_esports</span>
-          <span>Games</span>
-        </button>
-        <div class="nav-item-center">
-          <button class="center-btn">
-            <span class="material-symbols-outlined" style="font-size: 30px; font-weight: normal;">sports_soccer</span>
-          </button>
-        </div>
-        <button class="nav-item" style="color: var(--dash-primary);">
-          <span class="material-symbols-outlined">sports_score</span>
-          <span>Sportsbook</span>
-        </button>
-        <button class="nav-item profile-nav-btn-sb">
-          <span class="material-symbols-outlined">person</span>
-          <span>Profile</span>
-        </button>
-      </div>
-    </nav>
-  </div>
 
   <!-- Scripts -->
   <!-- ================= VISTA HISTORY ================= -->
@@ -1292,208 +1253,81 @@
     </main>
   </div>
 
+
+  <!-- ================= VISTA SPORTSBOOK ================= -->
+  <div id="view-sportsbook" class="view-section">
+    <!-- Sticky Header -->
+    <header class="sb-header">
+      <button id="back-home-sb" class="nav-icon-btn">
+        <span class="material-symbols-outlined" style="font-size: 24px;">arrow_back</span>
+      </button>
+      <div class="sb-league-info">
+        <img id="sb-league-badge" src="https://www.thesportsdb.com/images/media/league/badge/idv89f1680190130.png"
+          alt="AFA" class="league-badge">
+        <h1>Fútbol argentino</h1>
+      </div>
+    </header>
+
+    <main class="sb-main no-scrollbar">
+      <!-- Contenedor para Partidos en Vivo -->
+      <div id="sb-live-section" style="display:none; margin-bottom: 20px;">
+        <div class="sb-list-header">
+          <h2 class="sb-list-title">En Vivo</h2>
+          <div class="sb-live-tag">
+            <span class="material-symbols-outlined animate-pulse" style="font-size: 16px;">bolt</span>
+            <span>LIVE NOW</span>
+          </div>
+        </div>
+        <div id="sb-live-list"></div>
+      </div>
+
+      <!-- Contenedor para Próximos Partidos -->
+      <div class="sb-list-header">
+        <h2 class="sb-list-title">Próximos Partidos</h2>
+      </div>
+      <div id="sb-upcoming-list">
+        <div class="sb-match-skeleton">Cargando próximos encuentros...</div>
+      </div>
+
+      <!-- Contenedor para Resultados Recientes -->
+      <div class="sb-list-header" style="margin-top: 24px;">
+        <h2 class="sb-list-title">Resultados Recientes</h2>
+      </div>
+      <div id="sb-recent-list"></div>
+
+      <div style="height: 80px;"></div>
+    </main>
+
+    <!-- Bottom Navigation (Standard) -->
+    <nav class="nav-bar">
+      <div class="nav-container">
+        <button id="nav-btn-home-sb" class="nav-item">
+          <span class="material-symbols-outlined">home</span>
+          <span>Home</span>
+        </button>
+        <button id="nav-btn-games-sb" class="nav-item">
+          <span class="material-symbols-outlined">sports_esports</span>
+          <span>Games</span>
+        </button>
+        <div class="nav-item-center">
+          <button class="center-btn">
+            <span class="material-symbols-outlined" style="font-size: 30px; font-weight: normal;">sports_soccer</span>
+          </button>
+        </div>
+        <button class="nav-item" style="color: var(--dash-primary);">
+          <span class="material-symbols-outlined">sports_score</span>
+          <span>Sportsbook</span>
+        </button>
+        <button class="nav-item profile-nav-btn-sb">
+          <span class="material-symbols-outlined">person</span>
+          <span>Profile</span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <script src="lib/soccer-api.js"></script>
   <script src="popup.js"></script>
 </body>
 
-<!-- ================= VISTA SPORTSBOOK ================= -->
-<div id="view-sportsbook" class="view-section">
-  <!-- Sticky Header -->
-  <header class="sb-header">
-    <button id="back-home-sb" class="settings-btn">
-      <span class="material-symbols-outlined" style="font-size: 24px;">arrow_back</span>
-    </button>
-    <h1>Sports Boosts</h1>
-    <div class="sb-wallet-pill">
-      <span class="material-symbols-outlined text-primary" style="font-size: 18px;">account_balance_wallet</span>
-      <span>0.045 BTC</span>
-    </div>
-  </header>
-
-  <main class="sb-main">
-    <!-- List Header -->
-    <div class="sb-list-header">
-      <h2 class="sb-list-title">Today's Specials</h2>
-      <div class="sb-live-tag">
-        <span class="material-symbols-outlined animate-pulse" style="font-size: 16px;">bolt</span>
-        <span>LIVE NOW</span>
-      </div>
-    </div>
-
-    <!-- Boost Card 1: Soccer -->
-    <details class="sb-card">
-      <summary>
-        <div class="sb-card-left">
-          <div class="sb-icon-circle">
-            <span class="material-symbols-outlined">sports_soccer</span>
-          </div>
-          <div class="sb-info">
-            <div class="sb-info-top">
-              <span class="sb-match-title">Real Madrid vs Barcelona</span>
-              <span class="sb-tag boosted">Boosted</span>
-            </div>
-            <p class="sb-bet-desc">Real Madrid to Win & BTTS</p>
-          </div>
-        </div>
-        <div class="sb-card-right">
-          <span class="sb-old-odds">2.50</span>
-          <div class="sb-new-odds">3.50</div>
-        </div>
-      </summary>
-      <div class="sb-expanded">
-        <div class="sb-details-row">
-          <p>Max Stake: <span class="sb-max-stake">0.01 BTC</span></p>
-          <div class="sb-timer">
-            <span class="material-symbols-outlined" style="font-size: 14px;">timer</span>
-            <span>Ends in 45m</span>
-          </div>
-        </div>
-        <button class="sb-place-btn">
-          <span>Place Bet @ 3.50</span>
-          <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
-        </button>
-      </div>
-    </details>
-
-    <!-- Boost Card 2: Basketball -->
-    <details class="sb-card">
-      <summary>
-        <div class="sb-card-left">
-          <div class="sb-icon-circle">
-            <span class="material-symbols-outlined">sports_basketball</span>
-          </div>
-          <div class="sb-info">
-            <div class="sb-info-top">
-              <span class="sb-match-title">Lakers vs Warriors</span>
-              <span class="sb-tag hot">Hot</span>
-            </div>
-            <p class="sb-bet-desc">LeBron James Over 25.5 Pts</p>
-          </div>
-        </div>
-        <div class="sb-card-right">
-          <span class="sb-old-odds">1.80</span>
-          <div class="sb-new-odds">2.20</div>
-        </div>
-      </summary>
-      <div class="sb-expanded">
-        <div class="sb-details-row">
-          <p>Max Stake: <span class="sb-max-stake">0.05 BTC</span></p>
-          <div class="sb-timer">
-            <span class="material-symbols-outlined" style="font-size: 14px;">timer</span>
-            <span>Ends in 2h 10m</span>
-          </div>
-        </div>
-        <button class="sb-place-btn">
-          <span>Place Bet @ 2.20</span>
-          <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
-        </button>
-      </div>
-    </details>
-
-    <!-- Boost Card 3: Tennis -->
-    <details class="sb-card">
-      <summary>
-        <div class="sb-card-left">
-          <div class="sb-icon-circle">
-            <span class="material-symbols-outlined">sports_tennis</span>
-          </div>
-          <div class="sb-info">
-            <div class="sb-info-top">
-              <span class="sb-match-title">Alcaraz vs Djokovic</span>
-            </div>
-            <p class="sb-bet-desc">Alcaraz to Win 3-0 Set Betting</p>
-          </div>
-        </div>
-        <div class="sb-card-right">
-          <span class="sb-old-odds">4.20</span>
-          <div class="sb-new-odds">5.00</div>
-        </div>
-      </summary>
-      <div class="sb-expanded">
-        <div class="sb-details-row">
-          <p>Max Stake: <span class="sb-max-stake">0.02 BTC</span></p>
-          <div class="sb-timer">
-            <span class="material-symbols-outlined" style="font-size: 14px;">timer</span>
-            <span>Ends in 12m</span>
-          </div>
-        </div>
-        <button class="sb-place-btn">
-          <span>Place Bet @ 5.00</span>
-          <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
-        </button>
-      </div>
-    </details>
-
-    <!-- Boost Card 4: MMA -->
-    <details class="sb-card">
-      <summary>
-        <div class="sb-card-left">
-          <div class="sb-icon-circle">
-            <span class="material-symbols-outlined">sports_mma</span>
-          </div>
-          <div class="sb-info">
-            <div class="sb-info-top">
-              <span class="sb-match-title">UFC 300 Main Card</span>
-              <span class="sb-tag limited">Limited</span>
-            </div>
-            <p class="sb-bet-desc">Pereira by KO/TKO R1</p>
-          </div>
-        </div>
-        <div class="sb-card-right">
-          <span class="sb-old-odds">3.00</span>
-          <div class="sb-new-odds">4.50</div>
-        </div>
-      </summary>
-      <div class="sb-expanded">
-        <div class="sb-details-row">
-          <p>Max Stake: <span class="sb-max-stake">0.025 BTC</span></p>
-          <div class="sb-timer">
-            <span class="material-symbols-outlined" style="font-size: 14px;">timer</span>
-            <span>Ends in 5h</span>
-          </div>
-        </div>
-        <button class="sb-place-btn">
-          <span>Place Bet @ 4.50</span>
-          <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
-        </button>
-      </div>
-    </details>
-
-    <!-- Spacer for FAB -->
-    <div style="height: 64px;"></div>
-  </main>
-
-  <!-- Floating Action -->
-  <div class="sb-footer-fab">
-    <button class="sb-full-btn">
-      <span class="material-symbols-outlined">grid_view</span>
-      <span>Open Full Sportsbook</span>
-    </button>
-  </div>
-
-  <!-- Bottom Navigation (Standard) -->
-  <nav class="nav-bar">
-    <div class="nav-container">
-      <button id="nav-btn-home-sb" class="nav-item">
-        <span class="material-symbols-outlined">home</span>
-        <span>Home</span>
-      </button>
-      <button id="nav-btn-games-sb" class="nav-item">
-        <span class="material-symbols-outlined">sports_esports</span>
-        <span>Games</span>
-      </button>
-      <div class="nav-item-center">
-        <button class="center-btn">
-          <span class="material-symbols-outlined" style="font-size: 30px; font-weight: normal;">sports_soccer</span>
-        </button>
-      </div>
-      <button class="nav-item">
-        <span class="material-symbols-outlined">emoji_events</span>
-        <span>Rewards</span>
-      </button>
-      <button class="nav-item profile-nav-btn-sb">
-        <span class="material-symbols-outlined">person</span>
-        <span>Profile</span>
-      </button>
-    </div>
-  </nav>
-</div>
+</html>

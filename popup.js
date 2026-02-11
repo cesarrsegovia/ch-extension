@@ -332,6 +332,79 @@ function showBetHistoryView() {
 
 function showSportsbookView() {
   switchView('view-sportsbook');
+  loadSportsbookData();
+}
+
+/**
+ * Carga datos de la AFA usando SoccerAPI
+ */
+async function loadSportsbookData() {
+  const badgeUrl = await window.SoccerAPI.getLeagueBadge();
+  const badgeImg = document.getElementById("sb-league-badge");
+  if (badgeUrl && badgeImg) {
+    badgeImg.src = badgeUrl;
+  }
+
+  const matches = await window.SoccerAPI.getArgentineMatches();
+  renderMatches(matches);
+}
+
+/**
+ * Renderiza las tarjetas de partidos
+ */
+function renderMatches(matches) {
+  const liveList = document.getElementById("sb-live-list");
+  const upcomingList = document.getElementById("sb-upcoming-list");
+  const recentList = document.getElementById("sb-recent-list");
+  const liveSection = document.getElementById("sb-live-section");
+
+  if (!liveList || !upcomingList || !recentList) return;
+
+  liveList.innerHTML = "";
+  upcomingList.innerHTML = "";
+  recentList.innerHTML = "";
+
+  let hasLive = false;
+
+  matches.forEach(match => {
+    const matchHtml = `
+      <div class="sb-match-card">
+        <div class="sb-match-header">
+          <span>${new Date(match.date).toLocaleDateString([], { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
+          ${match.isLive ? '<div class="sb-live-tag"><span class="material-symbols-outlined animate-pulse" style="font-size:12px">bolt</span>LIVE</div>' : `<span>${match.status === 'Upcoming' ? 'Próximo' : 'Finalizado'}</span>`}
+        </div>
+        <div class="sb-match-body">
+          <div class="sb-team-row">
+            <div class="sb-team-info">
+              <img src="${match.homeLogo || 'https://www.thesportsdb.com/images/media/team/badge/xvquvw1364352617.png'}" class="sb-team-logo" onerror="this.src='https://www.thesportsdb.com/images/media/team/badge/xvquvw1364352617.png'">
+              <span class="sb-team-name">${match.homeTeam}</span>
+            </div>
+            <span class="sb-score">${match.status === 'Upcoming' ? '–' : match.homeScore}</span>
+          </div>
+          <div class="sb-team-row">
+            <div class="sb-team-info">
+              <img src="${match.awayLogo || 'https://www.thesportsdb.com/images/media/team/badge/xvquvw1364352617.png'}" class="sb-team-logo" onerror="this.src='https://www.thesportsdb.com/images/media/team/badge/xvquvw1364352617.png'">
+              <span class="sb-team-name">${match.awayTeam}</span>
+            </div>
+            <span class="sb-score">${match.status === 'Upcoming' ? '–' : match.awayScore}</span>
+          </div>
+        </div>
+      </div>
+    `;
+
+    if (match.isLive) {
+      liveList.innerHTML += matchHtml;
+      hasLive = true;
+    } else if (match.status === "Upcoming") {
+      upcomingList.innerHTML += matchHtml;
+    } else {
+      recentList.innerHTML += matchHtml;
+    }
+  });
+
+  if (liveSection) liveSection.style.display = hasLive ? "block" : "none";
+  if (upcomingList.innerHTML === "") upcomingList.innerHTML = '<div class="sb-match-skeleton">No hay partidos próximos programados.</div>';
+  if (recentList.innerHTML === "") recentList.innerHTML = '<div class="sb-match-skeleton">No hay resultados recientes.</div>';
 }
 
 // --- SPORTSBOOK VIEW NAVIGATION ---
@@ -346,11 +419,7 @@ if (sportsbookView) {
   const sbProfileBtn = sportsbookView.querySelector(".profile-nav-btn-sb");
   if (sbProfileBtn) sbProfileBtn.addEventListener("click", () => showProfileView());
 
-  // Additional Listeners for Popup specific IDs since we used different IDs to avoid conflicts or just ensure robustness
-  const sbHomeBtnPop = document.getElementById("nav-btn-home-sb-pop");
-  if (sbHomeBtnPop) sbHomeBtnPop.addEventListener("click", () => showHomeView());
-
-  const backHomeSbPop = document.getElementById("back-home-sb-pop");
-  if (backHomeSbPop) backHomeSbPop.addEventListener("click", () => showHomeView());
+  const backHomeBtn = document.getElementById("back-home-sb");
+  if (backHomeBtn) backHomeBtn.addEventListener("click", () => showHomeView());
 }
 
