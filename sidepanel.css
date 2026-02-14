@@ -521,3 +521,39 @@ h1.dep-bal-amount,
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* --- SPORTSBOOK LANDING --- */
+.sb-banner-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 0;
+  position: relative;
+  transition: opacity 0.2s;
+  background-color: #0a0e17;
+}
+
+.sb-banner-container:hover {
+  opacity: 0.92;
+}
+
+.sb-banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.sb-landing-main {
+  padding: 0;
+  padding-bottom: 80px;
+  overflow-y: auto;
+  height: 100%;
+  flex: 1;
+}
+
+.sb-landing-live {
+  padding: 16px;
+}

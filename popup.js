@@ -137,8 +137,35 @@ document.addEventListener("DOMContentLoaded", () => {
   const backProfileBtn = document.getElementById("back-profile");
   if (backProfileBtn) {
     backProfileBtn.addEventListener("click", () => {
+      // Check history to determine where to go back
       showHomeView();
     });
+  }
+
+  // --- SPORTSBOOK LANDING NAVIGATION ---
+  const sbLandingView = document.getElementById("view-sb-landing");
+  if (sbLandingView) {
+    // Banner Click -> Full View
+    const banner = document.getElementById("sb-banner");
+    if (banner) {
+      banner.addEventListener("click", () => showSportsbookFullView());
+    }
+
+    // Home
+    const btnHome = document.getElementById("nav-btn-home-sb-land");
+    if (btnHome) btnHome.addEventListener("click", () => showHomeView());
+
+    // Games
+    const btnGames = document.getElementById("nav-btn-games-sb-land");
+    if (btnGames) btnGames.addEventListener("click", () => showGamesView());
+
+    // Back from landing
+    const backBtn = document.getElementById("back-home-sb-land");
+    if (backBtn) backBtn.addEventListener("click", () => showHomeView());
+
+    // Profile
+    const profileBtn = sbLandingView.querySelector(".profile-nav-btn-sb-land");
+    if (profileBtn) profileBtn.addEventListener("click", () => showProfileView());
   }
 
   // --- SUCCESS ---
@@ -331,12 +358,19 @@ function showBetHistoryView() {
 }
 
 function showSportsbookView() {
+  switchView('view-sb-landing');
+  loadSportsbookData();
+}
+
+function showSportsbookFullView() {
   switchView('view-sportsbook');
+  // loadSportsbookData() is called by default logic or we can call explicitly if needed
+  // But data is shared or re-fetched. Let's re-fetch to be safe and update UI
   loadSportsbookData();
 }
 
 /**
- * Carga datos de la AFA usando SoccerAPI
+ * Loads AFA data using SoccerAPI
  */
 async function loadSportsbookData() {
   const badgeUrl = await window.SoccerAPI.getLeagueBadge();
@@ -353,14 +387,20 @@ async function loadSportsbookData() {
  * Renderiza las tarjetas de partidos
  */
 function renderMatches(matches) {
+  // Landing View List (Live Only)
+  const landingLiveList = document.getElementById("sb-landing-live-list");
+
+  // Full View Lists
   const liveList = document.getElementById("sb-live-list");
   const upcomingList = document.getElementById("sb-upcoming-list");
   const recentList = document.getElementById("sb-recent-list");
   const liveSection = document.getElementById("sb-live-section");
 
-  if (!liveList || !upcomingList || !recentList) return;
+  if (!upcomingList || !recentList) return;
 
-  liveList.innerHTML = "";
+  // Clear all lists
+  if (landingLiveList) landingLiveList.innerHTML = "";
+  if (liveList) liveList.innerHTML = "";
   upcomingList.innerHTML = "";
   recentList.innerHTML = "";
 
@@ -371,7 +411,7 @@ function renderMatches(matches) {
       <div class="sb-match-card">
         <div class="sb-match-header">
           <span>${new Date(match.date).toLocaleDateString([], { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
-          ${match.isLive ? '<div class="sb-live-tag"><span class="material-symbols-outlined animate-pulse" style="font-size:12px">bolt</span>LIVE</div>' : `<span>${match.status === 'Upcoming' ? 'Próximo' : 'Finalizado'}</span>`}
+          ${match.isLive ? '<div class="sb-live-tag"><span class="material-symbols-outlined animate-pulse" style="font-size:12px">bolt</span>LIVE</div>' : `<span>${match.status === 'Upcoming' ? 'Upcoming' : 'Finished'}</span>`}
         </div>
         <div class="sb-match-body">
           <div class="sb-team-row">
@@ -393,7 +433,8 @@ function renderMatches(matches) {
     `;
 
     if (match.isLive) {
-      liveList.innerHTML += matchHtml;
+      if (liveList) liveList.innerHTML += matchHtml;
+      if (landingLiveList) landingLiveList.innerHTML += matchHtml;
       hasLive = true;
     } else if (match.status === "Upcoming") {
       upcomingList.innerHTML += matchHtml;
@@ -403,8 +444,13 @@ function renderMatches(matches) {
   });
 
   if (liveSection) liveSection.style.display = hasLive ? "block" : "none";
-  if (upcomingList.innerHTML === "") upcomingList.innerHTML = '<div class="sb-match-skeleton">No hay partidos próximos programados.</div>';
-  if (recentList.innerHTML === "") recentList.innerHTML = '<div class="sb-match-skeleton">No hay resultados recientes.</div>';
+  // Landing section live visibility check handled by content presence, but we can add a placeholder if empty
+  if (landingLiveList && landingLiveList.innerHTML === "") {
+    landingLiveList.innerHTML = '<div class="sb-match-skeleton">No live matches currently.</div>';
+  }
+
+  if (upcomingList.innerHTML === "") upcomingList.innerHTML = '<div class="sb-match-skeleton">No upcoming matches scheduled.</div>';
+  if (recentList.innerHTML === "") recentList.innerHTML = '<div class="sb-match-skeleton">No recent results.</div>';
 }
 
 // --- SPORTSBOOK VIEW NAVIGATION ---
@@ -419,7 +465,7 @@ if (sportsbookView) {
   const sbProfileBtn = sportsbookView.querySelector(".profile-nav-btn-sb");
   if (sbProfileBtn) sbProfileBtn.addEventListener("click", () => showProfileView());
 
-  const backHomeBtn = document.getElementById("back-home-sb");
-  if (backHomeBtn) backHomeBtn.addEventListener("click", () => showHomeView());
+  const backHomeBtn = document.getElementById("back-landing-sb");
+  if (backHomeBtn) backHomeBtn.addEventListener("click", () => showSportsbookView()); // Back to Landing
 }
 

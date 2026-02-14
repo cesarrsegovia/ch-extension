@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -541,7 +541,6 @@
     </main>
   </div>
 
-  <!-- ================= VISTA DEPOSIT ================= -->
   <!-- ================= VISTA DEPOSIT ================= -->
   <div id="view-deposit" class="view-section">
     <!-- Header -->
@@ -1254,17 +1253,77 @@
   </div>
 
 
-  <!-- ================= VISTA SPORTSBOOK ================= -->
+  <!-- ================= VISTA SPORTSBOOK LANDING ================= -->
+  <div id="view-sb-landing" class="view-section">
+    <!-- Header -->
+    <header class="dash-header">
+      <button id="back-home-sb-land" class="nav-icon-btn">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </button>
+      <div class="sb-league-info">
+        <h3>Sportsbook</h3>
+      </div>
+    </header>
+
+    <main class="sb-landing-main no-scrollbar">
+      <!-- Banner Section -->
+      <div id="sb-banner" class="sb-banner-container">
+        <img src="image/bannerlpf.png" alt="New Argentine Soccer Season - Bet Now on Gamblor" class="sb-banner-img">
+      </div>
+
+      <!-- Live Now Section -->
+      <div class="sb-landing-live">
+        <div class="sb-list-header">
+          <h2 class="sb-list-title">Live Now</h2>
+          <div class="sb-live-tag">
+            <span class="material-symbols-outlined animate-pulse" style="font-size: 16px;">bolt</span>
+            <span>LIVE</span>
+          </div>
+        </div>
+        <div id="sb-landing-live-list">
+          <div class="sb-match-skeleton">No live matches currently.</div>
+        </div>
+      </div>
+    </main>
+    <!-- Bottom Navigation (Standard) -->
+    <nav class="nav-bar">
+      <div class="nav-container">
+        <button id="nav-btn-home-sb-land" class="nav-item">
+          <span class="material-symbols-outlined">home</span>
+          <span>Home</span>
+        </button>
+        <button id="nav-btn-games-sb-land" class="nav-item">
+          <span class="material-symbols-outlined">sports_esports</span>
+          <span>Games</span>
+        </button>
+        <div class="nav-item-center">
+          <button class="center-btn">
+            <span class="material-symbols-outlined" style="font-size: 30px; font-weight: normal;">sports_soccer</span>
+          </button>
+        </div>
+        <button class="nav-item" style="color: var(--dash-primary);">
+          <span class="material-symbols-outlined">sports_score</span>
+          <span>Sportsbook</span>
+        </button>
+        <button class="nav-item profile-nav-btn-sb-land">
+          <span class="material-symbols-outlined">person</span>
+          <span>Profile</span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ================= VISTA SPORTSBOOK FULL LIST ================= -->
   <div id="view-sportsbook" class="view-section">
     <!-- Sticky Header -->
     <header class="sb-header">
-      <button id="back-home-sb" class="nav-icon-btn">
+      <button id="back-landing-sb" class="nav-icon-btn">
         <span class="material-symbols-outlined" style="font-size: 24px;">arrow_back</span>
       </button>
       <div class="sb-league-info">
         <img id="sb-league-badge" src="https://www.thesportsdb.com/images/media/league/badge/idv89f1680190130.png"
           alt="AFA" class="league-badge">
-        <h1>Fútbol argentino</h1>
+        <h1>Argentine Soccer</h1>
       </div>
     </header>
 
@@ -1272,7 +1331,7 @@
       <!-- Contenedor para Partidos en Vivo -->
       <div id="sb-live-section" style="display:none; margin-bottom: 20px;">
         <div class="sb-list-header">
-          <h2 class="sb-list-title">En Vivo</h2>
+          <h2 class="sb-list-title">Live Now</h2>
           <div class="sb-live-tag">
             <span class="material-symbols-outlined animate-pulse" style="font-size: 16px;">bolt</span>
             <span>LIVE NOW</span>
@@ -1283,22 +1342,22 @@
 
       <!-- Contenedor para Próximos Partidos -->
       <div class="sb-list-header">
-        <h2 class="sb-list-title">Próximos Partidos</h2>
+        <h2 class="sb-list-title">Upcoming Matches</h2>
       </div>
       <div id="sb-upcoming-list">
-        <div class="sb-match-skeleton">Cargando próximos encuentros...</div>
+        <div class="sb-match-skeleton">Loading upcoming matches...</div>
       </div>
 
       <!-- Contenedor para Resultados Recientes -->
       <div class="sb-list-header" style="margin-top: 24px;">
-        <h2 class="sb-list-title">Resultados Recientes</h2>
+        <h2 class="sb-list-title">Recent Results</h2>
       </div>
       <div id="sb-recent-list"></div>
 
       <div style="height: 80px;"></div>
     </main>
 
-    <!-- Bottom Navigation (Standard) -->
+    <!-- Bottom Navigation  -->
     <nav class="nav-bar">
       <div class="nav-container">
         <button id="nav-btn-home-sb" class="nav-item">
