@@ -22,6 +22,8 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  padding-bottom: 70px;
+  /* Space for fixed nav */
 }
 
 .dash-main,
@@ -37,6 +39,12 @@ nav {
 .nav-bar {
   width: 100%;
   left: 0;
+  position: fixed;
+  bottom: 0;
+  z-index: 1000;
+  background-color: #050505;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .view-section {
@@ -87,6 +95,7 @@ nav {
 
 .dep-main {
   padding-bottom: 120px !important;
+  /* Extra padding for deposit actions + nav */
   flex: 1;
 }
 
@@ -102,6 +111,7 @@ nav {
 
 .wd-main {
   padding-bottom: 120px !important;
+  /* Extra padding for withdraw actions + nav */
   flex: 1;
 }
 

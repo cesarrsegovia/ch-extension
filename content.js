@@ -120,13 +120,13 @@ function highlightTweet(tweet, type = "default") {
         // tooltip con cuotas y live
         const tooltipHtml = `
             <div class="gamblor-tooltip">
-                <span style="color: #bab29c; font-weight: 500;">Odds:</span> <span style="color: #f2b90d;">2.35</span>
+                <span style="color: #bab29c; font-weight: 500;" data-i18n="tweetOddsLabel">Odds:</span> <span style="color: #f2b90d;">2.35</span>
                 <span style="margin: 0 6px; color: #444;">|</span>
-                <span class="gamblor-live-indicator"></span> <span style="color: #ff4444; letter-spacing: 0.05em;">LIVE</span>
+                <span class="gamblor-live-indicator"></span> <span style="color: #ff4444; letter-spacing: 0.05em;" data-i18n="tweetLiveLabel">LIVE</span>
             </div>
         `;
 
-        btn.innerHTML = `${imgIcon}<span class="gamblor-btn-text">Place Bet</span>${tooltipHtml}`;
+        btn.innerHTML = `${imgIcon}<span class="gamblor-btn-text" data-i18n="tweetPlaceBetBtn">Place Bet</span>${tooltipHtml}`;
 
         btn.onclick = (e) => {
             e.preventDefault();
@@ -141,6 +141,11 @@ function highlightTweet(tweet, type = "default") {
 
         // insertar ANTES de la barra de acciones para que quede debajo del contenido
         actionsBar.parentNode.insertBefore(btnContainer, actionsBar);
+
+        // Localize the newly added button
+        if (typeof localizeHtmlPage === 'function') {
+            localizeHtmlPage();
+        }
     }
 }
 

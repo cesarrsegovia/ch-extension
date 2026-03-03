@@ -855,29 +855,33 @@ body {
     backdrop-filter: blur(12px);
     position: sticky;
     top: 0;
+    z-index: 50;
 }
 
 .profile-main {
-    padding: 16px;
-    gap: 24px;
+    padding: 12px;
+    gap: 16px;
+    overflow-x: hidden;
 }
 
 /* Account Card */
 .account-card {
     background-color: #2a261a;
-    /* Derived dark card */
     border: 1px solid #3e3828;
     border-radius: 16px;
-    padding: 24px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .user-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .user-details-left {
@@ -987,7 +991,7 @@ body {
 }
 
 .bal-amount {
-    font-size: 36px;
+    font-size: 28px;
     font-weight: 900;
     color: white;
     margin: 0;
@@ -1064,18 +1068,18 @@ body {
 /* Profile Stats */
 .profile-stats {
     display: flex;
-    gap: 12px;
+    gap: 8px;
     overflow-x: auto;
     padding-bottom: 4px;
 }
 
 .p-stat-card {
     flex: 1;
-    min-width: 100px;
+    min-width: 0;
     background-color: #2a261a;
     border: 1px solid #3e3828;
     border-radius: 12px;
-    padding: 12px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -4119,4 +4123,73 @@ body.dark #view-bets {
 
 .sb-full-btn:active {
     transform: scale(0.98);
+}
+
+/* Odds Styling Refined */
+.sb-odds-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 8px;
+}
+
+.sb-odd-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    padding: 4px 8px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #ccc;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.sb-odd-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+.sb-odd-label {
+    font-size: 9px;
+    color: #888;
+    margin-bottom: 2px;
+}
+
+
+.sb-odd-val {
+    font-weight: bold;
+    color: #00ff88;
+}
+
+/* Animations */
+@keyframes blink-red {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.animate-blink-red {
+    animation: blink-red 2s infinite;
+}
+
+.sb-match-time {
+    color: #f2b90d;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.5px;
 }

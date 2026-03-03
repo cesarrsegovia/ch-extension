@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="sidepanel.css">
+  <link rel="stylesheet" href="lang-switcher.css">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -25,13 +26,19 @@
           <div class="status-dot"></div>
         </div>
         <div class="user-info">
-          <p>Welcome back</p>
+          <p data-i18n="welcomeBack">Welcome back</p>
           <h3>Alex Roller</h3>
         </div>
       </div>
-      <button class="settings-btn">
-        <span class="material-symbols-outlined" style="font-size: 20px;">settings</span>
-      </button>
+
+      <div style="display: flex; gap: 8px; align-items: center;">
+
+
+
+        <button class="settings-btn">
+          <span class="material-symbols-outlined" style="font-size: 20px;">settings</span>
+        </button>
+      </div>
     </header>
 
     <!-- Main Content -->
@@ -41,12 +48,12 @@
         <div class="balance-label">
           <span class="material-symbols-outlined"
             style="font-size: 16px; color: var(--dash-primary);">account_balance_wallet</span>
-          <span>Total Balance</span>
+          <span data-i18n="totalBalance">Total Balance</span>
         </div>
         <h1 class="balance-amount">$12,450.00</h1>
         <div class="balance-trend">
           <span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span>
-          <span>+2.4% today</span>
+          <span data-i18n="trendToday">+2.4% today</span>
         </div>
       </div>
 
@@ -54,11 +61,11 @@
       <div class="action-buttons">
         <button id="btn-deposit" class="action-btn btn-primary">
           <span class="material-symbols-outlined" style="font-size: 24px; margin-right: 8px;">add_circle</span>
-          Deposit
+          <span data-i18n="btnDeposit">Deposit</span>
         </button>
         <button id="btn-withdraw" class="action-btn btn-secondary">
           <span class="material-symbols-outlined" style="font-size: 24px; margin-right: 8px;">arrow_outward</span>
-          Withdraw
+          <span data-i18n="btnWithdraw">Withdraw</span>
         </button>
       </div>
 
@@ -66,31 +73,7 @@
     </main>
 
     <!-- Bottom Navigation -->
-    <nav class="nav-bar">
-      <div class="nav-container">
-        <button class="nav-item" style="color: var(--dash-primary);">
-          <span class="material-symbols-outlined">home</span>
-          <span>Home</span>
-        </button>
-        <button class="nav-item">
-          <span class="material-symbols-outlined">sports_esports</span>
-          <span>Games</span>
-        </button>
-        <div class="nav-item-center">
-          <button class="center-btn">
-            <span class="material-symbols-outlined" style="font-size: 30px; font-weight: normal;">sports_soccer</span>
-          </button>
-        </div>
-        <button class="nav-item">
-          <span class="material-symbols-outlined">sports_score</span>
-          <span>Sportsbook</span>
-        </button>
-        <button class="nav-item">
-          <span class="material-symbols-outlined">person</span>
-          <span>Profile</span>
-        </button>
-      </div>
-    </nav>
+
   </div>
 
   <!-- help support -->
@@ -100,14 +83,15 @@
       <button id="back-help" class="back-btn">
         <span class="material-symbols-outlined">arrow_back</span>
       </button>
-      <h1 style="flex:1; text-align:center; font-size:16px; margin:0; padding-right:40px;">Help & Support</h1>
+      <h1 style="flex:1; text-align:center; font-size:16px; margin:0; padding-right:40px;" data-i18n="helpTitle">Help &
+        Support</h1>
     </header>
 
     <main class="dash-main help-main">
       <!-- Intro -->
       <div class="help-intro">
-        <h2>How can we help?</h2>
-        <p>Choose a support option below.</p>
+        <h2 data-i18n="helpSubtitle">How can we help?</h2>
+        <p data-i18n="helpInstruction">Choose a support option below.</p>
       </div>
 
       <!-- Action Cards -->
@@ -118,13 +102,13 @@
             <span class="material-symbols-outlined">chat</span>
           </div>
           <div class="card-content">
-            <h3>Live Chat</h3>
+            <h3 data-i18n="helpLiveChat">Live Chat</h3>
             <div class="live-status">
               <span class="status-indicator">
                 <span class="ping"></span>
                 <span class="dot"></span>
               </span>
-              <span class="wait-text">~2 min wait</span>
+              <span class="wait-text" data-i18n="helpWaitTime">~2 min wait</span>
             </div>
           </div>
         </button>
@@ -135,15 +119,15 @@
             <span class="material-symbols-outlined">mail</span>
           </div>
           <div class="card-content">
-            <h3>Email Us</h3>
-            <p class="res-text">Response in 24h</p>
+            <h3 data-i18n="helpEmail">Email Us</h3>
+            <p class="res-text" data-i18n="helpResponseTime">Response in 24h</p>
           </div>
         </button>
       </div>
 
       <!-- Common Topics -->
       <div class="help-topics">
-        <h3>Common Help Topics</h3>
+        <h3 data-i18n="helpCommonTopics">Common Help Topics</h3>
         <div class="topics-list">
           <!-- Topic 1 -->
           <button class="topic-btn">
@@ -151,8 +135,8 @@
               <span class="material-symbols-outlined">account_balance_wallet</span>
             </div>
             <div class="topic-info">
-              <p class="topic-title">Deposits & Withdrawals</p>
-              <p class="topic-desc">Methods, limits, and processing times</p>
+              <p class="topic-title" data-i18n="topicDeposits">Deposits & Withdrawals</p>
+              <p class="topic-desc" data-i18n="topicDepositsDesc">Methods, limits, and processing times</p>
             </div>
             <span class="material-symbols-outlined chevron">chevron_right</span>
           </button>
@@ -163,8 +147,8 @@
               <span class="material-symbols-outlined">badge</span>
             </div>
             <div class="topic-info">
-              <p class="topic-title">Account Verification (KYC)</p>
-              <p class="topic-desc">Identity documents and status</p>
+              <p class="topic-title" data-i18n="topicKYC">Account Verification (KYC)</p>
+              <p class="topic-desc" data-i18n="topicKYCDesc">Identity documents and status</p>
             </div>
             <span class="material-symbols-outlined chevron">chevron_right</span>
           </button>
@@ -175,8 +159,8 @@
               <span class="material-symbols-outlined">sports_soccer</span>
             </div>
             <div class="topic-info">
-              <p class="topic-title">Bet Rules & Settlement</p>
-              <p class="topic-desc">Void bets, overtimes, and results</p>
+              <p class="topic-title" data-i18n="topicRules">Bet Rules & Settlement</p>
+              <p class="topic-desc" data-i18n="topicRulesDesc">Void bets, overtimes, and results</p>
             </div>
             <span class="material-symbols-outlined chevron">chevron_right</span>
           </button>
@@ -187,8 +171,8 @@
               <span class="material-symbols-outlined">card_giftcard</span>
             </div>
             <div class="topic-info">
-              <p class="topic-title">Promotions & Bonuses</p>
-              <p class="topic-desc">Rollover requirements and claiming</p>
+              <p class="topic-title" data-i18n="topicPromo">Promotions & Bonuses</p>
+              <p class="topic-desc" data-i18n="topicPromoDesc">Rollover requirements and claiming</p>
             </div>
             <span class="material-symbols-outlined chevron">chevron_right</span>
           </button>
@@ -200,7 +184,7 @@
     <footer class="help-footer">
       <div class="support-badge">
         <div class="pulsing-green"></div>
-        <span>Support Online 24/7</span>
+        <span data-i18n="helpSupportOnline">Support Online 24/7</span>
       </div>
       <p class="version-text">App Version 2.4.1 (Build 890)</p>
   </div>
@@ -214,7 +198,7 @@
           <div class="gh-logo-icon">
             <span class="material-symbols-outlined">casino</span>
           </div>
-          <span class="gh-title">Casino</span>
+          <span class="gh-title" data-i18n="gamesCasinoTitle">Casino</span>
         </div>
         <div class="gh-actions">
           <div class="gh-balance">
@@ -241,7 +225,7 @@
       <section class="g-section search-section">
         <div class="search-box">
           <span class="material-symbols-outlined search-icon">search</span>
-          <input type="text" placeholder="Search for game by title..." />
+          <input type="text" placeholder="Search for game by title..." data-i18n-placeholder="gamesSearchPlaceholder" />
         </div>
       </section>
 
@@ -249,10 +233,11 @@
       <section class="g-section">
         <div class="gs-header">
           <div class="gs-title-group">
-            <h2>Continue Playing</h2>
+            <h2 data-i18n="gamesContinue">Continue Playing</h2>
             <span class="gs-badge">3</span>
           </div>
-          <a href="#" class="gs-view-all">View all <span class="material-symbols-outlined">arrow_forward</span></a>
+          <a href="#" class="gs-view-all"><span data-i18n="gamesViewAll">View all</span> <span
+              class="material-symbols-outlined">arrow_forward</span></a>
         </div>
         <div class="games-grid">
           <!-- Bull Ride Loot -->
@@ -286,7 +271,7 @@
       <section class="g-section">
         <div class="gs-header">
           <div class="gs-title-group">
-            <h2>Trending</h2>
+            <h2 data-i18n="gamesTrending">Trending</h2>
             <span class="material-symbols-outlined text-primary">trending_up</span>
           </div>
           <a href="#" class="gs-view-all">View all <span class="material-symbols-outlined">arrow_forward</span></a>
@@ -341,31 +326,7 @@
     </main>
 
     <!-- Bottom Navigation (Project Standard but Games Active) -->
-    <nav class="nav-bar">
-      <div class="nav-container">
-        <button id="nav-btn-home" class="nav-item">
-          <span class="material-symbols-outlined">home</span>
-          <span>Home</span>
-        </button>
-        <button class="nav-item" style="color: var(--dash-primary);">
-          <span class="material-symbols-outlined">sports_esports</span>
-          <span>Games</span>
-        </button>
-        <div class="nav-item-center">
-          <button class="center-btn">
-            <span class="material-symbols-outlined" style="font-size: 30px; font-weight: normal;">sports_soccer</span>
-          </button>
-        </div>
-        <button class="nav-item">
-          <span class="material-symbols-outlined">sports_score</span>
-          <span>Sportsbook</span>
-        </button>
-        <button class="nav-item profile-nav-btn-games">
-          <span class="material-symbols-outlined">person</span>
-          <span>Profile</span>
-        </button>
-      </div>
-    </nav>
+
   </div>
 
   <!-- ================= VISTA PROFILE ================= -->
@@ -375,7 +336,8 @@
       <button id="back-profile" class="back-btn">
         <span class="material-symbols-outlined">arrow_back</span>
       </button>
-      <h2 style="flex:1; text-align:center; font-size:16px; margin:0; padding-right:40px;">Profile</h2>
+      <h2 style="flex:1; text-align:center; font-size:16px; margin:0; padding-right:40px;" data-i18n="profileTitle">
+        Profile</h2>
     </header>
 
     <main class="dash-main profile-main">
@@ -402,54 +364,54 @@
           </div>
           <div class="connected-badge">
             <div class="dot-pulse"></div>
-            <span>Connected</span>
+            <span data-i18n="profileConnected">Connected</span>
           </div>
         </div>
 
         <!-- Balance Display -->
         <div class="profile-balance">
-          <span class="bal-label">Total Balance</span>
+          <span class="bal-label" data-i18n="profileTotalBalance">Total Balance</span>
           <h1 class="bal-amount"><span class="currency-symbol">$</span>12,450.50</h1>
           <div class="bal-details">
-            <span class="avail">Available</span>
+            <span class="avail" data-i18n="profileAvailable">Available</span>
             <span class="sep">•</span>
-            <span class="pend">Pending $120.00</span>
+            <span class="pend"><span data-i18n="profilePending">Pending</span> $120.00</span>
           </div>
         </div>
 
         <!-- Action Buttons -->
         <div class="profile-actions">
-          <button class="pro-btn btn-deposit">Deposit</button>
-          <button class="pro-btn btn-withdraw">Withdraw</button>
+          <button class="pro-btn btn-deposit" data-i18n="btnDeposit">Deposit</button>
+          <button class="pro-btn btn-withdraw" data-i18n="btnWithdraw">Withdraw</button>
         </div>
       </div>
 
       <!-- Quick Stats -->
       <div class="profile-stats no-scrollbar">
         <div class="p-stat-card">
-          <p class="stat-label">Total Bets</p>
+          <p class="stat-label" data-i18n="statsTotalBets">Total Bets</p>
           <p class="stat-val">142</p>
         </div>
         <div class="p-stat-card">
-          <p class="stat-label">Open Wagers</p>
+          <p class="stat-label" data-i18n="statsOpenWagers">Open Wagers</p>
           <p class="stat-val primary-text">3</p>
         </div>
         <div class="p-stat-card">
-          <p class="stat-label">Last Activity</p>
+          <p class="stat-label" data-i18n="statsLastActivity">Last Activity</p>
           <p class="stat-val">2m</p>
         </div>
       </div>
 
       <!-- Menu Section -->
       <div class="menu-section">
-        <h3>Account</h3>
+        <h3 data-i18n="menuAccount">Account</h3>
         <div class="menu-list">
           <!-- Transaction History -->
           <button class="menu-item">
             <div class="item-icon-bg">
               <span class="material-symbols-outlined">history</span>
             </div>
-            <div class="item-text">Transaction History</div>
+            <div class="item-text" data-i18n="menuTransHistory">Transaction History</div>
             <span class="material-symbols-outlined chevron">chevron_right</span>
           </button>
 
@@ -460,7 +422,7 @@
             <div class="item-icon-bg">
               <span class="material-symbols-outlined">receipt_long</span>
             </div>
-            <div class="item-text">Bet History</div>
+            <div class="item-text" data-i18n="menuBetHistory">Bet History</div>
             <span class="material-symbols-outlined chevron">chevron_right</span>
           </button>
 
@@ -471,8 +433,8 @@
             <div class="item-icon-bg">
               <span class="material-symbols-outlined">redeem</span>
             </div>
-            <div class="item-text">Bonuses</div>
-            <div class="badge-new">NEW</div>
+            <div class="item-text" data-i18n="menuBonuses">Bonuses</div>
+            <div class="badge-new" data-i18n="badgeNew">NEW</div>
             <span class="material-symbols-outlined chevron">chevron_right</span>
           </button>
 
@@ -483,43 +445,141 @@
             <div class="item-icon-bg">
               <span class="material-symbols-outlined">group_add</span>
             </div>
-            <div class="item-text">Referrals</div>
+            <div class="item-text" data-i18n="menuReferrals">Referrals</div>
             <span class="material-symbols-outlined chevron">chevron_right</span>
           </button>
         </div>
 
         <!-- Secondary List -->
-        <div class="menu-list mt-2">
-          <!-- Responsible Gaming -->
-          <button class="menu-item">
-            <div class="item-icon-bg">
-              <span class="material-symbols-outlined">verified_user</span>
-            </div>
-            <div class="item-text">Responsible Gaming</div>
-            <span class="material-symbols-outlined chevron">chevron_right</span>
-          </button>
+      </div>
 
-          <div class="divider"></div>
 
-          <!-- Help & Support -->
-          <button class="menu-item">
-            <div class="item-icon-bg">
-              <span class="material-symbols-outlined">support_agent</span>
-            </div>
-            <div class="item-text">Help & Support</div>
-            <span class="material-symbols-outlined chevron">chevron_right</span>
-          </button>
 
-          <div class="divider"></div>
+      <div class="menu-list mt-2">
+        <!-- Language Selection -->
+        <h3 style="padding: 0 16px 8px; font-size: 13px; color: var(--dash-text-muted); text-transform: uppercase;">
+          Language</h3>
 
-          <!-- Log Out -->
-          <button class="menu-item logout-item">
-            <div class="item-icon-bg">
-              <span class="material-symbols-outlined">logout</span>
-            </div>
-            <div class="item-text text-red">Log Out</div>
-          </button>
-        </div>
+        <!-- English -->
+        <button class="menu-item lang-item" data-lang="en">
+          <div class="item-icon-bg">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" class="flag-icon"
+              style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              <path fill="#bd3d44" d="M0 0h640v480H0" />
+              <path stroke="#fff" stroke-width="37" d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" />
+              <path fill="#192f5d" d="M0 0h364.8v258.5H0" />
+              <marker id="a" markerHeight="30" markerWidth="30">
+                <path fill="#fff" d="m14 0 9 27L0 10h28L5 27z" />
+              </marker>
+              <use href="#a" x="34" y="17" />
+              <use href="#a" x="103" y="17" />
+              <use href="#a" x="172" y="17" />
+              <use href="#a" x="241" y="17" />
+              <use href="#a" x="310" y="17" />
+              <use href="#a" x="69" y="43" />
+              <use href="#a" x="138" y="43" />
+              <use href="#a" x="207" y="43" />
+              <use href="#a" x="276" y="43" />
+              <use href="#a" x="34" y="69" />
+              <use href="#a" x="103" y="69" />
+              <use href="#a" x="172" y="69" />
+              <use href="#a" x="241" y="69" />
+              <use href="#a" x="310" y="69" />
+              <use href="#a" x="69" y="94" />
+              <use href="#a" x="138" y="94" />
+              <use href="#a" x="207" y="94" />
+              <use href="#a" x="276" y="94" />
+              <use href="#a" x="34" y="120" />
+              <use href="#a" x="103" y="120" />
+              <use href="#a" x="172" y="120" />
+              <use href="#a" x="241" y="120" />
+              <use href="#a" x="310" y="120" />
+              <use href="#a" x="69" y="146" />
+              <use href="#a" x="138" y="146" />
+              <use href="#a" x="207" y="146" />
+              <use href="#a" x="276" y="146" />
+              <use href="#a" x="34" y="172" />
+              <use href="#a" x="103" y="172" />
+              <use href="#a" x="172" y="172" />
+              <use href="#a" x="241" y="172" />
+              <use href="#a" x="310" y="172" />
+              <use href="#a" x="69" y="198" />
+              <use href="#a" x="138" y="198" />
+              <use href="#a" x="207" y="198" />
+              <use href="#a" x="276" y="198" />
+              <use href="#a" x="34" y="224" />
+              <use href="#a" x="103" y="224" />
+              <use href="#a" x="172" y="224" />
+              <use href="#a" x="241" y="224" />
+              <use href="#a" x="310" y="224" />
+            </svg>
+          </div>
+          <div class="item-text">English</div>
+          <span class="material-symbols-outlined check-icon hidden" style="color: var(--dash-primary);">check</span>
+        </button>
+
+        <!-- French -->
+        <button class="menu-item lang-item" data-lang="fr">
+          <div class="item-icon-bg">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" class="flag-icon"
+              style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              <g fill-rule="evenodd" stroke-width="1pt">
+                <path fill="#fff" d="M0 0h640v480H0z" />
+                <path fill="#00267f" d="M0 0h213.3v480H0z" />
+                <path fill="#f31830" d="M426.7 0H640v480H426.7z" />
+              </g>
+            </svg>
+          </div>
+          <div class="item-text">Français</div>
+          <span class="material-symbols-outlined check-icon hidden" style="color: var(--dash-primary);">check</span>
+        </button>
+
+        <!-- German -->
+        <button class="menu-item lang-item" data-lang="de">
+          <div class="item-icon-bg">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" class="flag-icon"
+              style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              <g fill-rule="evenodd" stroke-width="1pt">
+                <path fill="#ffce00" d="M0 320h640v160H0z" />
+                <path d="M0 0h640v160H0z" />
+                <path fill="#d00" d="M0 160h640v160H0z" />
+              </g>
+            </svg>
+          </div>
+          <div class="item-text">Deutsch</div>
+          <span class="material-symbols-outlined check-icon hidden" style="color: var(--dash-primary);">check</span>
+        </button>
+
+        <div class="divider"></div>
+        <!-- Responsible Gaming -->
+        <button class="menu-item">
+          <div class="item-icon-bg">
+            <span class="material-symbols-outlined">verified_user</span>
+          </div>
+          <div class="item-text" data-i18n="menuResponsible">Responsible Gaming</div>
+          <span class="material-symbols-outlined chevron">chevron_right</span>
+        </button>
+
+        <div class="divider"></div>
+
+        <!-- Help & Support -->
+        <button class="menu-item">
+          <div class="item-icon-bg">
+            <span class="material-symbols-outlined">support_agent</span>
+          </div>
+          <div class="item-text" data-i18n="helpTitle">Help & Support</div>
+          <span class="material-symbols-outlined chevron">chevron_right</span>
+        </button>
+
+        <div class="divider"></div>
+
+        <!-- Log Out -->
+        <button class="menu-item logout-item">
+          <div class="item-icon-bg">
+            <span class="material-symbols-outlined">logout</span>
+          </div>
+          <div class="item-text text-red" data-i18n="menuLogout">Log Out</div>
+        </button>
       </div>
 
       <!-- Security Footer -->
@@ -530,7 +590,7 @@
               <span class="material-symbols-outlined">lock</span>
             </div>
             <div class="sec-info">
-              <span class="sec-title">Session Secure</span>
+              <span class="sec-title" data-i18n="secSessionSecure">Session Secure</span>
               <span class="sec-sub">Ethereum Mainnet • 24ms</span>
             </div>
           </div>
@@ -548,19 +608,20 @@
       <button id="back-deposit" class="back-btn">
         <span class="material-symbols-outlined">arrow_back</span>
       </button>
-      <h2 class="dep-title">Deposit Funds</h2>
+      <h2 class="dep-title" data-i18n="depTitle">Deposit Funds</h2>
     </header>
 
     <main class="dep-main no-scrollbar">
       <!-- Balance Card -->
       <div class="dep-balance-card">
         <div class="dep-bal-header">
-          <span class="dep-bal-label">Total Balance</span>
+          <span class="dep-bal-label" data-i18n="profileTotalBalance">Total Balance</span>
           <h1 class="dep-bal-amount">$12,459.50</h1>
           <div class="dep-bal-breakdown">
             <div class="breakdown-item">
               <div class="dot-indicator primary"></div>
-              <span>Available: <span class="highlight">$11,209.50</span></span>
+              <span><span data-i18n="profileAvailable">Available</span>: <span
+                  class="highlight">$11,209.50</span></span>
             </div>
             <div class="breakdown-item">
               <div class="dot-indicator purple"></div>
@@ -611,14 +672,14 @@
               style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAgNir4j6pebP4Dk4n63LnrGP1l6Fsg8Ds32ximgIw0Xoc9sJb0FM1zmLdOT5eMJfmKMM2OY0B53gqR-UcKbrJOW8qkYTfx4F8NEBZuub2ipHC1AfedO9yRYo1T-ahWHdAkrjWP40UiwsYf6hGAw72rAhjnhVLpC0lMqif1NJZihzpPMQgaDEKfN-LZJJNZ2P8CcyiNt0gAbMpxmzzIu8aL03pyFATP9_oG2gw4fJelzyuvxM7vOu5PAcRevNPIcSTtvIzAp2YUQ0qH');">
             </div>
             <div class="qr-overlay">
-              <span class="scan-pill">Scan QR</span>
+              <span class="scan-pill" data-i18n="depScanQr">Scan QR</span>
             </div>
           </div>
         </div>
 
         <!-- Address -->
         <div class="address-input-group">
-          <label class="section-label">Wallet Address</label>
+          <label class="section-label" data-i18n="depWalletAddress">Wallet Address</label>
           <div class="input-wrapper">
             <input type="text" class="addr-input" value="0x71C...9A2F" readonly>
             <button class="copy-icon-btn">
@@ -631,8 +692,8 @@
         <div class="dep-warning-box">
           <span class="material-symbols-outlined warn-icon">warning</span>
           <div class="warn-text">
-            <p class="warn-title">Minimum Deposit 0.01 ETH</p>
-            <p class="warn-desc">Sending other assets may result in permanent loss.</p>
+            <p class="warn-title" data-i18n="depMinDeposit">Minimum Deposit 0.01 ETH</p>
+            <p class="warn-desc" data-i18n="depWarning">Sending other assets may result in permanent loss.</p>
           </div>
         </div>
 
@@ -643,8 +704,8 @@
               <span class="material-symbols-outlined">redeem</span>
             </div>
             <div class="accord-text">
-              <span class="accord-title">Claim Bonus</span>
-              <span class="accord-sub">No active bonus selected</span>
+              <span class="accord-title" data-i18n="depClaimBonus">Claim Bonus</span>
+              <span class="accord-sub" data-i18n="depNoBonus">No active bonus selected</span>
             </div>
           </div>
           <span class="material-symbols-outlined expand-icon">expand_more</span>
@@ -658,8 +719,8 @@
             <span class="material-symbols-outlined">credit_card</span>
           </div>
           <div class="buy-text">
-            <span class="buy-title">Buy Crypto</span>
-            <span class="buy-sub">via MoonPay</span>
+            <span class="buy-title" data-i18n="depBuyCrypto">Buy Crypto</span>
+            <span class="buy-sub" data-i18n="depViaMoonPay">via MoonPay</span>
           </div>
         </div>
         <span class="material-symbols-outlined arrow-icon">chevron_right</span>
@@ -670,7 +731,7 @@
     <!-- Fixed Footer -->
     <div class="dep-footer">
       <button class="dep-submit-btn">
-        Deposit Funds
+        <span data-i18n="depSubmitBtn">Deposit Funds</span>
         <span class="material-symbols-outlined">arrow_forward</span>
       </button>
     </div>
@@ -684,19 +745,19 @@
       <button id="back-withdraw" class="back-btn">
         <span class="material-symbols-outlined">arrow_back</span>
       </button>
-      <h2 class="wd-title">Withdraw Funds</h2>
+      <h2 class="wd-title" data-i18n="wdTitle">Withdraw Funds</h2>
     </header>
 
     <main class="wd-main no-scrollbar">
       <!-- Available Balance -->
       <div class="wd-avail-card">
-        <span class="wd-label">Available to Withdraw</span>
+        <span class="wd-label" data-i18n="wdAvailable">Available to Withdraw</span>
         <h1 class="wd-amount">$11,209.50</h1>
       </div>
 
       <!-- Network Selection -->
       <div class="wd-network-section">
-        <label class="section-label">Select Network</label>
+        <label class="section-label" data-i18n="depSelectNetwork">Select Network</label>
         <div class="wd-network-list">
           <button class="wd-net-btn active">ETH</button>
           <button class="wd-net-btn">BTC</button>
@@ -707,16 +768,17 @@
 
       <!-- Address Input -->
       <div class="wd-input-group">
-        <label class="section-label">Destination Address</label>
+        <label class="section-label" data-i18n="wdRecipient">Destination Address</label>
         <div class="wd-input-wrapper">
-          <input type="text" placeholder="Paste address here" class="wd-input">
+          <input type="text" placeholder="Paste address here" class="wd-input"
+            data-i18n-placeholder="wdPastePlaceholder">
           <button class="paste-btn">Paste</button>
         </div>
       </div>
 
       <!-- Amount Input -->
       <div class="wd-input-group">
-        <label class="section-label">Amount</label>
+        <label class="section-label" data-i18n="wdAmount">Amount</label>
         <div class="wd-input-wrapper">
           <span class="curr">$</span>
           <input type="number" placeholder="0.00" class="wd-input pl-6">
@@ -727,17 +789,17 @@
       <!-- Summary -->
       <div class="wd-summary">
         <div class="sum-row">
-          <span>Network Fee</span>
+          <span data-i18n="wdNetworkFee">Network Fee</span>
           <span>$12.50</span>
         </div>
         <div class="sum-row total">
-          <span>Total Deduction</span>
+          <span data-i18n="wdTotalDeduction">Total Deduction</span>
           <span>$0.00</span>
         </div>
       </div>
 
       <!-- Confirm -->
-      <button class="wd-confirm-btn">
+      <button class="wd-confirm-btn" data-i18n="wdConfirmBtn">
         Confirm Withdraw
       </button>
     </main>
@@ -800,16 +862,16 @@
     <main class="premier-main no-scrollbar">
       <!-- Tabs -->
       <div class="market-tabs">
-        <button class="tab-btn active">Popular</button>
-        <button class="tab-btn">Goals</button>
-        <button class="tab-btn">Corners</button>
-        <button class="tab-btn">Cards</button>
+        <button class="tab-btn active" data-i18n="btnPopular">Popular</button>
+        <button class="tab-btn" data-i18n="btnGoals">Goals</button>
+        <button class="tab-btn" data-i18n="btnCorners">Corners</button>
+        <button class="tab-btn" data-i18n="btnCards">Cards</button>
       </div>
 
       <!-- Market Card: Match Winner -->
       <div class="market-card">
         <div class="market-header">
-          <span class="market-title">Match Winner</span>
+          <span class="market-title" data-i18n="plMatchWinner">Match Winner</span>
           <span class="material-symbols-outlined star-icon">star</span>
         </div>
         <div class="odds-group-3">
@@ -871,9 +933,9 @@
     <div class="bet-slip-panel">
       <div class="slip-info">
         <div class="slip-count">1</div>
-        <div class="slip-text">Selection added</div>
+        <div class="slip-text" data-i18n="plSelectionAdded">Selection added</div>
       </div>
-      <button class="place-bet-btn">Place Bet</button>
+      <button class="place-bet-btn" data-i18n="plPlaceBetBtn">Place Bet</button>
     </div>
   </div>
 
@@ -884,27 +946,27 @@
       <div class="success-icon-container">
         <span class="material-symbols-outlined success-icon">check_circle</span>
       </div>
-      <h2 class="success-title">Bet Placed!</h2>
+      <h2 class="success-title" data-i18n="sucTitle">Bet Placed!</h2>
       <p class="success-msg">Your bet on <strong>Man City (Next Goal)</strong> has been successfully placed.</p>
 
       <div class="receipt-card">
         <div class="receipt-row">
-          <span>Stake</span>
+          <span data-i18n="sucStake">Stake</span>
           <span class="receipt-val">$50.00</span>
         </div>
         <div class="receipt-row">
-          <span>Potential Return</span>
+          <span data-i18n="sucPotentialReturn">Potential Return</span>
           <span class="receipt-val text-green">$95.00</span>
         </div>
         <div class="receipt-row">
-          <span>ID</span>
+          <span data-i18n="sucID">ID</span>
           <span class="receipt-val">#BW-92837</span>
         </div>
       </div>
 
       <div class="success-actions">
-        <button id="close-success" class="action-btn-primary">Done</button>
-        <button id="back-success" class="action-btn-secondary">My Bets</button>
+        <button id="close-success" class="action-btn-primary" data-i18n="sucDone">Done</button>
+        <button id="back-success" class="action-btn-secondary" data-i18n="sucMyBets">My Bets</button>
       </div>
     </div>
   </div>
@@ -918,7 +980,7 @@
       <button id="back-history" class="back-btn">
         <span class="material-symbols-outlined">arrow_back</span>
       </button>
-      <h2 class="hist-title">Transaction History</h2>
+      <h2 class="hist-title" data-i18n="menuTransHistory">Transaction History</h2>
       <div class="hist-header-spacer"></div>
     </header>
 
@@ -927,20 +989,20 @@
       <div class="hist-filters-scroll no-scrollbar">
         <!-- Active Filter -->
         <button class="hist-filter-btn active">
-          <span>All</span>
+          <span data-i18n="filterAll">All</span>
         </button>
         <!-- Inactive Filters -->
         <button class="hist-filter-btn">
           <span class="material-symbols-outlined">arrow_downward</span>
-          <span>Deposits</span>
+          <span data-i18n="filterDeposits">Deposits</span>
         </button>
         <button class="hist-filter-btn">
           <span class="material-symbols-outlined">arrow_upward</span>
-          <span>Withdrawals</span>
+          <span data-i18n="filterWithdrawals">Withdrawals</span>
         </button>
         <button class="hist-filter-btn">
           <span class="material-symbols-outlined">confirmation_number</span>
-          <span>Bets</span>
+          <span data-i18n="filterBets">Bets</span>
         </button>
       </div>
     </div>
@@ -948,7 +1010,7 @@
     <main class="hist-main no-scrollbar">
       <!-- Group: Pending -->
       <div class="hist-group">
-        <h3 class="hist-group-title">Pending</h3>
+        <h3 class="hist-group-title" data-i18n="histPending">Pending</h3>
         <!-- Pending Item -->
         <div class="hist-item">
           <div class="hist-item-left">
@@ -956,8 +1018,8 @@
               <span class="material-symbols-outlined">schedule</span>
             </div>
             <div class="hist-item-info">
-              <span class="hist-item-title">Deposit ETH</span>
-              <span class="hist-item-sub pending">Processing...</span>
+              <span class="hist-item-title"><span data-i18n="histDeposit">Deposit</span> ETH</span>
+              <span class="hist-item-sub pending" data-i18n="histProcessing">Processing...</span>
             </div>
           </div>
           <div class="hist-item-right">
@@ -969,7 +1031,7 @@
 
       <!-- Group: Today -->
       <div class="hist-group">
-        <h3 class="hist-group-title">Today</h3>
+        <h3 class="hist-group-title" data-i18n="histToday">Today</h3>
         <!-- Win Item -->
         <div class="hist-item">
           <div class="hist-item-left">
@@ -977,7 +1039,7 @@
               <span class="material-symbols-outlined">emoji_events</span>
             </div>
             <div class="hist-item-info">
-              <span class="hist-item-title">Win: NBA Parlay</span>
+              <span class="hist-item-title"><span data-i18n="histWinPrefix">Win:</span> NBA Parlay</span>
               <span class="hist-item-sub">Lakers vs Heat • Moneyline</span>
             </div>
           </div>
@@ -993,7 +1055,7 @@
               <span class="material-symbols-outlined">sports_basketball</span>
             </div>
             <div class="hist-item-info">
-              <span class="hist-item-title">Bet: Warriors vs Suns</span>
+              <span class="hist-item-title"><span data-i18n="histBetPrefix">Bet:</span> Warriors vs Suns</span>
               <span class="hist-item-sub">Spread -4.5</span>
             </div>
           </div>
@@ -1006,7 +1068,7 @@
 
       <!-- Group: Yesterday -->
       <div class="hist-group">
-        <h3 class="hist-group-title">Yesterday</h3>
+        <h3 class="hist-group-title" data-i18n="histYesterday">Yesterday</h3>
         <!-- Withdrawal Item -->
         <div class="hist-item">
           <div class="hist-item-left">
@@ -1014,7 +1076,7 @@
               <span class="material-symbols-outlined rotate-45">arrow_upward</span>
             </div>
             <div class="hist-item-info">
-              <span class="hist-item-title">Withdrawal</span>
+              <span class="hist-item-title" data-i18n="histWithdrawal">Withdrawal</span>
               <span class="hist-item-sub">To: 0x83...c91</span>
             </div>
           </div>
@@ -1030,7 +1092,7 @@
               <span class="material-symbols-outlined">arrow_downward</span>
             </div>
             <div class="hist-item-info">
-              <span class="hist-item-title">Deposit ETH</span>
+              <span class="hist-item-title"><span data-i18n="histDeposit">Deposit</span> ETH</span>
               <span class="hist-item-sub">From: Coinbase</span>
             </div>
           </div>
@@ -1051,7 +1113,7 @@
               <span class="material-symbols-outlined">sports_soccer</span>
             </div>
             <div class="hist-item-info">
-              <span class="hist-item-title">Bet: Chelsea vs Arsenal</span>
+              <span class="hist-item-title"><span data-i18n="histBetPrefix">Bet:</span> Chelsea vs Arsenal</span>
               <span class="hist-item-sub">Total Goals &gt; 2.5</span>
             </div>
           </div>
@@ -1065,7 +1127,7 @@
       <!-- Footer Message -->
       <div class="hist-end-msg">
         <span class="material-symbols-outlined">lock</span>
-        <p>End of History</p>
+        <p data-i18n="histEndMsg">End of History</p>
       </div>
     </main>
 
@@ -1087,7 +1149,7 @@
       <button id="back-bets" class="back-btn">
         <span class="material-symbols-outlined">arrow_back</span>
       </button>
-      <h2 class="hist-title">Bet History</h2>
+      <h2 class="hist-title" data-i18n="menuBetHistory">Bet History</h2>
       <button class="gh-notif-btn" style="background:transparent; border:none; color:white;">
         <span class="material-symbols-outlined">search</span>
       </button>
@@ -1096,10 +1158,10 @@
     <!-- Filters -->
     <div class="bet-filters-container">
       <div class="bet-filters-scroll no-scrollbar">
-        <button class="bet-filter-btn active">All</button>
-        <button class="bet-filter-btn">Open (2)</button>
-        <button class="bet-filter-btn">Won</button>
-        <button class="bet-filter-btn">Lost</button>
+        <button class="bet-filter-btn active" data-i18n="filterAll">All</button>
+        <button class="bet-filter-btn" data-i18n="filterOpen">Open (2)</button>
+        <button class="bet-filter-btn" data-i18n="filterWon">Won</button>
+        <button class="bet-filter-btn" data-i18n="filterLost">Lost</button>
       </div>
     </div>
 
@@ -1107,7 +1169,7 @@
     <main class="bet-main no-scrollbar">
       <!-- Today -->
       <div class="hist-group">
-        <p class="hist-group-title">Today</p>
+        <p class="hist-group-title" data-i18n="histToday">Today</p>
 
         <!-- Won Bet -->
         <div class="bet-card">
@@ -1126,7 +1188,7 @@
                   <span class="bet-type">Moneyline • 1.90 Odds</span>
                 </div>
                 <div class="bet-status-col">
-                  <span class="bet-badge won">WON</span>
+                  <span class="bet-badge won" data-i18n="badgeWon">WON</span>
                   <span class="bet-time">09:41 PM</span>
                 </div>
               </div>
@@ -1151,7 +1213,7 @@
                   <span class="bet-type">Match Winner • 2.10 Odds</span>
                 </div>
                 <div class="bet-status-col">
-                  <span class="bet-badge lost">LOST</span>
+                  <span class="bet-badge lost" data-i18n="badgeLost">LOST</span>
                   <span class="bet-time">02:15 PM</span>
                 </div>
               </div>
@@ -1162,7 +1224,7 @@
 
       <!-- Yesterday -->
       <div class="hist-group mt-4">
-        <p class="hist-group-title">Yesterday</p>
+        <p class="hist-group-title" data-i18n="histYesterday">Yesterday</p>
 
         <!-- Open Bet 1 -->
         <div class="bet-card">
@@ -1181,7 +1243,7 @@
                   <span class="bet-type">Set Betting • 4.50 Odds</span>
                 </div>
                 <div class="bet-status-col">
-                  <span class="bet-badge open">OPEN</span>
+                  <span class="bet-badge open" data-i18n="badgeOpen">OPEN</span>
                   <span class="bet-time">Yesterday</span>
                 </div>
               </div>
@@ -1206,7 +1268,7 @@
                   <span class="bet-type">Total Points • 1.91 Odds</span>
                 </div>
                 <div class="bet-status-col">
-                  <span class="bet-badge open">OPEN</span>
+                  <span class="bet-badge open" data-i18n="badgeOpen">OPEN</span>
                   <span class="bet-time">Yesterday</span>
                 </div>
               </div>
@@ -1231,7 +1293,7 @@
                   <span class="bet-type">Method of Victory • 2.50 Odds</span>
                 </div>
                 <div class="bet-status-col">
-                  <span class="bet-badge won">WON</span>
+                  <span class="bet-badge won" data-i18n="badgeWon">WON</span>
                   <span class="bet-time">Yesterday</span>
                 </div>
               </div>
@@ -1247,7 +1309,7 @@
           <div style="width:4px; height:4px; background:white; border-radius:50%;"></div>
           <div style="width:4px; height:4px; background:white; border-radius:50%;"></div>
         </div>
-        <p>End of history</p>
+        <p data-i18n="histEndMsg">End of history</p>
       </div>
     </main>
   </div>
@@ -1261,7 +1323,7 @@
         <span class="material-symbols-outlined">arrow_back</span>
       </button>
       <div class="sb-league-info">
-        <h3>Sportsbook</h3>
+        <h3 data-i18n="navSportsbook">Sportsbook</h3>
       </div>
     </header>
 
@@ -1274,43 +1336,15 @@
       <!-- Live Now Section -->
       <div class="sb-landing-live">
         <div class="sb-list-header">
-          <h2 class="sb-list-title">Live Now</h2>
-          <div class="sb-live-tag">
-            <span class="material-symbols-outlined animate-pulse" style="font-size: 16px;">bolt</span>
-            <span>LIVE</span>
-          </div>
+          <h2 class="sb-list-title" data-i18n="sbLiveNow">Live Now</h2>
         </div>
         <div id="sb-landing-live-list">
-          <div class="sb-match-skeleton">No live matches currently.</div>
+          <div class="sb-match-skeleton" data-i18n="sbNoLive">No live matches currently.</div>
         </div>
       </div>
     </main>
     <!-- Bottom Navigation (Standard) -->
-    <nav class="nav-bar">
-      <div class="nav-container">
-        <button id="nav-btn-home-sb-land" class="nav-item">
-          <span class="material-symbols-outlined">home</span>
-          <span>Home</span>
-        </button>
-        <button id="nav-btn-games-sb-land" class="nav-item">
-          <span class="material-symbols-outlined">sports_esports</span>
-          <span>Games</span>
-        </button>
-        <div class="nav-item-center">
-          <button class="center-btn">
-            <span class="material-symbols-outlined" style="font-size: 30px; font-weight: normal;">sports_soccer</span>
-          </button>
-        </div>
-        <button class="nav-item" style="color: var(--dash-primary);">
-          <span class="material-symbols-outlined">sports_score</span>
-          <span>Sportsbook</span>
-        </button>
-        <button class="nav-item profile-nav-btn-sb-land">
-          <span class="material-symbols-outlined">person</span>
-          <span>Profile</span>
-        </button>
-      </div>
-    </nav>
+
   </div>
 
   <!-- ================= VISTA SPORTSBOOK FULL LIST ================= -->
@@ -1331,26 +1365,22 @@
       <!-- Contenedor para Partidos en Vivo -->
       <div id="sb-live-section" style="display:none; margin-bottom: 20px;">
         <div class="sb-list-header">
-          <h2 class="sb-list-title">Live Now</h2>
-          <div class="sb-live-tag">
-            <span class="material-symbols-outlined animate-pulse" style="font-size: 16px;">bolt</span>
-            <span>LIVE NOW</span>
-          </div>
+          <h2 class="sb-list-title" data-i18n="sbLiveNow">Live Now</h2>
         </div>
         <div id="sb-live-list"></div>
       </div>
 
       <!-- Contenedor para Próximos Partidos -->
       <div class="sb-list-header">
-        <h2 class="sb-list-title">Upcoming Matches</h2>
+        <h2 class="sb-list-title" data-i18n="sbUpcoming">Upcoming Matches</h2>
       </div>
       <div id="sb-upcoming-list">
-        <div class="sb-match-skeleton">Loading upcoming matches...</div>
+        <div class="sb-match-skeleton" data-i18n="sbLoading">Loading upcoming matches...</div>
       </div>
 
       <!-- Contenedor para Resultados Recientes -->
       <div class="sb-list-header" style="margin-top: 24px;">
-        <h2 class="sb-list-title">Recent Results</h2>
+        <h2 class="sb-list-title" data-i18n="sbRecent">Recent Results</h2>
       </div>
       <div id="sb-recent-list"></div>
 
@@ -1358,34 +1388,38 @@
     </main>
 
     <!-- Bottom Navigation  -->
-    <nav class="nav-bar">
-      <div class="nav-container">
-        <button id="nav-btn-home-sb" class="nav-item">
-          <span class="material-symbols-outlined">home</span>
-          <span>Home</span>
-        </button>
-        <button id="nav-btn-games-sb" class="nav-item">
-          <span class="material-symbols-outlined">sports_esports</span>
-          <span>Games</span>
-        </button>
-        <div class="nav-item-center">
-          <button class="center-btn">
-            <span class="material-symbols-outlined" style="font-size: 30px; font-weight: normal;">sports_soccer</span>
-          </button>
-        </div>
-        <button class="nav-item" style="color: var(--dash-primary);">
-          <span class="material-symbols-outlined">sports_score</span>
-          <span>Sportsbook</span>
-        </button>
-        <button class="nav-item profile-nav-btn-sb">
-          <span class="material-symbols-outlined">person</span>
-          <span>Profile</span>
-        </button>
-      </div>
-    </nav>
+
   </div>
 
+  <!-- Global Bottom Navigation -->
+  <nav class="nav-bar global-nav">
+    <div class="nav-container">
+      <button id="nav-global-home" class="nav-item active">
+        <span class="material-symbols-outlined">home</span>
+        <span data-i18n="navHome">Home</span>
+      </button>
+      <button id="nav-global-games" class="nav-item">
+        <span class="material-symbols-outlined">sports_esports</span>
+        <span data-i18n="navGames">Games</span>
+      </button>
+      <div class="nav-item-center">
+        <button id="nav-global-center" class="center-btn">
+          <span class="material-symbols-outlined" style="font-size: 30px; font-weight: normal;">sports_soccer</span>
+        </button>
+      </div>
+      <button id="nav-global-sb" class="nav-item">
+        <span class="material-symbols-outlined">sports_score</span>
+        <span data-i18n="navSportsbook">Sportsbook</span>
+      </button>
+      <button id="nav-global-profile" class="nav-item">
+        <span class="material-symbols-outlined">person</span>
+        <span data-i18n="navProfile">Profile</span>
+      </button>
+    </div>
+  </nav>
+
   <script src="lib/soccer-api.js"></script>
+  <script src="lib/i18n.js"></script>
   <script src="popup.js"></script>
 </body>
 

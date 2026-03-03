@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="sidepanel.css">
+  <link rel="stylesheet" href="lang-switcher.css">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -25,13 +26,17 @@
           <div class="status-dot"></div>
         </div>
         <div class="user-info">
-          <p>Welcome back</p>
+          <p data-i18n="welcomeBack">Welcome back</p>
           <h3>Alex Roller</h3>
         </div>
       </div>
-      <button id="open-sidepanel-btn" class="settings-btn" style="margin-right: 8px;" title="Abrir en Panel Lateral">
-        <span class="material-symbols-outlined" style="font-size: 20px;">dock_to_right</span>
+      <button id="open-sidepanel-btn" class="settings-btn" style="margin-right: 8px;" title="Open Side Panel">
+        <span class="material-symbols-outlined" style="font-size: 20px;">dock_to_left</span>
       </button>
+
+
+
+
       <button class="settings-btn">
         <span class="material-symbols-outlined" style="font-size: 20px;">settings</span>
       </button>
@@ -44,12 +49,12 @@
         <div class="balance-label">
           <span class="material-symbols-outlined"
             style="font-size: 16px; color: var(--dash-primary);">account_balance_wallet</span>
-          <span>Total Balance</span>
+          <span data-i18n="totalBalance">Total Balance</span>
         </div>
         <h1 class="balance-amount">$12,450.00</h1>
         <div class="balance-trend">
           <span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span>
-          <span>+2.4% today</span>
+          <span data-i18n="trendToday">+2.4% today</span>
         </div>
       </div>
 
@@ -57,11 +62,11 @@
       <div class="action-buttons">
         <button id="btn-deposit" class="action-btn btn-primary">
           <span class="material-symbols-outlined" style="font-size: 24px; margin-right: 8px;">add_circle</span>
-          Deposit
+          <span data-i18n="btnDeposit">Deposit</span>
         </button>
         <button id="btn-withdraw" class="action-btn btn-secondary">
           <span class="material-symbols-outlined" style="font-size: 24px; margin-right: 8px;">arrow_outward</span>
-          Withdraw
+          <span data-i18n="btnWithdraw">Withdraw</span>
         </button>
       </div>
 
@@ -73,11 +78,11 @@
       <div class="nav-container">
         <button class="nav-item" style="color: var(--dash-primary);">
           <span class="material-symbols-outlined">home</span>
-          <span>Home</span>
+          <span data-i18n="navHome">Home</span>
         </button>
         <button class="nav-item">
           <span class="material-symbols-outlined">sports_esports</span>
-          <span>Games</span>
+          <span data-i18n="navGames">Games</span>
         </button>
         <div class="nav-item-center">
           <button class="center-btn">
@@ -86,11 +91,11 @@
         </div>
         <button class="nav-item">
           <span class="material-symbols-outlined">emoji_events</span>
-          <span>Rewards</span>
+          <span data-i18n="navRewards">Rewards</span>
         </button>
         <button class="nav-item">
           <span class="material-symbols-outlined">person</span>
-          <span>Profile</span>
+          <span data-i18n="navProfile">Profile</span>
         </button>
       </div>
     </nav>
@@ -103,14 +108,15 @@
       <button id="back-help" class="back-btn">
         <span class="material-symbols-outlined">arrow_back</span>
       </button>
-      <h1 style="flex:1; text-align:center; font-size:16px; margin:0; padding-right:40px;">Help & Support</h1>
+      <h1 style="flex:1; text-align:center; font-size:16px; margin:0; padding-right:40px;" data-i18n="helpTitle">Help &
+        Support</h1>
     </header>
 
     <main class="dash-main help-main">
       <!-- Intro -->
       <div class="help-intro">
-        <h2>How can we help?</h2>
-        <p>Choose a support option below.</p>
+        <h2 data-i18n="helpSubtitle">How can we help?</h2>
+        <p data-i18n="helpInstruction">Choose a support option below.</p>
       </div>
 
       <!-- Action Cards -->
@@ -121,13 +127,13 @@
             <span class="material-symbols-outlined">chat</span>
           </div>
           <div class="card-content">
-            <h3>Live Chat</h3>
+            <h3 data-i18n="helpLiveChat">Live Chat</h3>
             <div class="live-status">
               <span class="status-indicator">
                 <span class="ping"></span>
                 <span class="dot"></span>
               </span>
-              <span class="wait-text">~2 min wait</span>
+              <span class="wait-text" data-i18n="helpWaitTime">~2 min wait</span>
             </div>
           </div>
         </button>
@@ -138,15 +144,15 @@
             <span class="material-symbols-outlined">mail</span>
           </div>
           <div class="card-content">
-            <h3>Email Us</h3>
-            <p class="res-text">Response in 24h</p>
+            <h3 data-i18n="helpEmail">Email Us</h3>
+            <p class="res-text" data-i18n="helpResponseTime">Response in 24h</p>
           </div>
         </button>
       </div>
 
       <!-- Common Topics -->
       <div class="help-topics">
-        <h3>Common Help Topics</h3>
+        <h3 data-i18n="helpCommonTopics">Common Help Topics</h3>
         <div class="topics-list">
           <!-- Topic 1 -->
           <button class="topic-btn">
@@ -154,8 +160,8 @@
               <span class="material-symbols-outlined">account_balance_wallet</span>
             </div>
             <div class="topic-info">
-              <p class="topic-title">Deposits & Withdrawals</p>
-              <p class="topic-desc">Methods, limits, and processing times</p>
+              <p class="topic-title" data-i18n="topicDeposits">Deposits & Withdrawals</p>
+              <p class="topic-desc" data-i18n="topicDepositsDesc">Methods, limits, and processing times</p>
             </div>
             <span class="material-symbols-outlined chevron">chevron_right</span>
           </button>
@@ -166,8 +172,8 @@
               <span class="material-symbols-outlined">badge</span>
             </div>
             <div class="topic-info">
-              <p class="topic-title">Account Verification (KYC)</p>
-              <p class="topic-desc">Identity documents and status</p>
+              <p class="topic-title" data-i18n="topicKYC">Account Verification (KYC)</p>
+              <p class="topic-desc" data-i18n="topicKYCDesc">Identity documents and status</p>
             </div>
             <span class="material-symbols-outlined chevron">chevron_right</span>
           </button>
@@ -178,8 +184,8 @@
               <span class="material-symbols-outlined">sports_soccer</span>
             </div>
             <div class="topic-info">
-              <p class="topic-title">Bet Rules & Settlement</p>
-              <p class="topic-desc">Void bets, overtimes, and results</p>
+              <p class="topic-title" data-i18n="topicRules">Bet Rules & Settlement</p>
+              <p class="topic-desc" data-i18n="topicRulesDesc">Void bets, overtimes, and results</p>
             </div>
             <span class="material-symbols-outlined chevron">chevron_right</span>
           </button>
@@ -190,8 +196,8 @@
               <span class="material-symbols-outlined">card_giftcard</span>
             </div>
             <div class="topic-info">
-              <p class="topic-title">Promotions & Bonuses</p>
-              <p class="topic-desc">Rollover requirements and claiming</p>
+              <p class="topic-title" data-i18n="topicPromo">Promotions & Bonuses</p>
+              <p class="topic-desc" data-i18n="topicPromoDesc">Rollover requirements and claiming</p>
             </div>
             <span class="material-symbols-outlined chevron">chevron_right</span>
           </button>
@@ -203,9 +209,10 @@
     <footer class="help-footer">
       <div class="support-badge">
         <div class="pulsing-green"></div>
-        <span>Support Online 24/7</span>
+        <span data-i18n="helpSupportOnline">Support Online 24/7</span>
       </div>
       <p class="version-text">App Version 2.4.1 (Build 890)</p>
+    </footer>
   </div>
 
   <!-- ================= VISTA GAMES ================= -->
@@ -217,7 +224,7 @@
           <div class="gh-logo-icon">
             <span class="material-symbols-outlined">casino</span>
           </div>
-          <span class="gh-title">Casino</span>
+          <span class="gh-title" data-i18n="gamesCasinoTitle">Casino</span>
         </div>
         <div class="gh-actions">
           <div class="gh-balance">
@@ -244,7 +251,7 @@
       <section class="g-section search-section">
         <div class="search-box">
           <span class="material-symbols-outlined search-icon">search</span>
-          <input type="text" placeholder="Search for game by title..." />
+          <input type="text" placeholder="Search for game by title..." data-i18n-placeholder="gamesSearchPlaceholder" />
         </div>
       </section>
 
@@ -252,10 +259,11 @@
       <section class="g-section">
         <div class="gs-header">
           <div class="gs-title-group">
-            <h2>Continue Playing</h2>
+            <h2 data-i18n="gamesContinue">Continue Playing</h2>
             <span class="gs-badge">3</span>
           </div>
-          <a href="#" class="gs-view-all">View all <span class="material-symbols-outlined">arrow_forward</span></a>
+          <a href="#" class="gs-view-all"><span data-i18n="gamesViewAll">View all</span> <span
+              class="material-symbols-outlined">arrow_forward</span></a>
         </div>
         <div class="games-grid">
           <!-- Bull Ride Loot -->
@@ -289,10 +297,11 @@
       <section class="g-section">
         <div class="gs-header">
           <div class="gs-title-group">
-            <h2>Trending</h2>
+            <h2 data-i18n="gamesTrending">Trending</h2>
             <span class="material-symbols-outlined text-primary">trending_up</span>
           </div>
-          <a href="#" class="gs-view-all">View all <span class="material-symbols-outlined">arrow_forward</span></a>
+          <a href="#" class="gs-view-all"><span data-i18n="gamesViewAll">View all</span> <span
+              class="material-symbols-outlined">arrow_forward</span></a>
         </div>
         <div class="games-grid">
           <!-- Matador Fight -->
@@ -378,7 +387,8 @@
       <button id="back-profile" class="back-btn">
         <span class="material-symbols-outlined">arrow_back</span>
       </button>
-      <h2 style="flex:1; text-align:center; font-size:16px; margin:0; padding-right:40px;">Profile</h2>
+      <h2 style="flex:1; text-align:center; font-size:16px; margin:0; padding-right:40px;" data-i18n="profileTitle">
+        Profile</h2>
     </header>
 
     <main class="dash-main profile-main">
@@ -405,54 +415,54 @@
           </div>
           <div class="connected-badge">
             <div class="dot-pulse"></div>
-            <span>Connected</span>
+            <span data-i18n="profileConnected">Connected</span>
           </div>
         </div>
 
         <!-- Balance Display -->
         <div class="profile-balance">
-          <span class="bal-label">Total Balance</span>
+          <span class="bal-label" data-i18n="profileTotalBalance">Total Balance</span>
           <h1 class="bal-amount"><span class="currency-symbol">$</span>12,450.50</h1>
           <div class="bal-details">
-            <span class="avail">Available</span>
+            <span class="avail" data-i18n="profileAvailable">Available</span>
             <span class="sep">•</span>
-            <span class="pend">Pending $120.00</span>
+            <span class="pend"><span data-i18n="profilePending">Pending</span> $120.00</span>
           </div>
         </div>
 
         <!-- Action Buttons -->
         <div class="profile-actions">
-          <button class="pro-btn btn-deposit">Deposit</button>
-          <button class="pro-btn btn-withdraw">Withdraw</button>
+          <button class="pro-btn btn-deposit" data-i18n="btnDeposit">Deposit</button>
+          <button class="pro-btn btn-withdraw" data-i18n="btnWithdraw">Withdraw</button>
         </div>
       </div>
 
       <!-- Quick Stats -->
       <div class="profile-stats no-scrollbar">
         <div class="p-stat-card">
-          <p class="stat-label">Total Bets</p>
+          <p class="stat-label" data-i18n="statsTotalBets">Total Bets</p>
           <p class="stat-val">142</p>
         </div>
         <div class="p-stat-card">
-          <p class="stat-label">Open Wagers</p>
+          <p class="stat-label" data-i18n="statsOpenWagers">Open Wagers</p>
           <p class="stat-val primary-text">3</p>
         </div>
         <div class="p-stat-card">
-          <p class="stat-label">Last Activity</p>
+          <p class="stat-label" data-i18n="statsLastActivity">Last Activity</p>
           <p class="stat-val">2m</p>
         </div>
       </div>
 
       <!-- Menu Section -->
       <div class="menu-section">
-        <h3>Account</h3>
+        <h3 data-i18n="menuAccount">Account</h3>
         <div class="menu-list">
           <!-- Transaction History -->
           <button class="menu-item">
             <div class="item-icon-bg">
               <span class="material-symbols-outlined">history</span>
             </div>
-            <div class="item-text">Transaction History</div>
+            <div class="item-text" data-i18n="menuTransHistory">Transaction History</div>
             <span class="material-symbols-outlined chevron">chevron_right</span>
           </button>
 
@@ -463,7 +473,7 @@
             <div class="item-icon-bg">
               <span class="material-symbols-outlined">receipt_long</span>
             </div>
-            <div class="item-text">Bet History</div>
+            <div class="item-text" data-i18n="menuBetHistory">Bet History</div>
             <span class="material-symbols-outlined chevron">chevron_right</span>
           </button>
 
@@ -474,8 +484,8 @@
             <div class="item-icon-bg">
               <span class="material-symbols-outlined">redeem</span>
             </div>
-            <div class="item-text">Bonuses</div>
-            <div class="badge-new">NEW</div>
+            <div class="item-text" data-i18n="menuBonuses">Bonuses</div>
+            <div class="badge-new" data-i18n="badgeNew">NEW</div>
             <span class="material-symbols-outlined chevron">chevron_right</span>
           </button>
 
@@ -486,46 +496,142 @@
             <div class="item-icon-bg">
               <span class="material-symbols-outlined">group_add</span>
             </div>
-            <div class="item-text">Referrals</div>
+            <div class="item-text" data-i18n="menuReferrals">Referrals</div>
             <span class="material-symbols-outlined chevron">chevron_right</span>
           </button>
         </div>
 
         <!-- Secondary List -->
-        <div class="menu-list mt-2">
-          <!-- Responsible Gaming -->
-          <button class="menu-item">
-            <div class="item-icon-bg">
-              <span class="material-symbols-outlined">verified_user</span>
-            </div>
-            <div class="item-text">Responsible Gaming</div>
-            <span class="material-symbols-outlined chevron">chevron_right</span>
-          </button>
-
-          <div class="divider"></div>
-
-          <!-- Help & Support -->
-          <button class="menu-item">
-            <div class="item-icon-bg">
-              <span class="material-symbols-outlined">support_agent</span>
-            </div>
-            <div class="item-text">Help & Support</div>
-            <span class="material-symbols-outlined chevron">chevron_right</span>
-          </button>
-
-          <div class="divider"></div>
-
-          <!-- Log Out -->
-          <button class="menu-item logout-item">
-            <div class="item-icon-bg">
-              <span class="material-symbols-outlined">logout</span>
-            </div>
-            <div class="item-text text-red">Log Out</div>
-          </button>
-        </div>
       </div>
 
-      <!-- Security Footer -->
+      <div class="menu-list mt-2">
+        <!-- Language Selection -->
+        <h3 style="padding: 0 16px 8px; font-size: 13px; color: var(--dash-text-muted); text-transform: uppercase;">
+          Language</h3>
+
+        <!-- English -->
+        <button class="menu-item lang-item" data-lang="en">
+          <div class="item-icon-bg">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" class="flag-icon"
+              style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              <path fill="#bd3d44" d="M0 0h640v480H0" />
+              <path stroke="#fff" stroke-width="37" d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" />
+              <path fill="#192f5d" d="M0 0h364.8v258.5H0" />
+              <marker id="a" markerHeight="30" markerWidth="30">
+                <path fill="#fff" d="m14 0 9 27L0 10h28L5 27z" />
+              </marker>
+              <use href="#a" x="34" y="17" />
+              <use href="#a" x="103" y="17" />
+              <use href="#a" x="172" y="17" />
+              <use href="#a" x="241" y="17" />
+              <use href="#a" x="310" y="17" />
+              <use href="#a" x="69" y="43" />
+              <use href="#a" x="138" y="43" />
+              <use href="#a" x="207" y="43" />
+              <use href="#a" x="276" y="43" />
+              <use href="#a" x="34" y="69" />
+              <use href="#a" x="103" y="69" />
+              <use href="#a" x="172" y="69" />
+              <use href="#a" x="241" y="69" />
+              <use href="#a" x="310" y="69" />
+              <use href="#a" x="69" y="94" />
+              <use href="#a" x="138" y="94" />
+              <use href="#a" x="207" y="94" />
+              <use href="#a" x="276" y="94" />
+              <use href="#a" x="34" y="120" />
+              <use href="#a" x="103" y="120" />
+              <use href="#a" x="172" y="120" />
+              <use href="#a" x="241" y="120" />
+              <use href="#a" x="310" y="120" />
+              <use href="#a" x="69" y="146" />
+              <use href="#a" x="138" y="146" />
+              <use href="#a" x="207" y="146" />
+              <use href="#a" x="276" y="146" />
+              <use href="#a" x="34" y="172" />
+              <use href="#a" x="103" y="172" />
+              <use href="#a" x="172" y="172" />
+              <use href="#a" x="241" y="172" />
+              <use href="#a" x="310" y="172" />
+              <use href="#a" x="69" y="198" />
+              <use href="#a" x="138" y="198" />
+              <use href="#a" x="207" y="198" />
+              <use href="#a" x="276" y="198" />
+              <use href="#a" x="34" y="224" />
+              <use href="#a" x="103" y="224" />
+              <use href="#a" x="172" y="224" />
+              <use href="#a" x="241" y="224" />
+              <use href="#a" x="310" y="224" />
+            </svg>
+          </div>
+          <div class="item-text">English</div>
+          <span class="material-symbols-outlined check-icon hidden" style="color: var(--dash-primary);">check</span>
+        </button>
+
+        <!-- French -->
+        <button class="menu-item lang-item" data-lang="fr">
+          <div class="item-icon-bg">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" class="flag-icon"
+              style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              <g fill-rule="evenodd" stroke-width="1pt">
+                <path fill="#fff" d="M0 0h640v480H0z" />
+                <path fill="#00267f" d="M0 0h213.3v480H0z" />
+                <path fill="#f31830" d="M426.7 0H640v480H426.7z" />
+              </g>
+            </svg>
+          </div>
+          <div class="item-text">Français</div>
+          <span class="material-symbols-outlined check-icon hidden" style="color: var(--dash-primary);">check</span>
+        </button>
+
+        <!-- German -->
+        <button class="menu-item lang-item" data-lang="de">
+          <div class="item-icon-bg">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" class="flag-icon"
+              style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              <g fill-rule="evenodd" stroke-width="1pt">
+                <path fill="#ffce00" d="M0 320h640v160H0z" />
+                <path d="M0 0h640v160H0z" />
+                <path fill="#d00" d="M0 160h640v160H0z" />
+              </g>
+            </svg>
+          </div>
+          <div class="item-text">Deutsch</div>
+          <span class="material-symbols-outlined check-icon hidden" style="color: var(--dash-primary);">check</span>
+        </button>
+
+        <div class="divider"></div>
+        <!-- Responsible Gaming -->
+        <button class="menu-item">
+          <div class="item-icon-bg">
+            <span class="material-symbols-outlined">verified_user</span>
+          </div>
+          <div class="item-text" data-i18n="menuResponsible">Responsible Gaming</div>
+          <span class="material-symbols-outlined chevron">chevron_right</span>
+        </button>
+
+        <div class="divider"></div>
+
+        <!-- Help & Support -->
+        <button class="menu-item">
+          <div class="item-icon-bg">
+            <span class="material-symbols-outlined">support_agent</span>
+          </div>
+          <div class="item-text" data-i18n="helpTitle">Help & Support</div>
+          <span class="material-symbols-outlined chevron">chevron_right</span>
+        </button>
+
+        <div class="divider"></div>
+
+        <!-- Log Out -->
+        <button class="menu-item logout-item">
+          <div class="item-icon-bg">
+            <span class="material-symbols-outlined">logout</span>
+          </div>
+          <div class="item-text text-red" data-i18n="menuLogout">Log Out</div>
+        </button>
+      </div>
+
+      <!-- Security Footer (inside Profile view only) -->
       <div class="security-footer">
         <div class="security-card">
           <div class="sec-left">
@@ -533,7 +639,7 @@
               <span class="material-symbols-outlined">lock</span>
             </div>
             <div class="sec-info">
-              <span class="sec-title">Session Secure</span>
+              <span class="sec-title" data-i18n="secSessionSecure">Session Secure</span>
               <span class="sec-sub">Ethereum Mainnet • 24ms</span>
             </div>
           </div>
@@ -544,6 +650,7 @@
     </main>
   </div>
 
+
   <!-- ================= VISTA DEPOSIT ================= -->
   <div id="view-deposit" class="view-section">
     <!-- Header -->
@@ -551,19 +658,20 @@
       <button id="back-deposit" class="back-btn">
         <span class="material-symbols-outlined">arrow_back</span>
       </button>
-      <h2 class="dep-title">Deposit Funds</h2>
+      <h2 class="dep-title" data-i18n="depTitle">Deposit Funds</h2>
     </header>
 
     <main class="dep-main no-scrollbar">
       <!-- Balance Card -->
       <div class="dep-balance-card">
         <div class="dep-bal-header">
-          <span class="dep-bal-label">Total Balance</span>
+          <span class="dep-bal-label" data-i18n="profileTotalBalance">Total Balance</span>
           <h1 class="dep-bal-amount">$12,459.50</h1>
           <div class="dep-bal-breakdown">
             <div class="breakdown-item">
               <div class="dot-indicator primary"></div>
-              <span>Available: <span class="highlight">$11,209.50</span></span>
+              <span><span data-i18n="profileAvailable">Available</span>: <span
+                  class="highlight">$11,209.50</span></span>
             </div>
             <div class="breakdown-item">
               <div class="dot-indicator purple"></div>
@@ -576,7 +684,7 @@
 
       <!-- Network Selection -->
       <div class="dep-network-section">
-        <label class="section-label">Select Network</label>
+        <label class="section-label" data-i18n="depSelectNetwork">Select Network</label>
         <div class="dep-network-scroll no-scrollbar">
           <!-- ETH -->
           <label class="network-option">
@@ -614,14 +722,14 @@
               style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAgNir4j6pebP4Dk4n63LnrGP1l6Fsg8Ds32ximgIw0Xoc9sJb0FM1zmLdOT5eMJfmKMM2OY0B53gqR-UcKbrJOW8qkYTfx4F8NEBZuub2ipHC1AfedO9yRYo1T-ahWHdAkrjWP40UiwsYf6hGAw72rAhjnhVLpC0lMqif1NJZihzpPMQgaDEKfN-LZJJNZ2P8CcyiNt0gAbMpxmzzIu8aL03pyFATP9_oG2gw4fJelzyuvxM7vOu5PAcRevNPIcSTtvIzAp2YUQ0qH');">
             </div>
             <div class="qr-overlay">
-              <span class="scan-pill">Scan QR</span>
+              <span class="scan-pill" data-i18n="depScanQr">Scan QR</span>
             </div>
           </div>
         </div>
 
         <!-- Address -->
         <div class="address-input-group">
-          <label class="section-label">Wallet Address</label>
+          <label class="section-label" data-i18n="depWalletAddress">Wallet Address</label>
           <div class="input-wrapper">
             <input type="text" class="addr-input" value="0x71C...9A2F" readonly>
             <button class="copy-icon-btn">
@@ -634,8 +742,8 @@
         <div class="dep-warning-box">
           <span class="material-symbols-outlined warn-icon">warning</span>
           <div class="warn-text">
-            <p class="warn-title">Minimum Deposit 0.01 ETH</p>
-            <p class="warn-desc">Sending other assets may result in permanent loss.</p>
+            <p class="warn-title" data-i18n="depMinDeposit">Minimum Deposit 0.01 ETH</p>
+            <p class="warn-desc" data-i18n="depWarning">Sending other assets may result in permanent loss.</p>
           </div>
         </div>
 
@@ -646,8 +754,8 @@
               <span class="material-symbols-outlined">redeem</span>
             </div>
             <div class="accord-text">
-              <span class="accord-title">Claim Bonus</span>
-              <span class="accord-sub">No active bonus selected</span>
+              <span class="accord-title" data-i18n="depClaimBonus">Claim Bonus</span>
+              <span class="accord-sub" data-i18n="depNoBonus">No active bonus selected</span>
             </div>
           </div>
           <span class="material-symbols-outlined expand-icon">expand_more</span>
@@ -661,8 +769,8 @@
             <span class="material-symbols-outlined">credit_card</span>
           </div>
           <div class="buy-text">
-            <span class="buy-title">Buy Crypto</span>
-            <span class="buy-sub">via MoonPay</span>
+            <span class="buy-title" data-i18n="depBuyCrypto">Buy Crypto</span>
+            <span class="buy-sub" data-i18n="depViaMoonPay">via MoonPay</span>
           </div>
         </div>
         <span class="material-symbols-outlined arrow-icon">chevron_right</span>
@@ -673,7 +781,7 @@
     <!-- Fixed Footer -->
     <div class="dep-footer">
       <button class="dep-submit-btn">
-        Deposit Funds
+        <span data-i18n="depSubmitBtn">Deposit Funds</span>
         <span class="material-symbols-outlined">arrow_forward</span>
       </button>
     </div>
@@ -686,7 +794,7 @@
       <button id="back-withdraw" class="back-btn">
         <span class="material-symbols-outlined">arrow_back</span>
       </button>
-      <h2 class="wd-title">Withdraw Funds</h2>
+      <h2 class="wd-title" data-i18n="wdTitle">Withdraw Funds</h2>
     </header>
 
     <main class="wd-main no-scrollbar">
@@ -697,7 +805,7 @@
         </div>
         <div class="wd-card-content">
           <div class="wd-bal-top">
-            <p class="wd-bal-label">Total Balance</p>
+            <p class="wd-bal-label" data-i18n="profileTotalBalance">Total Balance</p>
           </div>
           <div class="wd-bal-row">
             <span class="wd-bal-amount">$12,450.00</span>
@@ -706,7 +814,7 @@
           <div class="wd-bal-stats">
             <div class="wd-stat">
               <div class="wd-dot orange"></div>
-              <p class="wd-stat-label">Pending</p>
+              <p class="wd-stat-label" data-i18n="profilePending">Pending</p>
               <p class="wd-stat-val">$0.00</p>
             </div>
             <div class="wd-stat">
@@ -721,7 +829,7 @@
       <!-- Network Selection -->
       <div class="wd-network-section">
         <div class="wd-net-header">
-          <h2 class="wd-section-title">Select Network</h2>
+          <h2 class="wd-section-title" data-i18n="depSelectNetwork">Select Network</h2>
           <span class="wd-net-bal hover-cursor">
             <span class="material-symbols-outlined">account_balance_wallet</span>
             $12,400.00
@@ -756,7 +864,7 @@
       <div class="wd-form-card">
         <!-- Amount -->
         <div class="wd-input-group">
-          <label class="wd-label">Withdrawal Amount</label>
+          <label class="wd-label" data-i18n="wdAmount">Withdrawal Amount</label>
           <div class="wd-input-wrapper">
             <input type="text" class="wd-input-amount" placeholder="0.00">
             <div class="wd-input-actions">
@@ -769,9 +877,10 @@
 
         <!-- Address -->
         <div class="wd-input-group">
-          <label class="wd-label">Recipient Address</label>
+          <label class="wd-label" data-i18n="wdRecipient">Recipient Address</label>
           <div class="wd-input-wrapper">
-            <input type="text" class="wd-input-addr" placeholder="Paste wallet address">
+            <input type="text" class="wd-input-addr" placeholder="Paste wallet address"
+              data-i18n-placeholder="wdPastePlaceholder">
             <button class="wd-paste-btn">
               <span class="material-symbols-outlined">content_paste</span>
             </button>
@@ -781,7 +890,7 @@
         <!-- Fees -->
         <div class="wd-fees-box">
           <div class="wd-fee-row">
-            <span class="wd-fee-label">Network Fee</span>
+            <span class="wd-fee-label" data-i18n="wdNetworkFee">Network Fee</span>
             <div class="wd-fee-val-group">
               <span class="wd-fee-main">~$4.50</span>
               <span class="wd-fee-sub">0.0024 ETH</span>
@@ -789,7 +898,7 @@
           </div>
           <div class="wd-fee-sep"></div>
           <div class="wd-fee-row">
-            <span class="wd-total-label">Total Deduction</span>
+            <span class="wd-total-label" data-i18n="wdTotalDeduction">Total Deduction</span>
             <span class="wd-total-val">$4.50</span>
           </div>
         </div>
@@ -802,7 +911,7 @@
               <span class="material-symbols-outlined">check</span>
             </div>
           </div>
-          <p class="wd-checkbox-text">
+          <p class="wd-checkbox-text" data-i18n="wdWarning">
             I confirm that the address entered matches the selected network. Transactions on the blockchain cannot be
             reversed.
           </p>
@@ -813,7 +922,7 @@
     <!-- Fixed Footer -->
     <div class="wd-footer">
       <button class="wd-submit-btn">
-        Withdraw Funds
+        <span data-i18n="wdConfirmBtn">Withdraw Funds</span>
         <span class="material-symbols-outlined">arrow_forward</span>
       </button>
     </div>
@@ -826,7 +935,7 @@
       <button id="back-history" class="back-btn">
         <span class="material-symbols-outlined">arrow_back</span>
       </button>
-      <h2 class="hist-title">Transaction History</h2>
+      <h2 class="hist-title" data-i18n="menuTransHistory">Transaction History</h2>
       <div class="hist-header-spacer"></div>
     </header>
 
@@ -835,20 +944,20 @@
       <div class="hist-filters-scroll no-scrollbar">
         <!-- Active Filter -->
         <button class="hist-filter-btn active">
-          <span>All</span>
+          <span data-i18n="filterAll">All</span>
         </button>
         <!-- Inactive Filters -->
         <button class="hist-filter-btn">
           <span class="material-symbols-outlined">arrow_downward</span>
-          <span>Deposits</span>
+          <span data-i18n="filterDeposits">Deposits</span>
         </button>
         <button class="hist-filter-btn">
           <span class="material-symbols-outlined">arrow_upward</span>
-          <span>Withdrawals</span>
+          <span data-i18n="filterWithdrawals">Withdrawals</span>
         </button>
         <button class="hist-filter-btn">
           <span class="material-symbols-outlined">confirmation_number</span>
-          <span>Bets</span>
+          <span data-i18n="filterBets">Bets</span>
         </button>
       </div>
     </div>
@@ -856,7 +965,7 @@
     <main class="hist-main no-scrollbar">
       <!-- Group: Pending -->
       <div class="hist-group">
-        <h3 class="hist-group-title">Pending</h3>
+        <h3 class="hist-group-title" data-i18n="histPending">Pending</h3>
         <!-- Pending Item -->
         <div class="hist-item">
           <div class="hist-item-left">
@@ -864,8 +973,8 @@
               <span class="material-symbols-outlined">schedule</span>
             </div>
             <div class="hist-item-info">
-              <span class="hist-item-title">Deposit ETH</span>
-              <span class="hist-item-sub pending">Processing...</span>
+              <span class="hist-item-title"><span data-i18n="histDeposit">Deposit</span> ETH</span>
+              <span class="hist-item-sub pending" data-i18n="histProcessing">Processing...</span>
             </div>
           </div>
           <div class="hist-item-right">
@@ -877,7 +986,7 @@
 
       <!-- Group: Today -->
       <div class="hist-group">
-        <h3 class="hist-group-title">Today</h3>
+        <h3 class="hist-group-title" data-i18n="histToday">Today</h3>
         <!-- Win Item -->
         <div class="hist-item">
           <div class="hist-item-left">
@@ -885,7 +994,7 @@
               <span class="material-symbols-outlined">emoji_events</span>
             </div>
             <div class="hist-item-info">
-              <span class="hist-item-title">Win: NBA Parlay</span>
+              <span class="hist-item-title"><span data-i18n="histWinPrefix">Win:</span> NBA Parlay</span>
               <span class="hist-item-sub">Lakers vs Heat • Moneyline</span>
             </div>
           </div>
@@ -901,7 +1010,7 @@
               <span class="material-symbols-outlined">sports_basketball</span>
             </div>
             <div class="hist-item-info">
-              <span class="hist-item-title">Bet: Warriors vs Suns</span>
+              <span class="hist-item-title"><span data-i18n="histBetPrefix">Bet:</span> Warriors vs Suns</span>
               <span class="hist-item-sub">Spread -4.5</span>
             </div>
           </div>
@@ -914,7 +1023,7 @@
 
       <!-- Group: Yesterday -->
       <div class="hist-group">
-        <h3 class="hist-group-title">Yesterday</h3>
+        <h3 class="hist-group-title" data-i18n="histYesterday">Yesterday</h3>
         <!-- Withdrawal Item -->
         <div class="hist-item">
           <div class="hist-item-left">
@@ -922,7 +1031,7 @@
               <span class="material-symbols-outlined rotate-45">arrow_upward</span>
             </div>
             <div class="hist-item-info">
-              <span class="hist-item-title">Withdrawal</span>
+              <span class="hist-item-title" data-i18n="histWithdrawal">Withdrawal</span>
               <span class="hist-item-sub">To: 0x83...c91</span>
             </div>
           </div>
@@ -959,7 +1068,7 @@
               <span class="material-symbols-outlined">sports_soccer</span>
             </div>
             <div class="hist-item-info">
-              <span class="hist-item-title">Bet: Chelsea vs Arsenal</span>
+              <span class="hist-item-title"><span data-i18n="histBetPrefix">Bet:</span> Chelsea vs Arsenal</span>
               <span class="hist-item-sub">Total Goals &gt; 2.5</span>
             </div>
           </div>
@@ -973,7 +1082,7 @@
       <!-- Footer Message -->
       <div class="hist-end-msg">
         <span class="material-symbols-outlined">lock</span>
-        <p>End of History</p>
+        <p data-i18n="histEndMsg">End of History</p>
       </div>
     </main>
 
@@ -989,7 +1098,7 @@
       <button id="back-home" class="back-btn">
         <span class="material-symbols-outlined">arrow_back_ios_new</span>
       </button>
-      <h1 class="text-lg font-bold text-center flex-1 pr-2" style="margin:0;">Place Bet</h1>
+      <h1 class="text-lg font-bold text-center flex-1 pr-2" style="margin:0;" data-i18n="plPlaceBetTitle">Place Bet</h1>
       <div class="balance-pill">
         <span class="text-xs font-bold text-[#bab29c]">1,240.50</span>
         <span class="text-[10px] font-bold text-[#bab29c] mr-1">USDT</span>
@@ -1011,7 +1120,8 @@
             <span class="text-xs font-bold uppercase" style="letter-spacing: 0.05em;">Premier League</span>
           </div>
           <span class="text-xs font-medium text-[#bab29c]"
-            style="opacity:0.6; background:rgba(255,255,255,0.05); padding:2px 6px; border-radius:4px;">Live</span>
+            style="opacity:0.6; background:rgba(255,255,255,0.05); padding:2px 6px; border-radius:4px;"
+            data-i18n="plLive">Live</span>
         </div>
 
         <!-- Match Info -->
@@ -1019,19 +1129,19 @@
           <div class="flex flex-col gap-1 mb-3">
             <h3 class="text-xl font-bold leading-tight" style="margin:0;">Arsenal <span
                 class="text-[#bab29c] font-normal text-base mx-1">vs</span> Liverpool</h3>
-            <p class="text-sm text-[#bab29c]" style="margin:0;">Match Winner</p>
+            <p class="text-sm text-[#bab29c]" style="margin:0;" data-i18n="plMatchWinner">Match Winner</p>
           </div>
 
           <!-- Selection & Odds Box -->
           <div class="selection-box">
             <div class="sel-info">
-              <span class="text-[10px] uppercase text-[#bab29c] font-bold tracking-wider mb-0.5"
-                style="opacity:0.7;">Selection</span>
+              <span class="text-[10px] uppercase text-[#bab29c] font-bold tracking-wider mb-0.5" style="opacity:0.7;"
+                data-i18n="plSelection">Selection</span>
               <span class="text-primary font-bold text-lg" style="color:var(--pl-primary);">Arsenal</span>
             </div>
             <div class="odds-info">
-              <span class="text-[10px] uppercase text-[#bab29c] font-bold tracking-wider mb-0.5"
-                style="opacity:0.7;">Odds</span>
+              <span class="text-[10px] uppercase text-[#bab29c] font-bold tracking-wider mb-0.5" style="opacity:0.7;"
+                data-i18n="plOdds">Odds</span>
               <span class="text-2xl font-bold tracking-tight">2.35</span>
             </div>
           </div>
@@ -1040,7 +1150,7 @@
 
       <!-- Stake Input Section -->
       <div class="flex flex-col gap-3">
-        <label class="text-sm font-medium pl-1">Stake Amount</label>
+        <label class="text-sm font-medium pl-1" data-i18n="plStakeAmount">Stake Amount</label>
         <div class="flex gap-2" style="height: 64px;">
           <div class="stake-input-group">
             <input class="stake-input" type="number" value="250" placeholder="0.00">
@@ -1054,7 +1164,7 @@
 
         <!-- Calculated Return -->
         <div class="return-box">
-          <span class="text-sm font-medium text-[#bab29c]">Estimated Return</span>
+          <span class="text-sm font-medium text-[#bab29c]" data-i18n="plEstReturn">Estimated Return</span>
           <div class="flex items-baseline gap-1.5">
             <span class="text-xl font-bold tracking-tight" style="color:var(--pl-primary);">587.50</span>
             <span class="text-xs font-bold" style="color:var(--pl-primary); opacity:0.7;">USDT</span>
@@ -1065,11 +1175,11 @@
       <!-- Additional Info -->
       <div class="info-box">
         <div class="info-row">
-          <span>Current Wallet Balance</span>
+          <span data-i18n="plWalletBalance">Current Wallet Balance</span>
           <span style="font-family:monospace;">1,240.50 USDT</span>
         </div>
         <div class="info-row" style="margin-top: 8px;">
-          <span>Remaining after bet</span>
+          <span data-i18n="plRemaining">Remaining after bet</span>
           <span style="font-family:monospace;">990.50 USDT</span>
         </div>
       </div>
@@ -1080,10 +1190,11 @@
     <footer class="pl-footer">
       <div class="confirm-check">
         <input type="checkbox" id="confirm-bet" checked>
-        <label for="confirm-bet">I confirm this bet is correct and understand bets cannot be canceled.</label>
+        <label for="confirm-bet" data-i18n="plConfirmCheck">I confirm this bet is correct and understand bets cannot be
+          canceled.</label>
       </div>
       <button class="place-bet-btn">
-        <span>Place Bet</span>
+        <span data-i18n="plPlaceBetBtn">Place Bet</span>
         <span class="material-symbols-outlined" style="font-size:20px;">arrow_forward</span>
       </button>
     </footer>
@@ -1358,183 +1469,80 @@
     </main>
   </div>
 
-  <!-- ================= VISTA SPORTSBOOK ================= -->
-  <div id="view-sportsbook" class="view-section">
-    <!-- Sticky Header -->
-    <header class="sb-header">
-      <button id="back-home-sb-pop" class="settings-btn">
-        <span class="material-symbols-outlined" style="font-size: 24px;">arrow_back</span>
+  <!-- ================= VISTA SPORTSBOOK LANDING ================= -->
+  <div id="view-sb-landing" class="view-section">
+    <!-- Header -->
+    <header class="dash-header">
+      <button id="back-home-sb-land" class="nav-icon-btn">
+        <span class="material-symbols-outlined">arrow_back</span>
       </button>
-      <h1>Sports Boosts</h1>
-      <div class="sb-wallet-pill">
-        <span class="material-symbols-outlined text-primary" style="font-size: 18px;">account_balance_wallet</span>
-        <span>0.045 BTC</span>
+      <div class="sb-league-info">
+        <h3 data-i18n="navSportsbook">Sportsbook</h3>
       </div>
     </header>
 
-    <main class="sb-main">
-      <div class="sb-list-header">
-        <h2 class="sb-list-title">Today's Specials</h2>
-        <div class="sb-live-tag">
-          <span class="material-symbols-outlined animate-pulse" style="font-size: 16px;">bolt</span>
-          <span>LIVE NOW</span>
-        </div>
+    <main class="sb-landing-main no-scrollbar">
+      <!-- Banner Section -->
+      <div id="sb-banner" class="sb-banner-container">
+        <img src="image/bannerlpf.png" alt="New Argentine Soccer Season - Bet Now on Gamblor" class="sb-banner-img">
       </div>
 
-      <!-- Boost Card 1: Soccer -->
-      <details class="sb-card">
-        <summary>
-          <div class="sb-card-left">
-            <div class="sb-icon-circle">
-              <span class="material-symbols-outlined">sports_soccer</span>
-            </div>
-            <div class="sb-info">
-              <div class="sb-info-top">
-                <span class="sb-match-title">Real Madrid vs Barcelona</span>
-                <span class="sb-tag boosted">Boosted</span>
-              </div>
-              <p class="sb-bet-desc">Real Madrid to Win & BTTS</p>
-            </div>
-          </div>
-          <div class="sb-card-right">
-            <span class="sb-old-odds">2.50</span>
-            <div class="sb-new-odds">3.50</div>
-          </div>
-        </summary>
-        <div class="sb-expanded">
-          <div class="sb-details-row">
-            <p>Max Stake: <span class="sb-max-stake">0.01 BTC</span></p>
-            <div class="sb-timer">
-              <span class="material-symbols-outlined" style="font-size: 14px;">timer</span>
-              <span>Ends in 45m</span>
-            </div>
-          </div>
-          <button class="sb-place-btn">
-            <span>Place Bet @ 3.50</span>
-            <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
-          </button>
+      <!-- Live Now Section -->
+      <div class="sb-landing-live">
+        <div class="sb-list-header">
+          <h2 class="sb-list-title" data-i18n="sbLiveNow">Live Now</h2>
         </div>
-      </details>
-
-      <!-- Boost Card 2: Basketball -->
-      <details class="sb-card">
-        <summary>
-          <div class="sb-card-left">
-            <div class="sb-icon-circle">
-              <span class="material-symbols-outlined">sports_basketball</span>
-            </div>
-            <div class="sb-info">
-              <div class="sb-info-top">
-                <span class="sb-match-title">Lakers vs Warriors</span>
-                <span class="sb-tag hot">Hot</span>
-              </div>
-              <p class="sb-bet-desc">LeBron James Over 25.5 Pts</p>
-            </div>
-          </div>
-          <div class="sb-card-right">
-            <span class="sb-old-odds">1.80</span>
-            <div class="sb-new-odds">2.20</div>
-          </div>
-        </summary>
-        <div class="sb-expanded">
-          <div class="sb-details-row">
-            <p>Max Stake: <span class="sb-max-stake">0.05 BTC</span></p>
-            <div class="sb-timer">
-              <span class="material-symbols-outlined" style="font-size: 14px;">timer</span>
-              <span>Ends in 2h 10m</span>
-            </div>
-          </div>
-          <button class="sb-place-btn">
-            <span>Place Bet @ 2.20</span>
-            <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
-          </button>
+        <div id="sb-landing-live-list">
+          <div class="sb-match-skeleton" data-i18n="sbNoLive">No live matches currently.</div>
         </div>
-      </details>
-
-      <!-- Boost Card 3: Tennis -->
-      <details class="sb-card">
-        <summary>
-          <div class="sb-card-left">
-            <div class="sb-icon-circle">
-              <span class="material-symbols-outlined">sports_tennis</span>
-            </div>
-            <div class="sb-info">
-              <div class="sb-info-top">
-                <span class="sb-match-title">Alcaraz vs Djokovic</span>
-              </div>
-              <p class="sb-bet-desc">Alcaraz to Win 3-0 Set Betting</p>
-            </div>
-          </div>
-          <div class="sb-card-right">
-            <span class="sb-old-odds">4.20</span>
-            <div class="sb-new-odds">5.00</div>
-          </div>
-        </summary>
-        <div class="sb-expanded">
-          <div class="sb-details-row">
-            <p>Max Stake: <span class="sb-max-stake">0.02 BTC</span></p>
-            <div class="sb-timer">
-              <span class="material-symbols-outlined" style="font-size: 14px;">timer</span>
-              <span>Ends in 12m</span>
-            </div>
-          </div>
-          <button class="sb-place-btn">
-            <span>Place Bet @ 5.00</span>
-            <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
-          </button>
-        </div>
-      </details>
-
-      <!-- Boost Card 4: MMA -->
-      <details class="sb-card">
-        <summary>
-          <div class="sb-card-left">
-            <div class="sb-icon-circle">
-              <span class="material-symbols-outlined">sports_mma</span>
-            </div>
-            <div class="sb-info">
-              <div class="sb-info-top">
-                <span class="sb-match-title">UFC 300 Main Card</span>
-                <span class="sb-tag limited">Limited</span>
-              </div>
-              <p class="sb-bet-desc">Pereira by KO/TKO R1</p>
-            </div>
-          </div>
-          <div class="sb-card-right">
-            <span class="sb-old-odds">3.00</span>
-            <div class="sb-new-odds">4.50</div>
-          </div>
-        </summary>
-        <div class="sb-expanded">
-          <div class="sb-details-row">
-            <p>Max Stake: <span class="sb-max-stake">0.025 BTC</span></p>
-            <div class="sb-timer">
-              <span class="material-symbols-outlined" style="font-size: 14px;">timer</span>
-              <span>Ends in 5h</span>
-            </div>
-          </div>
-          <button class="sb-place-btn">
-            <span>Place Bet @ 4.50</span>
-            <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
-          </button>
-        </div>
-      </details>
-
-      <div style="height: 64px;"></div>
+      </div>
     </main>
+  </div>
 
-    <!-- Floating Action -->
-    <div class="sb-footer-fab" style="padding-bottom: 76px;"> <!-- Adjusted for nav -->
-      <button class="sb-full-btn">
-        <span class="material-symbols-outlined">grid_view</span>
-        <span>Open Full Sportsbook</span>
+  <!-- ================= VISTA SPORTSBOOK (Argentine Soccer) ================= -->
+  <div id="view-sportsbook" class="view-section">
+    <!-- Sticky Header -->
+    <header class="sb-header">
+      <button id="back-home-sb-pop" class="nav-icon-btn">
+        <span class="material-symbols-outlined" style="font-size: 24px;">arrow_back</span>
       </button>
-    </div>
+      <div class="sb-league-info">
+        <img id="sb-league-badge" src="https://www.thesportsdb.com/images/media/league/badge/idv89f1680190130.png"
+          alt="AFA" class="league-badge">
+        <h1>Argentine Soccer</h1>
+      </div>
+    </header>
+
+    <main class="sb-main no-scrollbar">
+      <!-- Contenedor para Partidos en Vivo -->
+      <div id="sb-live-section" style="display:none; margin-bottom: 20px;">
+        <div class="sb-list-header">
+          <h2 class="sb-list-title" data-i18n="sbLiveNow">Live Now</h2>
+        </div>
+        <div id="sb-live-list"></div>
+      </div>
+
+      <!-- Contenedor para Próximos Partidos -->
+      <div class="sb-list-header">
+        <h2 class="sb-list-title" data-i18n="sbUpcoming">Upcoming Matches</h2>
+      </div>
+      <div id="sb-upcoming-list">
+        <div class="sb-match-skeleton" data-i18n="sbLoading">Loading upcoming matches...</div>
+      </div>
+
+      <!-- Contenedor para Resultados Recientes -->
+      <div class="sb-list-header" style="margin-top: 24px;">
+        <h2 class="sb-list-title" data-i18n="sbRecent">Recent Results</h2>
+      </div>
+      <div id="sb-recent-list"></div>
+
+      <div style="height: 80px;"></div>
+    </main>
 
     <!-- Bottom Navigation -->
     <nav class="nav-bar">
       <div class="nav-container">
-        <button id="nav-btn-home-sb-pop" class="nav-item">
+        <button id="nav-btn-home-sb-pop2" class="nav-item">
           <span class="material-symbols-outlined">home</span>
           <span>Home</span>
         </button>
@@ -1551,7 +1559,7 @@
           <span class="material-symbols-outlined">emoji_events</span>
           <span>Rewards</span>
         </button>
-        <button class="nav-item profile-nav-btn-sb">
+        <button class="nav-item profile-nav-btn-sb" onclick="showProfileView()">
           <span class="material-symbols-outlined">person</span>
           <span>Profile</span>
         </button>
@@ -1559,6 +1567,8 @@
     </nav>
   </div>
 
+  <script src="lib/i18n.js"></script>
+  <script src="lib/soccer-api.js"></script>
   <script src="popup.js"></script>
 </body>
 
