@@ -1,0 +1,30 @@
+{
+    "manifest_version": 3,
+    "name": "Gamblor",
+    "version": "1.0.0",
+    "description": "Premium Sportsbook Real-time Odds",
+    "icons": {
+        "128": "logo_icon.png"
+    },
+    "action": {
+        "default_popup": "index.html",
+        "default_icon": "logo_icon.png"
+    },
+    "side_panel": {
+        "default_path": "index.html"
+    },
+    "background": {
+        "service_worker": "src/background/index.ts",
+        "type": "module"
+    },
+    "permissions": [
+        "storage",
+        "alarms",
+        "sidePanel"
+    ],
+    "host_permissions": [
+        "http://localhost:3000/*",
+        "http://127.0.0.1:3000/*",
+        "http://localhost:5173/*"
+    ]
+}

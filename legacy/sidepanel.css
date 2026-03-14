@@ -533,28 +533,7 @@ h1.dep-bal-amount,
 }
 
 /* --- SPORTSBOOK LANDING --- */
-.sb-banner-container {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  cursor: pointer;
-  overflow: hidden;
-  border-radius: 0;
-  position: relative;
-  transition: opacity 0.2s;
-  background-color: #0a0e17;
-}
 
-.sb-banner-container:hover {
-  opacity: 0.92;
-}
-
-.sb-banner-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
 
 .sb-landing-main {
   padding: 0;
@@ -566,4 +545,391 @@ h1.dep-bal-amount,
 
 .sb-landing-live {
   padding: 16px;
+}
+
+/* =========================================
+   SPORTS SUB-NAVIGATION BAR
+   ========================================= */
+.sports-sub-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 12px;
+  background-color: rgba(5, 5, 5, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sport-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.04);
+  color: #6b7280;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.sport-tab .material-symbols-outlined {
+  font-size: 20px;
+  transition: color 0.25s ease;
+}
+
+.sport-tab:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #9ca3af;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.sport-tab.active {
+  background-color: rgba(251, 191, 36, 0.12);
+  color: #FBBF24;
+  border-color: rgba(251, 191, 36, 0.3);
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.08);
+}
+
+.sport-tab.active .material-symbols-outlined {
+  color: #FBBF24;
+}
+
+.sport-tab:active {
+  transform: scale(0.95);
+}
+
+/* ===== Sport Sub-Sections Bar (Matches / Standings / Calendar) ===== */
+.sport-sections-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 0 12px;
+  background-color: rgba(5, 5, 5, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.section-tab {
+  position: relative;
+  background: none;
+  border: none;
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: color 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.section-tab:hover {
+  color: #d1d5db;
+}
+
+.section-tab.active {
+  color: #FBBF24;
+}
+
+.section-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+  right: 16px;
+  height: 2px;
+  background: #FBBF24;
+  border-radius: 2px 2px 0 0;
+}
+
+/* ===== Standings Table ===== */
+.standings-conference {
+  margin-bottom: 16px;
+}
+
+.standings-conf-header {
+  font-size: 13px;
+  font-weight: 700;
+  color: #FBBF24;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 12px 12px 8px;
+  border-bottom: 1px solid rgba(251, 191, 36, 0.15);
+}
+
+.standings-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.standings-table thead th {
+  padding: 6px 4px;
+  color: #6b7280;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 10px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.standings-table thead th:nth-child(2) {
+  text-align: left;
+  padding-left: 8px;
+}
+
+.standings-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background 0.15s;
+}
+
+.standings-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.standings-row td {
+  padding: 7px 4px;
+  text-align: center;
+  color: #d1d5db;
+  font-weight: 500;
+}
+
+.standings-seed {
+  font-weight: 700;
+  font-size: 11px;
+  width: 22px;
+  min-width: 22px;
+}
+
+.seed-playoff .standings-seed {
+  color: #34d399;
+}
+
+.seed-playin .standings-seed {
+  color: #fbbf24;
+}
+
+.seed-out .standings-seed {
+  color: #6b7280;
+}
+
+.seed-out td {
+  opacity: 0.6;
+}
+
+.standings-team {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-align: left !important;
+  padding-left: 8px !important;
+}
+
+.standings-logo {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.standings-abbr {
+  font-weight: 700;
+  color: #e5e7eb;
+  font-size: 12px;
+}
+
+.standings-record {
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+.standings-pct {
+  color: #9ca3af;
+}
+
+.standings-gb {
+  color: #9ca3af;
+}
+
+.standings-streak {
+  font-weight: 600;
+}
+
+.standings-l10 {
+  color: #9ca3af;
+  font-size: 10px;
+}
+
+/* ===== Calendar (Day-by-Day) ===== */
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cal-nav-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: #d1d5db;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.cal-nav-btn:hover {
+  background: rgba(251, 191, 36, 0.12);
+  color: #FBBF24;
+  border-color: rgba(251, 191, 36, 0.3);
+}
+
+.cal-nav-btn:active {
+  transform: scale(0.9);
+}
+
+.cal-nav-btn .material-symbols-outlined {
+  font-size: 20px;
+}
+
+.cal-date-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.cal-date-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: #e5e7eb;
+}
+
+.cal-game-count {
+  font-size: 11px;
+  color: #FBBF24;
+  font-weight: 600;
+}
+
+.cal-games-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+}
+
+.cal-game-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 10px 12px;
+  transition: all 0.2s;
+}
+
+.cal-game-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.cal-game-live {
+  border-color: rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.04);
+}
+
+.cal-game-status-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.cal-live-badge {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.cal-status {
+  font-size: 11px;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.cal-final {
+  color: #6b7280;
+  font-weight: 700;
+}
+
+.cal-teams {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cal-team-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cal-team-logo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.cal-team-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #e5e7eb;
+  min-width: 36px;
+}
+
+.cal-team-record {
+  font-size: 11px;
+  color: #6b7280;
+  flex: 1;
+}
+
+.cal-team-score {
+  font-size: 16px;
+  font-weight: 800;
+  color: #FBBF24;
+  min-width: 30px;
+  text-align: right;
+}
+
+.cal-game-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.cal-venue {
+  font-size: 10px;
+  color: #6b7280;
+  flex: 1;
+}
+
+.cal-broadcast {
+  font-size: 10px;
+  color: #9ca3af;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
 }

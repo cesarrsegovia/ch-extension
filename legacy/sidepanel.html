@@ -1323,23 +1323,80 @@
         <span class="material-symbols-outlined">arrow_back</span>
       </button>
       <div class="sb-league-info">
+        <img id="sb-league-badge" src="" alt="" class="league-badge" style="display:none;">
         <h3 data-i18n="navSportsbook">Sportsbook</h3>
       </div>
     </header>
 
+    <!-- Sports Sub-Navigation -->
+    <div class="sports-sub-nav">
+      <button class="sport-tab active" data-sport="soccer">
+        <span class="material-symbols-outlined">sports_soccer</span>
+        <span>Soccer</span>
+      </button>
+      <button class="sport-tab" data-sport="nba">
+        <span class="material-symbols-outlined">sports_basketball</span>
+        <span>NBA</span>
+      </button>
+      <button class="sport-tab" data-sport="nhl">
+        <span class="material-symbols-outlined">sports_hockey</span>
+        <span>NHL</span>
+      </button>
+    </div>
+
+    <!-- Sport Sub-Sections (Matches / Standings / Calendar) - Landing -->
+    <div id="sport-sections-bar-landing" class="sport-sections-bar" style="display:none;">
+      <button class="section-tab active" data-section="matches">Matches</button>
+      <button class="section-tab" data-section="standings">Standings</button>
+      <button class="section-tab" data-section="calendar">Calendar</button>
+    </div>
+
     <main class="sb-landing-main no-scrollbar">
-      <!-- Banner Section -->
-      <div id="sb-banner" class="sb-banner-container">
-        <img src="image/bannerlpf.png" alt="New Argentine Soccer Season - Bet Now on Gamblor" class="sb-banner-img">
+      <!-- Section: Matches (default) -->
+      <div id="landing-section-matches" class="sport-section-content">
+
+        <!-- Live Section -->
+        <div id="sb-live-section" class="sb-landing-live">
+          <div class="sb-list-header">
+            <h2 id="sb-landing-section-title" class="sb-list-title" data-i18n="sbLiveNow">Live Now</h2>
+          </div>
+          <div id="sb-landing-live-list">
+            <div class="sb-match-skeleton" data-i18n="sbNoLive">No live matches currently.</div>
+          </div>
+        </div>
+
+        <!-- Upcoming Matches -->
+        <div class="sb-landing-live">
+          <div class="sb-list-header">
+            <h2 class="sb-list-title">Upcoming</h2>
+          </div>
+          <div id="sb-upcoming-list">
+            <div class="sb-match-skeleton">Loading...</div>
+          </div>
+        </div>
+
+        <!-- Recent Results -->
+        <div class="sb-landing-live">
+          <div class="sb-list-header">
+            <h2 class="sb-list-title">Recent</h2>
+          </div>
+          <div id="sb-recent-list">
+            <div class="sb-match-skeleton">Loading...</div>
+          </div>
+        </div>
       </div>
 
-      <!-- Live Now Section -->
-      <div class="sb-landing-live">
-        <div class="sb-list-header">
-          <h2 class="sb-list-title" data-i18n="sbLiveNow">Live Now</h2>
+      <!-- Section: Standings -->
+      <div id="landing-section-standings" class="sport-section-content" style="display:none;">
+        <div id="standings-container">
+          <div class="sb-match-skeleton">Loading standings...</div>
         </div>
-        <div id="sb-landing-live-list">
-          <div class="sb-match-skeleton" data-i18n="sbNoLive">No live matches currently.</div>
+      </div>
+
+      <!-- Section: Calendar -->
+      <div id="landing-section-calendar" class="sport-section-content" style="display:none;">
+        <div id="calendar-container">
+          <div class="sb-match-skeleton">Calendar coming soon...</div>
         </div>
       </div>
     </main>
@@ -1347,49 +1404,7 @@
 
   </div>
 
-  <!-- ================= VISTA SPORTSBOOK FULL LIST ================= -->
-  <div id="view-sportsbook" class="view-section">
-    <!-- Sticky Header -->
-    <header class="sb-header">
-      <button id="back-landing-sb" class="nav-icon-btn">
-        <span class="material-symbols-outlined" style="font-size: 24px;">arrow_back</span>
-      </button>
-      <div class="sb-league-info">
-        <img id="sb-league-badge" src="https://www.thesportsdb.com/images/media/league/badge/idv89f1680190130.png"
-          alt="AFA" class="league-badge">
-        <h1>Argentine Soccer</h1>
-      </div>
-    </header>
 
-    <main class="sb-main no-scrollbar">
-      <!-- Contenedor para Partidos en Vivo -->
-      <div id="sb-live-section" style="display:none; margin-bottom: 20px;">
-        <div class="sb-list-header">
-          <h2 class="sb-list-title" data-i18n="sbLiveNow">Live Now</h2>
-        </div>
-        <div id="sb-live-list"></div>
-      </div>
-
-      <!-- Contenedor para Próximos Partidos -->
-      <div class="sb-list-header">
-        <h2 class="sb-list-title" data-i18n="sbUpcoming">Upcoming Matches</h2>
-      </div>
-      <div id="sb-upcoming-list">
-        <div class="sb-match-skeleton" data-i18n="sbLoading">Loading upcoming matches...</div>
-      </div>
-
-      <!-- Contenedor para Resultados Recientes -->
-      <div class="sb-list-header" style="margin-top: 24px;">
-        <h2 class="sb-list-title" data-i18n="sbRecent">Recent Results</h2>
-      </div>
-      <div id="sb-recent-list"></div>
-
-      <div style="height: 80px;"></div>
-    </main>
-
-    <!-- Bottom Navigation  -->
-
-  </div>
 
   <!-- Global Bottom Navigation -->
   <nav class="nav-bar global-nav">
@@ -1419,6 +1434,7 @@
   </nav>
 
   <script src="lib/soccer-api.js"></script>
+  <script src="lib/nba-api.js"></script>
   <script src="lib/i18n.js"></script>
   <script src="popup.js"></script>
 </body>

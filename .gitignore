@@ -1,2 +1,11 @@
-.env
+node_modules/
+dist/
 .env*
+*.log
+.vscode/
+.DS_Store
+*.tsbuildinfo
+*.js.map
+pnpm-lock.yaml.*
+staged_files.txt
+git_status.txt

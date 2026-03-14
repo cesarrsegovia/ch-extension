@@ -354,8 +354,109 @@ async function getLeagueBadge() {
     }
 }
 
+/**
+ * Fetches Argentine league standings from ESPN API.
+ * Returns two groups (A & B) with team details.
+ */
+async function getArgentineStandings() {
+    try {
+        const response = await fetch(
+            'https://site.api.espn.com/apis/v2/sports/soccer/arg.1/standings'
+        );
+        const data = await response.json();
+
+        if (!data.children || data.children.length === 0) return { groups: [] };
+
+        const groups = data.children.map(group => {
+            const entries = group.standings?.entries || [];
+            const teams = entries.map(entry => {
+                const team = entry.team || {};
+                const stats = entry.stats || [];
+                const getStat = (name) => {
+                    const s = stats.find(st => st.name === name);
+                    return s ? s.displayValue || String(s.value || 0) : '0';
+                };
+                return {
+                    name: team.displayName || team.name || '',
+                    abbreviation: team.abbreviation || '',
+                    logo: team.logos?.[0]?.href || '',
+                    rank: parseInt(getStat('rank')) || 0,
+                    gamesPlayed: getStat('gamesPlayed'),
+                    wins: getStat('wins'),
+                    draws: getStat('ties'),
+                    losses: getStat('losses'),
+                    goalsFor: getStat('pointsFor'),
+                    goalsAgainst: getStat('pointsAgainst'),
+                    goalDifference: getStat('pointDifferential'),
+                    points: getStat('points')
+                };
+            });
+            // Sort by rank
+            teams.sort((a, b) => a.rank - b.rank);
+            return {
+                name: group.name || 'Group',
+                teams
+            };
+        });
+
+        return { groups };
+    } catch (error) {
+        console.error('Error fetching Argentine standings:', error);
+        return { groups: [] };
+    }
+}
+
+/**
+ * Fetches ESPN live scoreboard for Argentine soccer.
+ * Returns a map of match data keyed by normalized "away @ home" for cross-ref.
+ */
+async function getEspnSoccerScoreboard() {
+    try {
+        const response = await fetch(
+            'https://site.api.espn.com/apis/site/v2/sports/soccer/arg.1/scoreboard'
+        );
+        const data = await response.json();
+
+        if (!data.events) return {};
+
+        const matchClockMap = {};
+        data.events.forEach(event => {
+            const comp = event.competitions?.[0] || {};
+            const status = comp.status || event.status || {};
+            const state = status.type?.state || 'pre';
+            const home = comp.competitors?.find(c => c.homeAway === 'home');
+            const away = comp.competitors?.find(c => c.homeAway === 'away');
+
+            if (!home || !away) return;
+
+            const homeTeam = home.team?.displayName || '';
+            const awayTeam = away.team?.displayName || '';
+
+            matchClockMap[event.id] = {
+                homeTeam,
+                awayTeam,
+                homeScore: home.score || '0',
+                awayScore: away.score || '0',
+                displayClock: status.displayClock || '',
+                detail: status.type?.detail || '',
+                shortDetail: status.type?.shortDetail || '',
+                state, // pre, in, post
+                completed: status.type?.completed || false,
+                period: status.period || 0
+            };
+        });
+
+        return matchClockMap;
+    } catch (error) {
+        console.error('Error fetching ESPN soccer scoreboard:', error);
+        return {};
+    }
+}
+
 // Exportar para que popup.js pueda usarlo (si se carga como módulo o globalmente)
 window.SoccerAPI = {
     getArgentineMatches,
-    getLeagueBadge
+    getLeagueBadge,
+    getArgentineStandings,
+    getEspnSoccerScoreboard
 };
