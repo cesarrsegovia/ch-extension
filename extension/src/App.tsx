@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useStore } from './store/useStore'
 import axios from 'axios'
 import MatchDetail from './components/MatchDetail'
+import { SPORTS, SOCCER_LEAGUE_IDS } from './constants/sports'
+import { formatMatchTime } from './utils/format'
 
 const App: React.FC = () => {
   const { 
     matches, 
     standings, 
-    odds, 
     selectedMatchId, 
     selectedSport,
     selectedSection,
@@ -15,7 +16,6 @@ const App: React.FC = () => {
     setMatches, 
     setStandings, 
     updateMatch, 
-    updateOdds, 
     setSelectedMatchId,
     setSelectedSport,
     setSelectedSection,
@@ -29,7 +29,6 @@ const App: React.FC = () => {
 
   /**
    * Fetches matches and standings from the backend.
-   * Also initializes the odds state based on the fetched match data.
    */
   const fetchData = async () => {
     setLoading(true)
@@ -43,18 +42,6 @@ const App: React.FC = () => {
 
       setMatches(matchesRes.data)
       setStandings(standingsRes.data)
-
-      matchesRes.data.forEach((match: any) => {
-        if (match.odds && match.odds.length > 0) {
-          const odd = match.odds[0]
-          updateOdds({
-            matchId: match.id,
-            homeWin: parseFloat(odd.homeWin),
-            awayWin: parseFloat(odd.awayWin),
-            draw: odd.draw ? parseFloat(odd.draw) : undefined
-          })
-        }
-      })
     } catch (e) {
       setError(t('errorConnection') || 'Could not connect to server.')
     } finally {
@@ -63,14 +50,13 @@ const App: React.FC = () => {
   }
 
   /**
-   * Effect to trigger data fetch on sport change and
-   * listen for real-time WebSocket updates from the background script.
+   * Fetches data on sport change and listens for real-time WebSocket updates.
    */
   useEffect(() => {
+    setActiveTab('matches')
     fetchData()
     const listener = (message: any) => {
       if (message.type === 'MATCH_UPDATE') updateMatch(message.data)
-      else if (message.type === 'ODDS_UPDATE') updateOdds(message.data)
       else if (message.type === 'STANDINGS_UPDATE') setStandings(message.data)
     }
     if (typeof chrome !== 'undefined' && chrome.runtime?.onMessage) {
@@ -79,18 +65,8 @@ const App: React.FC = () => {
     }
   }, [selectedSport])
 
-  const formatTime = (dateStr?: string | Date) => {
-    if (!dateStr) return '0.0'
-    try {
-      const date = new Date(dateStr)
-      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    } catch (e) {
-      return '0.0'
-    }
-  }
-
   /**
-   * Renders a single match card with live status, scores, and betting odds.
+   * Renders a single match card with live status and scores.
    */
   const renderMatchCard = (match: any) => (
     <div 
@@ -101,7 +77,7 @@ const App: React.FC = () => {
       <div className="flex justify-between mb-2 text-[10px] text-gray-500">
         <div className="flex items-center gap-1.5">
           <span className={`font-black uppercase tracking-tight ${match.status === 'LIVE' ? 'text-red-500 animate-pulse' : match.status === 'FINISHED' ? 'text-gray-400' : 'opacity-70'}`}>
-            {match.status === 'LIVE' ? (match.currentClock || t('tweetLiveLabel')) : match.status === 'SCHEDULED' ? formatTime(match.startTime) : match.currentClock}
+            {match.status === 'LIVE' ? (match.currentClock || t('tweetLiveLabel')) : match.status === 'SCHEDULED' ? formatMatchTime(match.startTime, language) : match.currentClock}
           </span>
         </div>
         {match.status === 'LIVE' && (
@@ -135,24 +111,6 @@ const App: React.FC = () => {
           </span>
         </div>
       </div>
-      {match.status !== 'FINISHED' && odds[match.id] && (
-        <div className="flex flex-row gap-1 mt-3 pt-3 border-t border-white/5 items-center w-full">
-          <div className="flex-1 bg-white/[0.04] border border-white/[0.08] rounded-lg p-1 text-center">
-            <p className="text-[6px] text-gray-500 font-bold uppercase mb-0.5">{t('sbLocal')}</p>
-            <p className="text-[9px] font-black text-white">{odds[match.id].homeWin || '-'}</p>
-          </div>
-          {odds[match.id].draw !== undefined && odds[match.id].draw !== null && (
-            <div className="flex-1 bg-white/[0.04] border border-white/[0.08] rounded-lg p-1 text-center">
-              <p className="text-[6px] text-gray-500 font-bold uppercase mb-0.5">{t('sbEmpate')}</p>
-              <p className="text-[9px] font-black text-[#f4c025]">{odds[match.id].draw || '-'}</p>
-            </div>
-          )}
-          <div className="flex-1 bg-white/[0.04] border border-white/[0.08] rounded-lg p-1 text-center">
-            <p className="text-[6px] text-gray-500 font-bold uppercase mb-0.5">{t('sbVisita')}</p>
-            <p className="text-[9px] font-black text-white">{odds[match.id].awayWin || '-'}</p>
-          </div>
-        </div>
-      )}
     </div>
   )
 
@@ -192,9 +150,9 @@ const App: React.FC = () => {
 
     const groupedMatches: Record<string, any[]> = {}
     filtered.forEach(m => {
-      const date = m.startTime ? new Date(m.startTime).toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'long' }) : t('sbUnknownDate')
-      const today = new Date().toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'long' })
-      const tomorrow = new Date(Date.now() + 86400000).toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'long' })
+      const date = m.startTime ? new Date(m.startTime).toLocaleDateString(language, { weekday: 'long', day: 'numeric', month: 'long' }) : t('sbUnknownDate')
+      const today = new Date().toLocaleDateString(language, { weekday: 'long', day: 'numeric', month: 'long' })
+      const tomorrow = new Date(Date.now() + 86400000).toLocaleDateString(language, { weekday: 'long', day: 'numeric', month: 'long' })
       
       let label = date
       if (date === today) label = t('sbHoy')
@@ -206,11 +164,13 @@ const App: React.FC = () => {
 
     return (
       <div className="w-full px-2">
-        <div className="flex items-center justify-between py-2 mb-2">
-          <p className="text-xs font-bold text-gray-500 uppercase tracking-[0.2em]">
-            {filter === 'active' ? t('sbMainBoard') : t('sbRecentResults')} • {filtered.length} {t('sbPartidos')}
-          </p>
-        </div>
+        {!(selectedSport === 'WORLD-CUP' && filter === 'active' && filtered.length === 0) && (
+          <div className="flex items-center justify-between py-2 mb-2">
+            <p className="text-xs font-bold text-gray-500 uppercase tracking-[0.2em]">
+              {filter === 'active' ? t('sbMainBoard') : t('sbRecentResults')} • {filtered.length} {t('sbPartidos')}
+            </p>
+          </div>
+        )}
         
         {Object.keys(groupedMatches).length > 0 ? (
           Object.entries(groupedMatches).map(([dateLabel, dateMatches]) => (
@@ -228,11 +188,21 @@ const App: React.FC = () => {
             </div>
           ))
         ) : !loading && (
-          <div className="text-center py-24 px-6 bg-white/[0.02] rounded-3xl border border-dashed border-white/10">
-            <p className="text-gray-500 text-sm font-medium italic">
-              {filter === 'active' ? t('sbNoMatches') : t('sbNoResults')}
-            </p>
-          </div>
+          selectedSport === 'WORLD-CUP' && filter === 'active' ? (
+            <div className="flex justify-center py-4">
+              <img 
+                src="/banner-wc-vertical.png" 
+                alt="World Cup 2026" 
+                className="w-full max-w-[260px] h-auto object-contain filter drop-shadow-[0_0_30px_rgba(244,192,37,0.25)] animate-in fade-in slide-in-from-bottom-5 duration-1000" 
+              />
+            </div>
+          ) : (
+            <div className="text-center py-16 px-6 bg-white/[0.02] rounded-3xl border border-dashed border-white/10 flex flex-col items-center gap-6">
+              <p className="text-gray-500 text-sm font-medium italic max-w-[200px]">
+                {filter === 'active' ? t('sbNoMatches') : t('sbNoResults')}
+              </p>
+            </div>
+          )
         )}
       </div>
     )
@@ -249,7 +219,8 @@ const App: React.FC = () => {
     const conferences = Array.from(new Set(standings.map(s => s.conference || 'General')));
     
     const renderConference = (title: string, data: any[]) => {
-      const isSoccer = selectedSport.toLowerCase() === 'soccer';
+      const soccerLeagues = ['soccer', 'champions-league', 'libertadores', 'sudamericana', 'world-cup'];
+      const isSoccer = soccerLeagues.includes(selectedSport.toLowerCase());
       
       return (
         <div className="mb-8 w-full px-2">
@@ -276,10 +247,11 @@ const App: React.FC = () => {
                     </>
                   ) : (
                     <>
-                      <th className="py-3 text-center w-10">W</th>
-                      <th className="py-3 text-center w-10">L</th>
+                      <th className="py-3 text-center w-8">W</th>
+                      <th className="py-3 text-center w-8">L</th>
                       <th className="py-3 text-center w-10">PCT</th>
-                      <th className="py-3 px-3 text-center w-12 border-l border-white/5">GB</th>
+                      <th className="py-3 text-center w-8">GB</th>
+                      <th className="py-3 px-3 text-center w-12 border-l border-white/5">STRK</th>
                     </>
                   )}
                 </tr>
@@ -302,7 +274,8 @@ const App: React.FC = () => {
                         <td className="py-3 text-center text-gray-300">{team.wins || 0}</td>
                         <td className="py-3 text-center text-gray-300">{team.draws || 0}</td>
                         <td className="py-3 text-center text-gray-300">{team.losses || 0}</td>
-                        <td className="py-3 text-center text-gray-500">{team.goalsFor || 0}:{team.goalsAgainst || 0}</td>
+                        <td className="py-3 text-center text-gray-500">{team.goalsFor || 0}</td>
+                        <td className="py-3 text-center text-gray-500">{team.goalsAgainst || 0}</td>
                         <td className="py-3 text-center text-gray-300">{(team.goalsFor || 0) - (team.goalsAgainst || 0)}</td>
                         <td className="py-3 px-3 text-center text-[#f4c025] bg-white/5 text-xs font-black">
                           {team.points || (team.wins * 3 + team.draws)}
@@ -310,8 +283,10 @@ const App: React.FC = () => {
                       </>
                     ) : (
                       <>
-                        <td className="py-3 text-center text-gray-300">{team.wins}-{team.losses}</td>
+                        <td className="py-3 text-center text-gray-300">{team.wins}</td>
+                        <td className="py-3 text-center text-gray-300">{team.losses}</td>
                         <td className="py-3 text-center text-gray-300">{(team.pct || 0).toFixed(3)}</td>
+                        <td className="py-3 text-center text-gray-300">{team.gamesBehind || '0'}</td>
                         <td className="py-3 px-3 text-center text-gray-400 border-l border-white/5">{team.streak || '-'}</td>
                       </>
                     )}
@@ -354,7 +329,7 @@ const App: React.FC = () => {
             <div key={item.id} className="relative flex-1 flex flex-col items-center">
               <button
                 onClick={() => setSelectedSection(item.id as any)}
-                className={`group relative -top-6 w-14 h-14 rounded-full bg-gradient-to-br from-[#f4c025] via-[#fbbf24] to-[#f59e0b] shadow-[0_8px_25px_rgba(244,192,37,0.4)] flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-90 border-[6px] border-[#050505] overflow-hidden`}
+                className={`group relative -top-6 w-14 h-14 rounded-full bg-gradient-to-br from-[#f4c025] via-[#fbbf24] to-[#f59e0b] shadow-[0_8px_25px_rgba(244,192,37,0.4)] flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-90 border-[6px] border-[#050505] overflow-hidden cursor-pointer`}
               >
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <span className="material-symbols-outlined !text-[28px] text-[#050505] font-black">
@@ -372,7 +347,7 @@ const App: React.FC = () => {
           <button
             key={item.id}
             onClick={() => setSelectedSection(item.id as any)}
-            className="flex-1 flex flex-col items-center justify-center gap-1 transition-all h-full group"
+            className="flex-1 flex flex-col items-center justify-center gap-1 transition-all h-full group cursor-pointer"
           >
             <div className={`relative flex items-center justify-center w-8 h-8 rounded-xl transition-all ${
               isActive ? 'bg-[#f4c025]/10' : 'group-hover:bg-white/5'
@@ -400,35 +375,61 @@ const App: React.FC = () => {
   const renderSportsbook = () => (
     <>
       {/* Sport Selector Nav (Level 2) */}
-      <div className="flex items-center gap-1 py-3 px-4 bg-[#050505] border-b border-white/[0.05] overflow-x-auto no-scrollbar scroll-smooth">
-        {[
-          { id: 'NBA', icon: '🏀', label: 'NBA' },
-          { id: 'Soccer', icon: '⚽', label: 'Soccer' },
-          { id: 'NHL', icon: '🏒', label: 'NHL' },
-          { id: 'MLB', icon: '⚾', label: 'MLB' },
-        ].map((sport) => (
-          <button
-            key={sport.id}
-            onClick={() => setSelectedSport(sport.id)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full text-[11px] font-black tracking-widest transition-all whitespace-nowrap border ${
-              selectedSport === sport.id 
-                ? 'bg-[#fbbf24]/10 text-[#FBBF24] border-[#fbbf24]/30 shadow-[0_0_15px_rgba(251,191,36,0.1)]' 
-                : 'bg-white/5 text-gray-500 border-white/5 hover:bg-white/10'
-            }`}
-          >
-            <span className="text-sm">{sport.icon}</span>
-            {sport.label}
-          </button>
-        ))}
+      <div className="grid grid-cols-2 gap-3 py-4 px-4 bg-[#050505] border-b border-white/[0.05] overflow-visible relative z-[60]">
+        {SPORTS.map((sport) => {
+          const isGroupActive = sport.id === 'SOCCER_GROUP' && SOCCER_LEAGUE_IDS.includes(selectedSport.toLowerCase() as any);
+          const isActive = isGroupActive || selectedSport === sport.id;
+
+          return (
+            <div key={sport.id} className="relative group cursor-pointer flex justify-center">
+              <button
+                onClick={() => {
+                  if (sport.id === 'SOCCER_GROUP') {
+                    setSelectedSport('SOCCER_ALL');
+                    setActiveTab('matches');
+                  } else {
+                    setSelectedSport(sport.id);
+                  }
+                }}
+                className={`w-full flex justify-center items-center gap-2 px-4 py-2.5 rounded-full text-[11px] font-black tracking-widest transition-all cursor-pointer border ${
+                  isActive 
+                    ? 'bg-[#fbbf24]/10 text-[#FBBF24] border-[#fbbf24]/30 shadow-[0_0_15px_rgba(251,191,36,0.1)]' 
+                    : 'bg-white/5 text-gray-400 border-white/5 hover:bg-white/10 hover:text-white'
+                }`}
+              >
+                <span className="text-sm">{sport.icon}</span>
+                {sport.label}
+              </button>
+
+              {sport.sub && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-44 bg-[#0a0a0a] border border-white/10 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[100] flex flex-col py-2 cursor-default">
+                  {sport.sub.map(subItem => (
+                    <button 
+                      key={subItem.id} 
+                      onClick={(e) => { 
+                        e.stopPropagation(); 
+                        setSelectedSport(subItem.id); 
+                      }}
+                      className={`px-4 py-3 text-[10px] font-black text-center uppercase tracking-widest cursor-pointer transition-colors ${selectedSport === subItem.id ? 'text-[#f4c025] bg-white/[0.04]' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}
+                    >
+                      {subItem.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
 
       {/* Sport View Tabs (Level 3) */}
-      <nav className="flex items-center justify-center bg-[#050505] border-b border-white/10 sticky top-[64px] z-40 overflow-x-hidden">
-        {(['matches', 'results', 'standings'] as const).map((tab) => (
+      {selectedSport !== 'SOCCER_ALL' && (
+        <nav className="flex items-center justify-center bg-[#050505] border-b border-white/10 sticky top-[64px] z-40 overflow-x-hidden">
+          {(['matches', 'results', 'standings'] as const).map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`flex-1 relative text-[10px] font-black py-4 uppercase tracking-[0.1em] transition-all ${
+            className={`flex-1 relative text-[10px] font-black py-4 uppercase tracking-[0.1em] transition-all cursor-pointer ${
               activeTab === tab 
                 ? 'text-[#FBBF24] bg-white/[0.02] after:content-[""] after:absolute after:bottom-0 after:left-1 after:right-1 after:h-0.5 after:bg-[#FBBF24] after:rounded-full after:shadow-[0_0_10px_#fbbf24]' 
                 : 'text-gray-500 hover:text-gray-300 hover:bg-white/[0.01]'
@@ -437,7 +438,8 @@ const App: React.FC = () => {
             {tab === 'matches' ? t('sbTabBoard') : tab === 'results' ? t('sbTabResults') : t('sbTabStandings')}
           </button>
         ))}
-      </nav>
+        </nav>
+      )}
 
       <main className="flex-1 w-full px-4 py-6 pb-24 overflow-y-auto">
         {loading ? (
@@ -447,15 +449,34 @@ const App: React.FC = () => {
           </div>
         ) : (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-            {activeTab === 'matches' ? renderMatches('active') : activeTab === 'results' ? renderMatches('results') : renderStandings()}
+            {selectedSport === 'SOCCER_ALL' || activeTab === 'matches' ? renderMatches('active') : activeTab === 'results' ? renderMatches('results') : renderStandings()}
           </div>
         )}
       </main>
     </>
   )
 
+  const renderUserCard = (compact = false) => (
+    <div className={`flex flex-col items-center gap-4 ${compact ? 'mb-6' : 'mb-10'}`}>
+      <div className="relative">
+        <div className={`${compact ? 'w-20 h-20' : 'w-24 h-24'} rounded-full border-4 border-[#f4c025] p-1 bg-[#050505]`}>
+          <div className="w-full h-full rounded-full bg-white/5 flex items-center justify-center overflow-hidden">
+             <span className={`material-symbols-outlined ${compact ? '!text-[40px]' : '!text-[48px]'} text-white/20`}>person</span>
+          </div>
+        </div>
+        <div className={`${compact ? 'w-5 h-5' : 'w-6 h-6'} absolute bottom-1 right-1 bg-green-500 border-4 border-[#050505] rounded-full`}></div>
+      </div>
+      <div className="text-center">
+        <h2 className={`${compact ? 'text-xl' : 'text-2xl'} font-black text-white`}>Alex Roller</h2>
+        <p className="text-xs font-bold text-[#f4c025] mt-1 tracking-widest uppercase opacity-70">Platinum VIP Level</p>
+      </div>
+    </div>
+  )
+
   const renderHome = () => (
     <main className="flex-1 w-full px-3 py-6 flex flex-col gap-6 pb-24 overflow-y-auto overflow-x-hidden">
+      {renderUserCard(true)}
+      {/* 
       <div className="bg-gradient-to-br from-[#f4c025] to-[#fbbf24] rounded-2xl p-5 text-[#050505] shadow-2xl relative overflow-hidden group">
         <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-white/30 transition-all duration-700"></div>
         <div className="relative z-10">
@@ -467,15 +488,16 @@ const App: React.FC = () => {
           </div>
         </div>
       </div>
+      */}
  
        <div className="grid grid-cols-2 gap-3">
-         <button className="bg-white/5 border border-white/10 rounded-xl p-3 flex flex-col items-center gap-2 hover:bg-white/10 transition-all active:scale-95 shadow-lg group">
+         <button className="bg-white/5 border border-white/10 rounded-xl p-3 flex flex-col items-center gap-2 hover:bg-white/10 transition-all active:scale-95 shadow-lg group cursor-pointer">
            <div className="p-2 bg-[#f4c025]/10 rounded-lg group-hover:bg-[#f4c025]/20 transition-colors">
              <span className="material-symbols-outlined !text-[20px]">add_circle</span>
            </div>
            <span className="text-xs font-black uppercase tracking-tighter">{t('btnDeposit')}</span>
          </button>
-         <button className="bg-white/5 border border-white/10 rounded-xl p-3 flex flex-col items-center gap-2 hover:bg-white/10 transition-all active:scale-95 shadow-lg group">
+         <button className="bg-white/5 border border-white/10 rounded-xl p-3 flex flex-col items-center gap-2 hover:bg-white/10 transition-all active:scale-95 shadow-lg group cursor-pointer">
            <div className="p-2 bg-white/5 rounded-lg group-hover:bg-white/10 transition-colors">
              <span className="material-symbols-outlined">arrow_outward</span>
            </div>
@@ -523,20 +545,7 @@ const App: React.FC = () => {
 
   const renderProfile = () => (
     <main className="flex-1 w-full px-4 py-8 pb-24 overflow-y-auto">
-      <div className="flex flex-col items-center gap-4 mb-10">
-        <div className="relative">
-          <div className="w-24 h-24 rounded-full border-4 border-[#f4c025] p-1 bg-[#050505]">
-            <div className="w-full h-full rounded-full bg-white/5 flex items-center justify-center overflow-hidden">
-               <span className="material-symbols-outlined !text-[48px] text-white/20">person</span>
-            </div>
-          </div>
-          <div className="absolute bottom-1 right-1 w-6 h-6 bg-green-500 border-4 border-[#050505] rounded-full"></div>
-        </div>
-        <div className="text-center">
-          <h2 className="text-2xl font-black text-white">Alex Roller</h2>
-          <p className="text-xs font-bold text-[#f4c025] mt-1 tracking-widest uppercase opacity-70">Platinum VIP Level</p>
-        </div>
-      </div>
+      {renderUserCard()}
  
       {/* Language Switcher */}
       <div className="mb-8 p-1 bg-white/5 rounded-2xl flex gap-1">
@@ -548,7 +557,7 @@ const App: React.FC = () => {
           <button
             key={lang.id}
             onClick={() => setLanguage(lang.id as any)}
-            className={`flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
+            className={`flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer ${
               language === lang.id 
                 ? 'bg-[#f4c025] text-[#050505] shadow-lg scale-[1.02]' 
                 : 'text-gray-500 hover:text-gray-300 hover:bg-white/5'
@@ -561,13 +570,11 @@ const App: React.FC = () => {
 
        <div className="flex flex-col gap-2">
          {[
-          { icon: 'history', label: t('menuBetHistory') },
           { icon: 'account_balance_wallet', label: t('menuTransHistory') },
-           { icon: 'verified_user', label: t('menuResponsible') },
           { icon: 'settings', label: t('menuSettings') || 'Settings' },
           { icon: 'support_agent', label: t('helpTitle') },
         ].map((item, i) => (
-          <button key={i} className="flex items-center gap-4 w-full p-4 hover:bg-white/5 rounded-2xl transition-all group">
+          <button key={i} className="flex items-center gap-4 w-full p-4 hover:bg-white/5 rounded-2xl transition-all group cursor-pointer">
             <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-[#f4c025]/10 transition-colors">
               <span className="material-symbols-outlined !text-[20px] text-gray-400 group-hover:text-[#f4c025]">{item.icon}</span>
             </div>
@@ -575,7 +582,7 @@ const App: React.FC = () => {
             <span className="material-symbols-outlined !text-[18px] text-gray-600 group-hover:translate-x-1 transition-transform">chevron_right</span>
           </button>
         ))}
-        <button className="flex items-center gap-4 w-full p-4 mt-8 hover:bg-red-500/5 rounded-2xl transition-all group">
+        <button className="flex items-center gap-4 w-full p-4 mt-8 hover:bg-red-500/5 rounded-2xl transition-all group cursor-pointer">
           <div className="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center">
             <span className="material-symbols-outlined !text-[20px] text-red-500">logout</span>
           </div>
@@ -589,11 +596,11 @@ const App: React.FC = () => {
     <div className="flex flex-col h-screen bg-[#050505] text-white overflow-hidden w-full mx-auto relative shadow-2xl">
       <header className="flex-shrink-0 h-14 flex items-center justify-between px-3 bg-[#050505]/95 backdrop-blur-xl border-b border-white/10 shadow-xl z-50">
         <div className="flex items-center gap-2">
-          <div className="p-1 bg-white/5 rounded-lg border border-white/10 shadow-inner">
-            <img src="/logo_icon.png" alt="Gamblor" className="w-8 h-8 object-contain" />
+          <div className="p-1 bg-white/5 rounded-lg border border-white/10 shadow-inner flex items-center justify-center">
+            <img src="/logo-fl.png" alt="FL-Sports" className="w-8 h-8 object-contain drop-shadow-md" />
           </div>
           <div className="flex flex-col">
-            <h1 className="text-base font-black text-white m-0 tracking-tight leading-tight">Gamblor</h1>
+            <h1 className="text-base font-black text-white m-0 tracking-tight leading-tight">FL-Sports</h1>
             <span className="text-[10px] text-[#f4c025] font-black uppercase tracking-widest opacity-80 leading-none">
               {selectedSection === 'home' ? t('navHome') : selectedSection === 'games' ? t('navGames') : selectedSection === 'profile' ? t('navProfile') : `${selectedSport} ${t('tweetRealTime')}`}
             </span>
@@ -601,7 +608,7 @@ const App: React.FC = () => {
         </div>
         <button
           onClick={fetchData}
-          className="bg-white/5 border border-white/10 text-[#f4c025] hover:bg-white/10 rounded-xl w-10 h-10 flex items-center justify-center transition-all hover:scale-110 active:scale-95 shadow-lg group"
+          className="bg-white/5 border border-white/10 text-[#f4c025] hover:bg-white/10 rounded-xl w-10 h-10 flex items-center justify-center transition-all hover:scale-110 active:scale-95 shadow-lg group cursor-pointer"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={`${loading ? 'animate-spin' : 'group-hover:rotate-180 transition-transform duration-500'}`}>
             <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />

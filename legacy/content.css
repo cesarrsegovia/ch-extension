@@ -1,5 +1,5 @@
 /* Botón full-width estilo nativo */
-.gamblor-button-wrapper {
+.fl-sports-button-wrapper {
     margin-top: 12px;
     margin-bottom: 4px;
     width: 100%;
@@ -9,7 +9,7 @@
     justify-content: center;
 }
 
-.gamblor-bet-button {
+.fl-sports-bet-button {
     width: 60%;
     display: flex;
     align-items: center;
@@ -32,30 +32,30 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-.gamblor-bet-button:hover {
+.fl-sports-bet-button:hover {
     filter: brightness(1.1);
     box-shadow: 0 0 15px rgba(230, 179, 40, 0.6);
     /* Glow effect */
 }
 
-.gamblor-bet-button:active {
+.fl-sports-bet-button:active {
     transform: scale(0.98);
 }
 
-.gamblor-icon-img {
+.fl-sports-icon-img {
     height: 20px;
     width: 20px;
     object-fit: contain;
 }
 
-.gamblor-btn-text {
+.fl-sports-btn-text {
     position: relative;
     top: 1px;
     /* Ajuste óptico */
 }
 
 /* Tooltip Styles */
-.gamblor-tooltip {
+.fl-sports-tooltip {
     visibility: hidden;
     background-color: #221e10;
     color: #fff;
@@ -81,7 +81,7 @@
     transition: opacity 0.2s, transform 0.2s;
 }
 
-.gamblor-tooltip::after {
+.fl-sports-tooltip::after {
     content: "";
     position: absolute;
     top: 100%;
@@ -92,13 +92,13 @@
     border-color: #f2b90d transparent transparent transparent;
 }
 
-.gamblor-bet-button:hover .gamblor-tooltip {
+.fl-sports-bet-button:hover .fl-sports-tooltip {
     visibility: visible;
     opacity: 1;
     transform: translateX(-50%) translateY(-5px);
 }
 
-.gamblor-live-indicator {
+.fl-sports-live-indicator {
     display: inline-block;
     width: 6px;
     height: 6px;
@@ -107,10 +107,10 @@
     margin-right: 4px;
     vertical-align: middle;
     box-shadow: 0 0 0 rgba(255, 68, 68, 0.4);
-    animation: gamblor-pulse 2s infinite;
+    animation: fl-sports-pulse 2s infinite;
 }
 
-@keyframes gamblor-pulse {
+@keyframes fl-sports-pulse {
     0% {
         box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.7);
     }
@@ -125,7 +125,7 @@
 }
 
 /* --- Floating Trigger --- */
-.gamblor-floating-trigger {
+.fl-sports-floating-trigger {
     position: fixed;
     top: auto;
     bottom: 25%;
@@ -145,11 +145,11 @@
     transition: right 0.3s ease;
 }
 
-.gamblor-floating-trigger:hover {
+.fl-sports-floating-trigger:hover {
     background-color: #252525;
 }
 
-.gamblor-floating-icon {
+.fl-sports-floating-icon {
     width: 22px;
     height: 22px;
     object-fit: contain;
@@ -157,7 +157,7 @@
 }
 
 /* Close button ("X") */
-.gamblor-trigger-close {
+.fl-sports-trigger-close {
     position: absolute;
     top: -8px;
     left: -8px;
@@ -179,10 +179,10 @@
     transition: opacity 0.2s;
 }
 
-.gamblor-floating-trigger:hover .gamblor-trigger-close {
+.fl-sports-floating-trigger:hover .fl-sports-trigger-close {
     opacity: 1;
 }
 
-.gamblor-trigger-close:hover {
+.fl-sports-trigger-close:hover {
     background-color: #666;
 }

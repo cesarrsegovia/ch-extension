@@ -1,5 +1,5 @@
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.action === "openGamblorNotification") {
+    if (message.action === "openSidePanel") {
 
         // guardar el tipo de vista que queremos mostrar antes de abrir el popup
         const viewType = message.type || "default";

@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     if (tabs[0] && tabs[0].id) {
       // mantenemos la conexión viva mientras el panel esté abierto
-      chrome.tabs.connect(tabs[0].id, { name: "gamblor-sidepanel" });
+      chrome.tabs.connect(tabs[0].id, { name: "fl-sports-sidepanel" });
     }
   });
 
@@ -55,10 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // --- HOME ACTIONS ---
-  const goGamblorBtn = document.getElementById("go-gamblor");
-  if (goGamblorBtn) {
-    goGamblorBtn.addEventListener("click", () => {
-      window.open("https://www.gamblor.io/", "_blank");
+  const goFlSportsBtn = document.getElementById("go-fl-sports");
+  if (goFlSportsBtn) {
+    goFlSportsBtn.addEventListener("click", () => {
       window.close();
     });
   }
@@ -664,26 +663,6 @@ function renderMatches(matches, espnClockMap) {
   // Matches rendering
   matches.forEach(match => {
     try {
-      let oddsHtml = '';
-      if (match.odds) {
-        oddsHtml = `
-          <div class="sb-odds-row">
-            <div class="sb-odd-item" title="Local">
-              <span class="sb-odd-label">1</span>
-              <span class="sb-odd-val">${match.odds.home || '-'}</span>
-            </div>
-            <div class="sb-odd-item" title="Empate">
-              <span class="sb-odd-label">X</span>
-              <span class="sb-odd-val">${match.odds.draw || '-'}</span>
-            </div>
-            <div class="sb-odd-item" title="Visitante">
-              <span class="sb-odd-label">2</span>
-              <span class="sb-odd-val">${match.odds.away || '-'}</span>
-            </div>
-          </div>
-        `;
-      }
-
       const matchDate2 = new Date(match.date);
 
       // Try to get match time from ESPN real clock data
@@ -753,7 +732,6 @@ function renderMatches(matches, espnClockMap) {
               <span class="sb-score">${match.status === 'Upcoming' ? '–' : match.awayScore}</span>
             </div>
           </div>
-          ${oddsHtml}
         </div>
       `;
 
@@ -1217,23 +1195,6 @@ function renderNbaMatches(matches) {
 
   matches.forEach(match => {
     try {
-      // NBA odds: only home/away (no draw)
-      let oddsHtml = '';
-      if (match.odds) {
-        oddsHtml = `
-          <div class="sb-odds-row">
-            <div class="sb-odd-item" title="Home">
-              <span class="sb-odd-label">1</span>
-              <span class="sb-odd-val">${match.odds.home || '-'}</span>
-            </div>
-            <div class="sb-odd-item" title="Away">
-              <span class="sb-odd-label">2</span>
-              <span class="sb-odd-val">${match.odds.away || '-'}</span>
-            </div>
-          </div>
-        `;
-      }
-
       const matchDate = new Date(match.date);
       let displayTime = '';
       if (match.isLive) {
@@ -1266,7 +1227,6 @@ function renderNbaMatches(matches) {
               <span class="sb-score">${match.isLive ? match.awayScore : '–'}</span>
             </div>
           </div>
-          ${oddsHtml}
         </div>
       `;
 

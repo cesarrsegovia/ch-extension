@@ -1,9 +1,9 @@
 {
     "appName": {
-        "message": "Gamblor Erweiterung"
+        "message": "FL-Sports Erweiterung"
     },
     "appDesc": {
-        "message": "Interagieren Sie mit Gamblor-Beiträgen"
+        "message": "Interagieren Sie mit FL-Sports-Beiträgen"
     },
     "welcomeBack": {
         "message": "Willkommen zurück"
@@ -405,5 +405,6 @@
     "sbProgramado": { "message": "GEPLANT" },
     "sbStatsPeriod": { "message": "Statistiken nach Zeitraum" },
     "sbIndividualLeaders": { "message": "Einzelne Anführer" },
-    "sbResultOdds": { "message": "Ergebnis-Quoten" }
+    "sbResultOdds": { "message": "Ergebnis-Quoten" },
+    "sbSyncing": { "message": "Synchronisierung" }
 }

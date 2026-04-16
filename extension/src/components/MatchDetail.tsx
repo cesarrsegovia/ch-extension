@@ -2,7 +2,7 @@ import React from 'react'
 import { useStore } from '../store/useStore'
 
 const MatchDetail: React.FC = () => {
-  const { matches, selectedMatchId, setSelectedMatchId, odds, t } = useStore()
+  const { matches, selectedMatchId, setSelectedMatchId, t } = useStore()
   const match = matches.find(m => m.id === selectedMatchId)
 
   if (!match) return null
@@ -36,7 +36,7 @@ const MatchDetail: React.FC = () => {
         <div className="flex items-center gap-4 mb-8">
           <button 
             onClick={() => setSelectedMatchId(null)}
-            className="w-10 h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all active:scale-95 group shadow-lg"
+            className="w-10 h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all active:scale-95 group shadow-lg cursor-pointer"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:-translate-x-0.5 transition-transform"><path d="m15 18-6-6 6-6"/></svg>
           </button>
@@ -148,7 +148,7 @@ const MatchDetail: React.FC = () => {
                         {match.leaders.map((leader, i) => (
                             <div 
                                 key={i} 
-                                className="relative flex items-center justify-between p-4 bg-white/[0.03] border border-white/10 rounded-2xl group hover:bg-[#f4c025]/[0.08] hover:border-[#f4c025]/30 transition-all duration-300 transform hover:-translate-y-0.5"
+                                className="relative flex items-center justify-between p-4 bg-white/[0.03] border border-white/10 rounded-2xl group hover:bg-[#f4c025]/[0.08] hover:border-[#f4c025]/30 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
                             >
                                 <div className="flex items-center gap-4">
                                     <div className="relative w-12 h-12 bg-white/5 rounded-xl overflow-hidden flex items-center justify-center p-0.5 border border-white/10 shadow-lg group-hover:scale-110 transition-transform duration-500">
@@ -178,33 +178,6 @@ const MatchDetail: React.FC = () => {
                 </div>
             )}
 
-            {/* Betting Odds Section */}
-            {match.status !== 'FINISHED' && odds[match.id] && (
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 bg-gradient-to-br from-[#f4c025]/10 to-transparent border border-[#f4c025]/20 rounded-3xl p-6 mt-4">
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="w-8 h-8 bg-[#f4c025] rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(244,192,37,0.3)]">
-                            <span className="material-symbols-outlined !text-[18px] text-black">analytics</span>
-                        </div>
-                        <h4 className="text-[11px] font-black text-white uppercase tracking-widest">{t('sbResultOdds')}</h4>
-                    </div>
-                    <div className="flex flex-row gap-2">
-                        <div className="flex-1 bg-white/5 border border-white/10 rounded-2xl p-3 text-center">
-                            <p className="text-[8px] text-gray-500 font-bold uppercase mb-1">{t('sbLocal')}</p>
-                            <p className="text-base font-black text-[#f4c025]">{odds[match.id].homeWin || '-'}</p>
-                        </div>
-                        {odds[match.id].draw !== undefined && odds[match.id].draw !== null && (
-                            <div className="flex-1 bg-white/5 border border-white/10 rounded-2xl p-3 text-center">
-                                <p className="text-[8px] text-gray-500 font-bold uppercase mb-1">{t('sbEmpate')}</p>
-                                <p className="text-base font-black text-[#f4c025]">{odds[match.id].draw}</p>
-                            </div>
-                        )}
-                        <div className="flex-1 bg-white/5 border border-white/10 rounded-2xl p-3 text-center">
-                            <p className="text-[8px] text-gray-500 font-bold uppercase mb-1">{t('sbVisita')}</p>
-                            <p className="text-base font-black text-[#f4c025]">{odds[match.id].awayWin || '-'}</p>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
       </div>
     </div>

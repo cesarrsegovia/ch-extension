@@ -1,4 +1,4 @@
-const TARGET_ACCOUNT = "Gamblor Casino";
+const TARGET_ACCOUNT = "FL-Sports";
 const isTw = window.location.hostname.includes("twitter.com") || window.location.hostname.includes("x.com");
 
 if (isTw) {
@@ -16,8 +16,8 @@ chrome.storage.onChanged.addListener((changes, area) => {
 
 // detectar conexión del Side Panel para ocultar/mostrar el trigger
 chrome.runtime.onConnect.addListener((port) => {
-    if (port.name === "gamblor-sidepanel") {
-        const trigger = document.getElementById("gamblor-floating-trigger");
+    if (port.name === "fl-sports-sidepanel") {
+        const trigger = document.getElementById("fl-sports-floating-trigger");
         if (trigger) {
             trigger.style.display = "none";
         }
@@ -31,18 +31,18 @@ chrome.runtime.onConnect.addListener((port) => {
 });
 
 function createFloatingTrigger() {
-    if (document.getElementById("gamblor-floating-trigger")) return;
+    if (document.getElementById("fl-sports-floating-trigger")) return;
 
     const triggerUrl = chrome.runtime.getURL("image/logo_icon.png");
 
     // Contenedor principal
     const container = document.createElement("div");
-    container.id = "gamblor-floating-trigger";
-    container.className = "gamblor-floating-trigger";
+    container.id = "fl-sports-floating-trigger";
+    container.className = "fl-sports-floating-trigger";
 
     // Close Button (X)
     const closeBtn = document.createElement("div");
-    closeBtn.className = "gamblor-trigger-close";
+    closeBtn.className = "fl-sports-trigger-close";
     closeBtn.innerText = "×";
 
     closeBtn.onclick = (e) => {
@@ -54,7 +54,7 @@ function createFloatingTrigger() {
     // icono principal
     const icon = document.createElement("img");
     icon.src = triggerUrl;
-    icon.className = "gamblor-floating-icon";
+    icon.className = "fl-sports-floating-icon";
 
     container.appendChild(closeBtn);
     container.appendChild(icon);
@@ -89,13 +89,13 @@ function processTweet(tweet) {
         }
 
         highlightTweet(tweet, type);
-        // chrome.runtime.sendMessage({ action: "openGamblorNotification" }); // Ya no auto-abrimos, solo al click
+        // chrome.runtime.sendMessage({ action: "openSidePanel" }); // Ya no auto-abrimos, solo al click
     }
 }
 
 function highlightTweet(tweet, type = "default") {
-    if (tweet.classList.contains("gamblor-processed")) return;
-    tweet.classList.add("gamblor-processed");
+    if (tweet.classList.contains("fl-sports-processed")) return;
+    tweet.classList.add("fl-sports-processed");
 
     // se remueven estilos de borde antiguos si existen
     tweet.classList.remove("detected-tweet");
@@ -107,33 +107,24 @@ function highlightTweet(tweet, type = "default") {
     if (actionsBar) {
         // crear contenedor del botón
         const btnContainer = document.createElement("div");
-        btnContainer.className = "gamblor-button-wrapper";
+        btnContainer.className = "fl-sports-button-wrapper";
 
         // crear botón
         const btn = document.createElement("button");
-        btn.className = "gamblor-bet-button";
+        btn.className = "fl-sports-bet-button";
 
         // icono imagen
         const imgUrl = chrome.runtime.getURL("image/logo_icon.png");
-        const imgIcon = `<img src="${imgUrl}" class="gamblor-icon-img" />`;
+        const imgIcon = `<img src="${imgUrl}" class="fl-sports-icon-img" />`;
 
-        // tooltip con cuotas y live
-        const tooltipHtml = `
-            <div class="gamblor-tooltip">
-                <span style="color: #bab29c; font-weight: 500;" data-i18n="tweetOddsLabel">Odds:</span> <span style="color: #f2b90d;">2.35</span>
-                <span style="margin: 0 6px; color: #444;">|</span>
-                <span class="gamblor-live-indicator"></span> <span style="color: #ff4444; letter-spacing: 0.05em;" data-i18n="tweetLiveLabel">LIVE</span>
-            </div>
-        `;
-
-        btn.innerHTML = `${imgIcon}<span class="gamblor-btn-text" data-i18n="tweetPlaceBetBtn">Place Bet</span>${tooltipHtml}`;
+        btn.innerHTML = `${imgIcon}<span class="fl-sports-btn-text" data-i18n="tweetViewMatch">View Match</span>`;
 
         btn.onclick = (e) => {
             e.preventDefault();
             e.stopPropagation();
             chrome.runtime.sendMessage({
-                action: "openGamblorNotification",
-                type: type // Pasamos el tipo al background
+                action: "openSidePanel",
+                type: type
             });
         };
 
